@@ -5,6 +5,7 @@ use App\Http\Livewire\Admin\Photography\Photographies;
 use App\Http\Livewire\Admin\Places\ListPlaces;
 use App\Http\Livewire\Admin\ThematicArea\ThematicAreas;
 use App\Http\Livewire\Admin\User\ListUsers;
+use App\Http\Livewire\Admin\Verify\ListVerify;
 use App\Http\Livewire\Admin\Video\ListVideos;
 use App\Http\Livewire\Admin\VideoItem\ListVideoItems;
 use App\Http\Livewire\Admin\Visit\ShowVisits;
@@ -20,6 +21,7 @@ Route::group(['middleware' => 'admin_or_teacher'], function () {
     Route::get('visits', ShowVisits::class)->name('visit.index');
     Route::get('thematic-areas', ThematicAreas::class)->name('thematic-areas.index');
     Route::get('places', ListPlaces::class)->name('places.index');
+    Route::get('verify', ListVerify::class)->name('verify.index');
 });
 
 Route::get('/', Welcome::class)->name('welcome');

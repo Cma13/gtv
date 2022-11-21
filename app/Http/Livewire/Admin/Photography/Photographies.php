@@ -154,7 +154,7 @@ class Photographies extends Component
             'editForm.thematicAreaId' => 'required|integer',
         ]);
 
-        if (! is_null($this->editForm['route'])) {
+        if (!is_null($this->editForm['route'])) {
             $this->editForm['route']->storeAs('public/photos', $this->editForm['route']->getFilename());
 
             $photography['route'] = 'storage/photos/' . $this->editForm['route']->getFilename();
@@ -162,7 +162,7 @@ class Photographies extends Component
 
         $order = Photography::where('point_of_interest_id', $this->editForm['pointOfInterestId'])->count();
 
-        $photography['order'] = $order +1;
+        $photography['order'] = $order + 1;
         $photography['point_of_interest_id'] = $this->editForm['pointOfInterestId'];
         $photography['thematic_area_id'] = $this->editForm['thematicAreaId'];
         $photography['updater'] = auth()->user()->id;
@@ -179,7 +179,7 @@ class Photographies extends Component
 
     public function show(Photography $photography)
     {
-        if ( ! is_null( User::find($photography->updater) )) {
+        if (!is_null(User::find($photography->updater))) {
             $this->showModal['updaterId'] = User::find($photography->updater)->id;
             $this->showModal['updaterName'] = User::find($photography->updater)->name;
         } else {
@@ -208,7 +208,7 @@ class Photographies extends Component
     {
         $this->reset(['editForm']);
 
-        if ( ! is_null($photography['point_of_interest_id'])) {
+        if (!is_null($photography['point_of_interest_id'])) {
             $this->thematicAreas = PointOfInterest::find($photography['point_of_interest_id'])->thematicAreas;
         } else {
             $this->thematicAreas = null;
@@ -258,11 +258,13 @@ class Photographies extends Component
 
         if (auth()->user()->hasRole('Alumno')) {
             $photographies = Photography::where('creator', auth()->user()->id)
-                ->where($this->searchColumn, 'like', '%'. $this->search .'%')
+                ->where($this->searchColumn, 'like', '%' . $this->search . '%')
+                ->where('verified', true)
                 ->orderBy($this->sortField, $this->sortDirection)
                 ->paginate(10);
         } else {
-            $photographies = Photography::where($this->searchColumn, 'like', '%'. $this->search .'%')
+            $photographies = Photography::where($this->searchColumn, 'like', '%' . $this->search . '%')
+                ->where('verified', true)
                 ->orderBy($this->sortField, $this->sortDirection)
                 ->paginate(10);
         }

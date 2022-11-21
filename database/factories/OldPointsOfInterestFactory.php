@@ -19,5 +19,6 @@ $factory->define(PointOfInterest::class, function (Faker $faker) {
         'creator'=> $faker->randomElement(User::all()->pluck('id')->toArray()),
         'updater' => $faker->randomElement(User::all()->pluck('id')->toArray()),
         'place_id'=>$faker->randomElement(Place::all()->pluck('id')->toArray()),
+        'verified' => true
     ];
 });

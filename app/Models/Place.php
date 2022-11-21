@@ -9,7 +9,7 @@ class Place extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $guarded = ['id', 'created_at', 'deleted_at', 'updated_at'];
 
     public function place()
     {

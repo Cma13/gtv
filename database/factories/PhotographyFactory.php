@@ -19,5 +19,6 @@ $factory->define(Photography::class, function (Faker $faker) {
         'creator' => $faker->randomElement(User::all()->pluck('id')->toArray()),
         'updater' => null,
         'updated_at' => null,
+        'verified' => true,
     ];
 });

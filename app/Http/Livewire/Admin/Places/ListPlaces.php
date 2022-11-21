@@ -83,11 +83,13 @@ class ListPlaces extends Component
     {
         if (auth()->user()->hasRole('Alumno')) {
             $places = Place::where('creator', auth()->user()->id)
-                ->where($this->searchColumn, 'like', '%'. $this->search .'%')
+                ->where($this->searchColumn, 'like', '%' . $this->search . '%')
+                ->where('verified', true)
                 ->orderBy($this->sortField, $this->sortDirection)
                 ->paginate(10);
         } else {
-            $places = Place::where($this->searchColumn, 'like', '%'. $this->search .'%')
+            $places = Place::where($this->searchColumn, 'like', '%' . $this->search . '%')
+                ->where('verified', true)
                 ->orderBy($this->sortField, $this->sortDirection)
                 ->paginate(10);
         }

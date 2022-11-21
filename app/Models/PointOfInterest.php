@@ -12,7 +12,7 @@ class PointOfInterest extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $guarded = ['id', 'created_at', 'deleted_at', 'updated_at'];
     protected $dates = ['created_at','updated_at','creation_date', 'last_update_date'];
 
     public function creator()
