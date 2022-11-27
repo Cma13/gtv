@@ -47,6 +47,7 @@ class CreatePlace extends Component
         $this->reset('createForm');
         $this->emit('placeCreated');
         $this->emitTo('admin.places.list-places', 'render');
+        $this->emitTo('admin.user-profile', 'render');
     }
 
 

@@ -5,7 +5,7 @@ use App\Models\Place;
 use App\Models\PointOfInterest;
 use App\Models\Video;
 
-function countUserNotifications()
+function countVerifyElementsHelper()
 {
     $points = count(PointOfInterest::where('verified', false)->get());
     $places = count(Place::where('verified', false)->get());

@@ -75,6 +75,7 @@ class CreatePoint extends Component
         $this->reset('createForm');
         $this->emit('PointCreated');
         $this->emitTo('admin.point.show-point', 'render');
+        $this->emitTo('admin.user-profile', 'render');
     }
 
     public function render()

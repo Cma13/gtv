@@ -9,5 +9,4 @@ Alpine.start();
 // Flowbite
 import 'flowbite';
 
-// SweetAlert2
-window.Swal = require('sweetalert2');
+const Swal = window.Swal =  require('sweetalert2');

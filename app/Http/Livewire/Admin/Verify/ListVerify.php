@@ -15,12 +15,12 @@ class ListVerify extends Component
         'ID',
         'NOMBRE',
         'DISTANCIA',
-        'LATITUD',
-        'LONGITUD',
+        'LATITUD / LONGITUD',
         'SITIO',
         'CREADOR',
         'ACTUALIZADOR',
-        'FECHA CREACIÓN'
+        'FECHA CREACIÓN',
+        ''
     ];
 
     public $placeHeaders = [
@@ -29,7 +29,8 @@ class ListVerify extends Component
         'DESCRIPCIÓN',
         'CREADOR',
         'ACTUALIZADOR',
-        'FECHA CREACIÓN'
+        'FECHA CREACIÓN',
+        ''
     ];
 
     public $videoHeaders = [
@@ -40,7 +41,8 @@ class ListVerify extends Component
         'AREA TEMATICA',
         'CREADOR',
         'ACTUALIZADOR',
-        'FECHA CREACION'
+        'FECHA CREACION',
+        ''
     ];
 
     public $photoHeaders = [
@@ -52,10 +54,35 @@ class ListVerify extends Component
         'CREADOR',
         'ACTUALIZADOR',
         'FECHA CREACION',
-        'FECHA ACTUALIZACION'
+        'FECHA ACTUALIZACION',
+        ''
     ];
 
-
+    public function verifyElement($elementId, $model)
+    {
+        if($model === 'point') {
+            $point = PointOfInterest::find($elementId);
+            $point->verified = true;
+            $point->save();
+            toastr()->success('Punto de interés verificado', '¡Verificado!', ['timeOut' => 1000]);
+        } else if($model === 'place') {
+            $place = Place::find($elementId);
+            $place->verified = true;
+            $place->save();
+            toastr()->success('Lugar verificado', '¡Verificado!', ['timeOut' => 1000]);
+        } else if($model === 'video') {
+            $video = Video::find($elementId);
+            $video->verified = true;
+            $video->save();
+            toastr()->success('Video verificado', '¡Verificado!', ['timeOut' => 1000]);
+        } else if($model === 'photo') {
+            $photo = Photography::find($elementId);
+            $photo->verified = true;
+            $photo->save();
+            toastr()->success('Fotografía verificada', '¡Verificado!', ['timeOut' => 1000]);
+        }
+        $this->emitTo('admin.user-profile', 'render');
+    }
 
     public function render()
     {

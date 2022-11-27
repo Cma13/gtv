@@ -144,6 +144,7 @@ class Photographies extends Component
         $this->reset('createForm');
 
         $this->emit('photographyCreated');
+        $this->emitTo('admin.user-profile', 'render');
     }
 
     public function update(Photography $photography)

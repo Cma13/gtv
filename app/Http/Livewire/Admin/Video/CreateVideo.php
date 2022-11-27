@@ -108,6 +108,7 @@ class CreateVideo extends Component
         $this->reset('createForm');
         $this->emit('videoCreated');
         $this->emitTo('admin.video.list-videos', 'render');
+        $this->emitTo('admin.user-profile', 'render');
     }
 
     public function render()
