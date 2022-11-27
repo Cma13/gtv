@@ -1,11 +1,7 @@
 <div>
-    @if (countVerifyElementsHelper())
+    @if (countDeletedElements())
         <div class="flex justify-between mb-6">
-            <h1 class="text-2xl font-semibold text-gray-700">Elementos por verificar:</h1>
-            <a href="{{ route('deleted-verify.index') }}"
-                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                <i class="fa-solid fa-trash"></i>
-            </a>
+            <h1 class="text-2xl font-semibold text-gray-700">Elementos no verificados:</h1>
         </div>
 
         <div class="mt-6 space-y-10">
@@ -62,13 +58,14 @@
                                         {{ $point->created_at }}
                                     </td>
                                     <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                        <span class="text-2xl text-green-400 cursor-pointer"
-                                            wire:click="verifyElement({{ $point->id }}, 'point')">
-                                            <i class="fa-solid fa-circle-check"></i>
+                                        <span
+                                            class="text-2xl text-green-400 cursor-pointer text-center mr-1"
+                                            wire:click="restoreElement({{ $point->id }}, 'point')">
+                                            <i class="fa-solid fa-arrow-rotate-left"></i>
                                         </span>
                                         <span class="text-2xl text-red-500 cursor-pointer"
-                                            wire:click="moveToTrash('{{ $point->id }}', 'point')">
-                                            <i class="fa-solid fa-circle-xmark"></i>
+                                            wire:click="$emit('deleteElement', '{{ $point->id }}', 'point')">
+                                            <i class="fa-solid fa-sack-xmark"></i>
                                         </span>
                                     </td>
                                 </tr>
@@ -117,13 +114,14 @@
                                         {{ $place->created_at }}
                                     </td>
                                     <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                        <span class="text-2xl text-green-400 cursor-pointer"
-                                            wire:click="verifyElement({{ $place->id }}, 'place')">
-                                            <i class="fa-solid fa-circle-check"></i>
+                                        <span
+                                            class="text-2xl text-green-400 cursor-pointer text-center mr-1"
+                                            wire:click="restoreElement({{ $place->id }}, 'place')">
+                                            <i class="fa-sharp fa-solid fa-trash-arrow-up"></i>
                                         </span>
                                         <span class="text-2xl text-red-500 cursor-pointer"
-                                            wire:click="moveToTrash('{{ $place->id }}', 'place')">
-                                            <i class="fa-solid fa-circle-xmark"></i>
+                                            wire:click="$emit('deleteElement', '{{ $point->id }}', 'place')">
+                                            <i class="fa-solid fa-sack-xmark"></i>
                                         </span>
                                     </td>
                                 </tr>
@@ -191,13 +189,14 @@
                                         {{ $video->created_at }}
                                     </td>
                                     <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                        <span class="text-2xl text-green-400 cursor-pointer"
-                                            wire:click="verifyElement({{ $video->id }}, 'video')">
-                                            <i class="fa-solid fa-circle-check"></i>
+                                        <span
+                                            class="text-2xl text-green-400 cursor-pointer text-center mr-1"
+                                            wire:click="restoreElement({{ $video->id }}, 'video')">
+                                            <i class="fa-sharp fa-solid fa-trash-arrow-up"></i>
                                         </span>
                                         <span class="text-2xl text-red-500 cursor-pointer"
-                                            wire:click="moveToTrash('{{ $video->id }}', 'video')">
-                                            <i class="fa-solid fa-circle-xmark"></i>
+                                            wire:click="$emit('deleteElement', '{{ $point->id }}', 'video')">
+                                            <i class="fa-solid fa-sack-xmark"></i>
                                         </span>
                                     </td>
                                 </tr>
@@ -281,13 +280,14 @@
                                         @endif
                                     </td>
                                     <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                        <span class="text-2xl text-green-400 cursor-pointer"
-                                            wire:click="verifyElement({{ $photo->id }}, 'photo')">
-                                            <i class="fa-solid fa-circle-check"></i>
+                                        <span
+                                            class="text-2xl text-green-400 cursor-pointer text-center mr-1"
+                                            wire:click="restoreElement({{ $photo->id }}, 'photo')">
+                                            <i class="fa-sharp fa-solid fa-trash-arrow-up"></i>
                                         </span>
                                         <span class="text-2xl text-red-500 cursor-pointer"
-                                            wire:click="moveToTrash('{{ $photo->id }}', 'photo')">
-                                            <i class="fa-solid fa-circle-xmark"></i>
+                                            wire:click="$emit('deleteElement', '{{ $point->id }}', 'photo')">
+                                            <i class="fa-solid fa-sack-xmark"></i>
                                         </span>
                                     </td>
                                 </tr>
@@ -300,20 +300,40 @@
     @else
         <div
             class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-            <div class="flex justify-between">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    ¡No hay elementos por verificar!
-                </h5>
-                <a href="{{ route('deleted-verify.index') }}"
-                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    <i class="fa-solid fa-trash"></i>
-                </a>
-            </div>
-            <a href="{{ route('welcome') }}"
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                ¡No hay elementos en la papelera!
+            </h5>
+            <a href="{{ route('verify.index') }}"
                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-500 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                Volver al inicio
+                Volver
             </a>
         </div>
 
     @endif
 </div>
+
+@push('scripts')
+<script>
+    Livewire.on('deleteElement', (elementId, model) => {
+        Swal.fire({
+            title: '¿Quieres eliminar este elemento?',
+            text: 'Esta operación es irreversible',
+            icon: 'warning',
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Eliminar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Livewire.emitTo('admin.verify.deleted-verify', 'moveToTrash', {elementId, model})
+                Swal.fire(
+                    '¡Hecho!',
+                    'El elemento ha sido borrado.',
+                    'success'
+                )
+            }
+        })
+    });
+</script>
+@endpush

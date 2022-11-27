@@ -8,8 +8,10 @@ use App\Models\PointOfInterest;
 use App\Models\Video;
 use Livewire\Component;
 
-class ListVerify extends Component
+class DeletedVerify extends Component
 {
+    public $listeners = ['moveToTrash'];
+
     public $pointHeaders = [
         'QR',
         'ID',
@@ -58,49 +60,56 @@ class ListVerify extends Component
         ''
     ];
 
-    public function verifyElement($elementId, $model)
+    public function restoreElement($elementId, $model)
     {
         if ($model === 'point') {
-            $point = PointOfInterest::find($elementId);
-            $point->verified = true;
-            $point->save();
-            toastr()->success('Punto de interés verificado', '¡Eliminado!', ['timeOut' => 1000]);
+            PointOfInterest::withTrashed()
+                ->find($elementId)
+                ->restore();
+            toastr()->success('Punto de interés restaurado', '¡Restaurado!', ['timeOut' => 1000]);
         } else if ($model === 'place') {
-            $place = Place::find($elementId);
-            $place->verified = true;
-            $place->save();
-            toastr()->success('Lugar verificado', '¡Eliminado!', ['timeOut' => 1000]);
+            Place::withTrashed()
+                ->find($elementId)
+                ->restore();
+            toastr()->success('Lugar restaurado', '¡Restaurado!', ['timeOut' => 1000]);
         } else if ($model === 'video') {
-            $video = Video::find($elementId);
-            $video->verified = true;
-            $video->save();
-            toastr()->success('Video verificado', '¡Eliminado!', ['timeOut' => 1000]);
+            Video::withTrashed()
+                ->find($elementId)
+                ->restore();
+            toastr()->success('Video restaurado', '¡Restaurado!', ['timeOut' => 1000]);
         } else if ($model === 'photo') {
-            $photo = Photography::find($elementId);
-            $photo->verified = true;
-            $photo->save();
-            toastr()->success('Fotografía verificada', '¡Eliminado!', ['timeOut' => 1000]);
+            Photography::withTrashed()
+                ->find($elementId)
+                ->restore();
+            toastr()->success('Fotografía restaurada', '¡Restaurado!', ['timeOut' => 1000]);
         }
         $this->emitTo('admin.user-profile', 'render');
     }
 
-    public function moveToTrash($elementId, $model)
+    public function moveToTrash($response)
     {
+        $elementId = $response['elementId'];
+        $model = $response['model'];
+
         if ($model === 'point') {
-            $point = PointOfInterest::find($elementId);
-            $point->delete();
+            PointOfInterest::withTrashed()
+                ->find($elementId)
+                ->forceDelete();
             toastr()->error('Punto de interés eliminado', '¡Eliminado!', ['timeOut' => 1000]);
         } else if ($model === 'place') {
-            $place = Place::find($elementId);
-            $place->delete();
+            Place::withTrashed()
+                ->find($elementId)
+                ->forceDelete();
             toastr()->error('Lugar eliminado', '¡Eliminado!', ['timeOut' => 1000]);
         } else if ($model === 'video') {
-            $video = Video::find($elementId);
-            $video->delete();
+            Video::withTrashed()
+                ->find($elementId)
+                ->forceDelete();
             toastr()->error('Video eliminado', '¡Eliminado!', ['timeOut' => 1000]);
         } else if ($model === 'photo') {
-            $photo = Photography::find($elementId);
-            $photo->delete();
+            Photography::withTrashed()
+                ->find($elementId)
+                ->forceDelete();
             toastr()->error('Fotografía eliminada', '¡Eliminado!', ['timeOut' => 1000]);
         }
         $this->emitTo('admin.user-profile', 'render');
@@ -108,19 +117,15 @@ class ListVerify extends Component
 
     public function render()
     {
-        $points = PointOfInterest::where('verified', false)
-            ->where('deleted_at', null)
+        $points = PointOfInterest::onlyTrashed()
             ->paginate(10);
-        $places = Place::where('verified', false)
-            ->where('deleted_at', null)
+        $places = Place::onlyTrashed()
             ->paginate(10);
-        $videos = Video::where('verified', false)
-            ->where('deleted_at', null)
+        $videos = Video::onlyTrashed()
             ->paginate(10);
-        $photos = Photography::where('verified', false)
-            ->where('deleted_at', null)
+        $photos = Photography::onlyTrashed()
             ->paginate(10);
 
-        return view('livewire.admin.verify.list-verify', compact('points', 'places', 'videos', 'photos'));
+        return view('livewire.admin.verify.deleted-verify', compact('points', 'places', 'videos', 'photos'));
     }
 }

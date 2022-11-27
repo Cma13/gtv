@@ -16,3 +16,15 @@ function countVerifyElementsHelper()
 
     return $total;
 }
+
+function countDeletedElements()
+{
+    $points = count(PointOfInterest::onlyTrashed()->get());
+    $places = count(Place::onlyTrashed()->get());
+    $videos = count(Video::onlyTrashed()->get());
+    $photos = count(Photography::onlyTrashed()->get());
+
+    $total = $points + $places + $videos + $photos;
+
+    return $total;
+}

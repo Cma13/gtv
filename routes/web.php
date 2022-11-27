@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Admin\Verify\DeletedVerify;
 use App\Http\Livewire\Admin\Point\ShowPoint;
 use App\Http\Livewire\Admin\Photography\Photographies;
 use App\Http\Livewire\Admin\Places\ListPlaces;
@@ -22,6 +23,7 @@ Route::group(['middleware' => 'admin_or_teacher'], function () {
     Route::get('thematic-areas', ThematicAreas::class)->name('thematic-areas.index');
     Route::get('places', ListPlaces::class)->name('places.index');
     Route::get('verify', ListVerify::class)->name('verify.index');
+    Route::get('verify/trashed', DeletedVerify::class)->name('deleted-verify.index');
 });
 
 Route::get('/', Welcome::class)->name('welcome');

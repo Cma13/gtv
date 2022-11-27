@@ -22,9 +22,8 @@ class CreateVideosTable extends Migration
             $table->foreignId('updater')->nullable()->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('thematic_area_id')->nullable()->references('id')->on('thematic_areas')->onDelete('set null');
             $table->string('description', 2000);
-
-            $table->timestamps();
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
