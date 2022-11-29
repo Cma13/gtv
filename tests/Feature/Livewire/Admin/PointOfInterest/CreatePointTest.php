@@ -3,6 +3,7 @@
 namespace Tests\Feature\Livewire\Admin\PointOfInterest;
 
 use App\Http\Livewire\Admin\Point\CreatePoint;
+use App\Models\PointOfInterest;
 use App\Models\Video;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
@@ -224,5 +225,107 @@ class CreatePointTest extends TestCase
             ->assertHasErrors(['createForm.longitude' => 'numeric']);
 
         $this->assertDatabaseCount('point_of_interests', 0);
+    }
+
+    /** @test */
+    public function TestPointIsNotVerifiedIfCreatedByAlumn()
+    {
+        $studentUser = $this->createStudent();
+        $place = $this->createPlace();
+        $point = [
+            'name' => 'Prueba',
+            'distance' => 99,
+            'latitude' => 10,
+            'longitude' => 10,
+        ];
+
+        $this->actingAs($studentUser);
+
+        $this->assertDatabaseCount('point_of_interests', 0);
+
+        Livewire::test(CreatePoint::class)
+            ->set('createForm.name', $point['name'])
+            ->set('createForm.distance', $point['distance'])
+            ->set('createForm.latitude', $point['latitude'])
+            ->set('createForm.longitude', $point['longitude'])
+            ->set('createForm.place', $place->id)
+            ->call('save');
+
+        $this->assertDatabaseHas('point_of_interests', [
+            'name' => $point['name'],
+            'distance' => $point['distance'],
+            'latitude' => $point['latitude'],
+            'longitude' => $point['longitude'],
+            'place_id' => $place->id,
+            'verified' => false
+        ]);
+    }
+
+    /** @test */
+    public function TestPointIsVerifiedIfCreatedByTeacher()
+    {
+        $teacherUser = $this->createTeacher();
+        $place = $this->createPlace();
+        $point = [
+            'name' => 'Prueba',
+            'distance' => 99,
+            'latitude' => 10,
+            'longitude' => 10,
+        ];
+
+        $this->actingAs($teacherUser);
+
+        $this->assertDatabaseCount('point_of_interests', 0);
+
+        Livewire::test(CreatePoint::class)
+            ->set('createForm.name', $point['name'])
+            ->set('createForm.distance', $point['distance'])
+            ->set('createForm.latitude', $point['latitude'])
+            ->set('createForm.longitude', $point['longitude'])
+            ->set('createForm.place', $place->id)
+            ->call('save');
+
+        $this->assertDatabaseHas('point_of_interests', [
+            'name' => $point['name'],
+            'distance' => $point['distance'],
+            'latitude' => $point['latitude'],
+            'longitude' => $point['longitude'],
+            'place_id' => $place->id,
+            'verified' => true
+        ]);
+    }
+
+    /** @test */
+    public function TestPointIsVerifiedIfCreatedByAdmin()
+    {
+        $adminUser = $this->createAdmin();
+        $place = $this->createPlace();
+        $point = [
+            'name' => 'Prueba',
+            'distance' => 99,
+            'latitude' => 10,
+            'longitude' => 10,
+        ];
+
+        $this->actingAs($adminUser);
+
+        $this->assertDatabaseCount('point_of_interests', 0);
+
+        Livewire::test(CreatePoint::class)
+            ->set('createForm.name', $point['name'])
+            ->set('createForm.distance', $point['distance'])
+            ->set('createForm.latitude', $point['latitude'])
+            ->set('createForm.longitude', $point['longitude'])
+            ->set('createForm.place', $place->id)
+            ->call('save');
+
+        $this->assertDatabaseHas('point_of_interests', [
+            'name' => $point['name'],
+            'distance' => $point['distance'],
+            'latitude' => $point['latitude'],
+            'longitude' => $point['longitude'],
+            'place_id' => $place->id,
+            'verified' => true
+        ]);
     }
 }

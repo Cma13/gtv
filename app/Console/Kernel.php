@@ -2,6 +2,11 @@
 
 namespace App\Console;
 
+use App\Models\Photography;
+use App\Models\Place;
+use App\Models\PointOfInterest;
+use App\Models\Video;
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -25,6 +30,13 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('inactive:users')->weekly();
+
+        $schedule->call(function () {
+            PointOfInterest::where('deleted_at', '<', Carbon::now()->subDays(7))->forceDelete();
+            Place::where('deleted_at', '<', Carbon::now()->subDays(7))->forceDelete();
+            Video::where('deleted_at', '<', Carbon::now()->subDays(7))->forceDelete();
+            Photography::where('deleted_at', '<', Carbon::now()->subDays(7))->forceDelete();
+        })->weekly();
     }
 
 

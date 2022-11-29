@@ -125,19 +125,37 @@ class Photographies extends Component
     {
         $this->validate();
 
-        $this->createForm['route']->storeAs('public/photos', $this->createForm['route']->getFilename());
+        if(auth()->user()->hasRole('Administrador')
+            || auth()->user()->hasRole('Profesor')) {
+                $this->createForm['route']->storeAs('public/photos', $this->createForm['route']->getFilename());
 
-        $order = Photography::where('point_of_interest_id', $this->createForm['pointOfInterestId'])->count();
+                $order = Photography::where('point_of_interest_id', $this->createForm['pointOfInterestId'])->count();
+        
+                $photography = Photography::create([
+                    'route' => 'storage/photos/' . $this->createForm['route']->getFilename(),
+                    'order' =>  $order + 1,
+                    'point_of_interest_id' => $this->createForm['pointOfInterestId'],
+                    'thematic_area_id' => $this->createForm['thematicAreaId'],
+                    'creator' => auth()->user()->id,
+                    'updater' => null,
+                    'updated_at' => null,
+                    'verified' => true
+                ]);
+            } elseif(auth()->user()->hasRole('Alumno')) {
+                $this->createForm['route']->storeAs('public/photos', $this->createForm['route']->getFilename());
 
-        $photography = Photography::create([
-            'route' => 'storage/photos/' . $this->createForm['route']->getFilename(),
-            'order' =>  $order + 1,
-            'point_of_interest_id' => $this->createForm['pointOfInterestId'],
-            'thematic_area_id' => $this->createForm['thematicAreaId'],
-            'creator' => auth()->user()->id,
-            'updater' => null,
-            'updated_at' => null,
-        ]);
+                $order = Photography::where('point_of_interest_id', $this->createForm['pointOfInterestId'])->count();
+        
+                $photography = Photography::create([
+                    'route' => 'storage/photos/' . $this->createForm['route']->getFilename(),
+                    'order' =>  $order + 1,
+                    'point_of_interest_id' => $this->createForm['pointOfInterestId'],
+                    'thematic_area_id' => $this->createForm['thematicAreaId'],
+                    'creator' => auth()->user()->id,
+                    'updater' => null,
+                    'updated_at' => null,
+                ]);
+            }
 
         ProcessPhotography::dispatch($photography);
 

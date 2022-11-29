@@ -64,22 +64,22 @@ class ListVerify extends Component
             $point = PointOfInterest::find($elementId);
             $point->verified = true;
             $point->save();
-            toastr()->success('Punto de interés verificado', '¡Eliminado!', ['timeOut' => 1000]);
+            toastr()->success('Punto de interés verificado', '¡Verificado!', ['timeOut' => 1000]);
         } else if ($model === 'place') {
             $place = Place::find($elementId);
             $place->verified = true;
             $place->save();
-            toastr()->success('Lugar verificado', '¡Eliminado!', ['timeOut' => 1000]);
+            toastr()->success('Lugar verificado', '¡Verificado!', ['timeOut' => 1000]);
         } else if ($model === 'video') {
             $video = Video::find($elementId);
             $video->verified = true;
             $video->save();
-            toastr()->success('Video verificado', '¡Eliminado!', ['timeOut' => 1000]);
+            toastr()->success('Video verificado', '¡Verificado!', ['timeOut' => 1000]);
         } else if ($model === 'photo') {
             $photo = Photography::find($elementId);
             $photo->verified = true;
             $photo->save();
-            toastr()->success('Fotografía verificada', '¡Eliminado!', ['timeOut' => 1000]);
+            toastr()->success('Fotografía verificada', '¡Verificado!', ['timeOut' => 1000]);
         }
         $this->emitTo('admin.user-profile', 'render');
     }

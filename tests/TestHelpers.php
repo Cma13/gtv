@@ -29,6 +29,34 @@ trait TestHelpers
         return $user;
     }
 
+    protected function createStudent()
+    {
+        $studentRole = Role::create(['name' => 'Alumno']);
+
+        $user = User::create([
+            'name' => 'Alumno',
+            'email' => 'alumno@mail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        ]);
+        $user->assignRole($studentRole);
+
+        return $user;
+    }
+
+    protected function createTeacher()
+    {
+        $teacherRole = Role::create(['name' => 'Profesor']);
+
+        $user = User::create([
+            'name' => 'Profesor',
+            'email' => 'profesor@mail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        ]);
+        $user->assignRole($teacherRole);
+
+        return $user;
+    }
+
     protected function createPlace()
     {
         return \factory(Place::class)->create();
@@ -38,6 +66,14 @@ trait TestHelpers
     {
         return \factory(PointOfInterest::class)->create([
             'place_id' => $placeId,
+        ]);
+    }
+
+    protected function createPointNotVerified($placeId)
+    {
+        return \factory(PointOfInterest::class)->create([
+            'place_id' => $placeId,
+            'verified' => false,
         ]);
     }
 

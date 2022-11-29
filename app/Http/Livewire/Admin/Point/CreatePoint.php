@@ -60,15 +60,31 @@ class CreatePoint extends Component
     {
         $this->validate();
 
-        $pointOfInterest = PointOfInterest::create([
-            'name' => $this->createForm['name'],
-            'distance' => $this->createForm['distance'],
-            'latitude' => $this->createForm['latitude'],
-            'longitude' => $this->createForm['longitude'],
-            'place_id' => $this->createForm['place'],
-            'creator' => auth()->user()->id,
-            'updater' => null,
-        ]);
+        if (
+            auth()->user()->hasRole('Administrador')
+            || auth()->user()->hasRole('Profesor')
+        ) {
+            $pointOfInterest = PointOfInterest::create([
+                'name' => $this->createForm['name'],
+                'distance' => $this->createForm['distance'],
+                'latitude' => $this->createForm['latitude'],
+                'longitude' => $this->createForm['longitude'],
+                'place_id' => $this->createForm['place'],
+                'creator' => auth()->user()->id,
+                'updater' => null,
+                'verified' => true,
+            ]);
+        } else if(auth()->user()->hasRole('Alumno')) {
+            $pointOfInterest = PointOfInterest::create([
+                'name' => $this->createForm['name'],
+                'distance' => $this->createForm['distance'],
+                'latitude' => $this->createForm['latitude'],
+                'longitude' => $this->createForm['longitude'],
+                'place_id' => $this->createForm['place'],
+                'creator' => auth()->user()->id,
+                'updater' => null,
+            ]);
+        }
 
         ProcessPointOfInterest::dispatch($pointOfInterest);
 

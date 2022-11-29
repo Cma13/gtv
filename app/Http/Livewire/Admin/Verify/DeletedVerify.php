@@ -86,7 +86,7 @@ class DeletedVerify extends Component
         $this->emitTo('admin.user-profile', 'render');
     }
 
-    public function moveToTrash($response)
+    public function hardDelete($response)
     {
         $elementId = $response['elementId'];
         $model = $response['model'];

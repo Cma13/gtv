@@ -326,7 +326,7 @@
             confirmButtonText: 'Eliminar'
         }).then((result) => {
             if (result.isConfirmed) {
-                Livewire.emitTo('admin.verify.deleted-verify', 'moveToTrash', {elementId, model})
+                Livewire.emitTo('admin.verify.deleted-verify', 'hardDelete', {elementId, model})
                 Swal.fire(
                     '¡Hecho!',
                     'El elemento ha sido borrado.',
