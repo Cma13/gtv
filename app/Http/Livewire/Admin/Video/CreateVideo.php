@@ -84,17 +84,33 @@ class CreateVideo extends Component
     {
         $this->validate();
 
-        $fileRoute = $this->createForm['file']->store('public/videos');
+        if(auth()->user()->hasRole('Administrador')
+            || auth()->user()->hasRole('Profesor')) {
+                $fileRoute = $this->createForm['file']->store('public/videos');
 
-        $video = Video::create([
-            'route' => $fileRoute,
-            'point_of_interest_id' => $this->createForm['pointOfInterest'],
-            'order'=> $this->order,
-            'creator' => auth()->user()->id,
-            'updater' => null,
-            'thematic_area_id' => $this->createForm['thematicArea'],
-            'description' => $this->createForm['description'],
-        ]);
+                $video = Video::create([
+                    'route' => $fileRoute,
+                    'point_of_interest_id' => $this->createForm['pointOfInterest'],
+                    'order'=> $this->order,
+                    'creator' => auth()->user()->id,
+                    'updater' => null,
+                    'thematic_area_id' => $this->createForm['thematicArea'],
+                    'description' => $this->createForm['description'],
+                    'verified' => true
+                ]);
+            } elseif(auth()->user()->hasRole('Alumno')) {
+                $fileRoute = $this->createForm['file']->store('public/videos');
+
+                $video = Video::create([
+                    'route' => $fileRoute,
+                    'point_of_interest_id' => $this->createForm['pointOfInterest'],
+                    'order'=> $this->order,
+                    'creator' => auth()->user()->id,
+                    'updater' => null,
+                    'thematic_area_id' => $this->createForm['thematicArea'],
+                    'description' => $this->createForm['description'],
+                ]);
+            }
 
         ProcessVideo::dispatch($video);
 
@@ -108,6 +124,7 @@ class CreateVideo extends Component
         $this->reset('createForm');
         $this->emit('videoCreated');
         $this->emitTo('admin.video.list-videos', 'render');
+        $this->emitTo('admin.user-profile', 'render');
     }
 
     public function render()

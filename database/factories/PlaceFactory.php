@@ -15,5 +15,6 @@ $factory->define(Place::class, function (Faker $faker) {
         'place_id'=> $faker->randomElement(Place::all()->pluck('id')->toArray()),
         'creator' => $faker->randomElement(User::all()->pluck('id')->toArray()),
         'updater' => $faker->randomElement(User::all()->pluck('id')->toArray()),
+        'verified' => true
     ];
 });

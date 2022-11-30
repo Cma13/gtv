@@ -28,5 +28,6 @@ $factory->define(Video::class, function (Faker $faker) {
         'updater' => null,
         'thematic_area_id' => $faker->randomElement($thematicAreas),
         'description' => $description,
+        'verified' => true,
     ];
 });

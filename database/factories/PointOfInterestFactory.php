@@ -27,6 +27,7 @@ class PointOfInterestFactory extends Factory
             'creator'=> $this->faker->randomElement(User::all()->pluck('id')->toArray()),
             'updater' => $this->faker->randomElement(User::all()->pluck('id')->toArray()),
             'place_id'=>$this->faker->randomElement(Place::all()->pluck('id')->toArray()),
+            'verified' => true,
         ];
     }
 }

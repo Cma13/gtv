@@ -35,18 +35,30 @@ class CreatePlace extends Component
     {
         $this->validate();
 
-        $place = Place::create([
-            'name' => $this->createForm['name'],
-            'description' => $this->createForm['description'],
-            'creator' => auth()->user()->id,
-            'updater' => auth()->user()->id,
-        ]);
+        if(auth()->user()->hasRole('Administrador')
+            || auth()->user()->hasRole('Profesor')) {
+                $place = Place::create([
+                    'name' => $this->createForm['name'],
+                    'description' => $this->createForm['description'],
+                    'creator' => auth()->user()->id,
+                    'updater' => auth()->user()->id,
+                    'verified' => true
+                ]);
+            } elseif (auth()->user()->hasRole('Alumno')) {
+                $place = Place::create([
+                    'name' => $this->createForm['name'],
+                    'description' => $this->createForm['description'],
+                    'creator' => auth()->user()->id,
+                    'updater' => auth()->user()->id,
+                ]);
+            }
 
         ProcessPlace::dispatch($place);
 
         $this->reset('createForm');
         $this->emit('placeCreated');
         $this->emitTo('admin.places.list-places', 'render');
+        $this->emitTo('admin.user-profile', 'render');
     }
 
 

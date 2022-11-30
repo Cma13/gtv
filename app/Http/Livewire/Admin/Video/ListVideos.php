@@ -59,7 +59,7 @@ class ListVideos extends Component
 
     public function delete(Video $video)
     {
-        if(Storage::exists($video->route)) {
+        if (Storage::exists($video->route)) {
             Storage::delete($video->route);
         }
 
@@ -90,15 +90,10 @@ class ListVideos extends Component
 
     public function render()
     {
-        if (auth()->user()->hasRole('Alumno')) {
-            $videos = Video::where($this->searchColumn, 'like', '%'. $this->search .'%')
-                ->orderBy($this->sortField, $this->sortDirection)
-                ->paginate(10);
-        } else {
-            $videos = Video::where($this->searchColumn, 'like', '%'. $this->search .'%')
-                ->orderBy($this->sortField, $this->sortDirection)
-                ->paginate(10);
-        }
+        $videos = Video::where($this->searchColumn, 'like', '%' . $this->search . '%')
+            ->where('verified', true)
+            ->orderBy($this->sortField, $this->sortDirection)
+            ->paginate(10);
 
         return view('livewire.admin.video.list-videos', compact('videos'));
     }

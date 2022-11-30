@@ -89,15 +89,10 @@ class ShowPoint extends Component
 
     public function render()
     {
-        if (auth()->user()->hasRole('Alumno')) {
-            $points = PointOfInterest::where($this->searchColumn, 'like', '%'. $this->search .'%')
-                ->orderBy($this->sortField, $this->sortDirection)
-                ->paginate(10);
-        } else {
-            $points = PointOfInterest::where($this->searchColumn, 'like', '%'. $this->search .'%')
-                ->orderBy($this->sortField, $this->sortDirection)
-                ->paginate(10);
-        }
+        $points = PointOfInterest::where($this->searchColumn, 'like', '%' . $this->search . '%')
+            ->where('verified', true)
+            ->orderBy($this->sortField, $this->sortDirection)
+            ->paginate(10);
 
         return view('livewire.admin.point.show-point', compact('points'));
     }
