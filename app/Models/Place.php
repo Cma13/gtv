@@ -12,11 +12,6 @@ class Place extends Model
 
     protected $guarded = ['id', 'created_at', 'deleted_at', 'updated_at'];
 
-    public function place()
-    {
-        return $this->belongsTo(Place::class, 'place_id');
-    }
-
     public function creator()
     {
         return $this->belongsTo(User::class, 'creator');

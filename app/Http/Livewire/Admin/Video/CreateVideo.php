@@ -28,14 +28,14 @@ class CreateVideo extends Component
     ];
 
     protected $rules = [
-        'createForm.file' => 'required',
+        'createForm.file' => 'required|mimetypes:video/x-ms-asf,video/x-flv,video/mp4,application/x-mpegURL,video/MP2T,video/3gpp,video/quicktime,video/x-msvideo,video/x-ms-wmv,video/avi',
         'createForm.pointOfInterest' => 'required',
         'createForm.thematicArea' => 'required|exists:thematic_areas,id',
         'createForm.description' => 'required|string|max:2000',
     ];
 
     protected $validationAttributes = [
-        'createForm.file' => 'archivo',
+        'createForm.file' => 'vídeo',
         'createForm.pointOfInterest' => 'punto de interés',
         'createForm.thematicArea' => 'área temática',
         'createForm.description' => 'descripción',

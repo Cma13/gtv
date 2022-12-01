@@ -15,9 +15,8 @@
                     font-medium rounded-lg text-sm py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700
                     focus:outline-none dark:focus:ring-blue-800 ml-auto" wire:model="searchColumn">
                 <option value="id">ID</option>
+                <option value="name">NOMBRE</option>
                 <option value="distance">DISTANCIA</option>
-                <option value="latitude">LATITUD</option>
-                <option value="longitude">LONGITUD</option>
                 <option value="place_id">SITIO</option>
                 <option value="creator">CREADOR</option>
                 <option value="updater">ACTUALIZADOR</option>
@@ -50,30 +49,19 @@
                                 <i class="fa-solid fa-arrow-down"></i>
                     @endif
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('name')">
                     Nombre
+                    @if($sortField === 'name' && $sortDirection === 'asc')
+                    <i class="fa-solid fa-arrow-up">
+                        @elseif($sortField === 'name' && $sortDirection === 'desc')
+                            <i class="fa-solid fa-arrow-down"></i>
+                    @endif
                 </th>
                 <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('distance')">
                     Distancia
                     @if($sortField === 'distance' && $sortDirection === 'asc')
                         <i class="fa-solid fa-arrow-up">
                             @elseif($sortField === 'distance' && $sortDirection === 'desc')
-                                <i class="fa-solid fa-arrow-down"></i>
-                    @endif
-                </th>
-                <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('latitude')">
-                    Latitud
-                    @if($sortField === 'latitude' && $sortDirection === 'asc')
-                        <i class="fa-solid fa-arrow-up">
-                            @elseif($sortField === 'latitude' && $sortDirection === 'desc')
-                                <i class="fa-solid fa-arrow-down"></i>
-                    @endif
-                </th>
-                <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('longitude')">
-                    Longitud
-                    @if($sortField === 'longitude' && $sortDirection === 'asc')
-                        <i class="fa-solid fa-arrow-up">
-                            @elseif($sortField === 'longitude' && $sortDirection === 'desc')
                                 <i class="fa-solid fa-arrow-down"></i>
                     @endif
                 </th>
@@ -109,6 +97,14 @@
                                 <i class="fa-solid fa-arrow-down"></i>
                     @endif
                 </th>
+                <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('updated_at')">
+                    Fecha actualización
+                    @if($sortField === 'updated_at' && $sortDirection === 'asc')
+                        <i class="fa-solid fa-arrow-up">
+                            @elseif($sortField === 'created_at' && $sortDirection === 'desc')
+                                <i class="fa-solid fa-arrow-down"></i>
+                    @endif
+                </th>
                 <th scope="col" class="px-6 py-3">
                     <span class="sr-only">Actions</span>
                 </th>
@@ -130,12 +126,6 @@
                             {{$point->distance}}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            {{$point->latitude}}
-                        </td>
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            {{$point->longitude}}
-                        </td>
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                             {{$point->place->name}}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
@@ -149,7 +139,14 @@
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                             {{$point->created_at}}
                         </td>
+                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                            {{$point->updated_at}}
+                        </td>
+                        
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap flex gap-4 mt-10">
+                            <span class="font-medium text-blue-600 cursor-pointer" wire:click="show('{{ $point->id }}')">
+                                <i class="fa-solid fa-eye"></i>
+                            </span>
                             <span class="font-medium text-yellow-400 cursor-pointer"
                                   wire:click="$emitTo('admin.point.edit-point', 'openEditModal', '{{$point->id}}')">
                                 <i class="fa-solid fa-pencil"></i>

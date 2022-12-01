@@ -23,7 +23,6 @@ class CreatePointOfInterestsTable extends Migration
             $table->foreignId('creator')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('updater')->nullable()->references('id')->on('users')->onDelete('cascade');
             $table->date('last_update_date')->nullable();
-            $table->date('creation_date')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

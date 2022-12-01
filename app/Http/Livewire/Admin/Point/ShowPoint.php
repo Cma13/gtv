@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Point;
 
+use App\Models\Place;
 use App\Models\PointOfInterest;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
@@ -48,7 +49,7 @@ class ShowPoint extends Component
         $this->detailsModal['distance'] = $point->distance;
         $this->detailsModal['latitude'] = $point->latitude;
         $this->detailsModal['longitude'] = $point->longitude;
-        $this->detailsModal['placeId'] = $point->place;
+        $this->detailsModal['placeId'] = $point->place->id;
         $this->detailsModal['placeName'] = $point->place->name;
         $this->detailsModal['creatorName'] = User::find($point->creator)->name;
         $this->detailsModal['creatorId'] = $point->creator;
@@ -74,6 +75,12 @@ class ShowPoint extends Component
         }
 
         $this->sortField = $field;
+    }
+
+    public function orderBySitio($query, $direction)
+    {
+        return $query->orderBy(Place::select('name')
+        ->whereColum('places.id', 'point_of_interests.place_id'), $direction);
     }
 
     public function resetFilters()

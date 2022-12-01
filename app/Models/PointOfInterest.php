@@ -12,7 +12,7 @@ class PointOfInterest extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = ['id', 'created_at', 'deleted_at', 'updated_at'];
-    protected $dates = ['created_at','updated_at','creation_date', 'last_update_date'];
+    protected $dates = ['created_at','updated_at', 'last_update_date'];
 
     public function creator()
     {
@@ -51,7 +51,6 @@ class PointOfInterest extends Model
 
     public static function create(array $attributes = [])
     {
-        $attributes['creation_date']=Carbon::now();
         $attributes['creator']= auth()->user()->id;
 
         $pointOfInterest = static::query()->create($attributes);
@@ -124,12 +123,12 @@ class PointOfInterest extends Model
     }
     public static function countNewPointsOfInterest()
     {
-        return (int)count(PointOfInterest::whereDate('creation_date', Carbon::today())->get());
+        return (int)count(PointOfInterest::whereDate('created_at', Carbon::today())->get());
     }
 
     public static function datesForGrafic(){
-        return PointOfInterest::query()->where('deleted_at','=',null)->whereDate('creation_date','>=', Carbon::now()->subDays(7))->get()->groupBy(function($date) {
-            return Carbon::parse($date->creation_date)->format('d-m-Y' );
+        return PointOfInterest::query()->where('deleted_at','=',null)->whereDate('created_at','>=', Carbon::now()->subDays(7))->get()->groupBy(function($date) {
+            return Carbon::parse($date->created_at)->format('d-m-Y' );
         });
     }
 }
