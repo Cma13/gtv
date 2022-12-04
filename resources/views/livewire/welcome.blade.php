@@ -3,7 +3,7 @@
 
     @role('Usuario sin verificar')
 
-        <div>oops</div>
+        <h1 class="text-2xl font-semibold text-gray-700 mt-2">Su usuario aún no ha sido verificado</h1>
 
     @else
         <div class="mt-6 space-y-10">
