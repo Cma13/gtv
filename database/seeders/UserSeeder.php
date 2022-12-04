@@ -18,29 +18,32 @@ class UserSeeder extends Seeder
     {
         Storage::disk('public')->deleteDirectory('user-avatars');
 
-        $adminRole = Role::create(['name' => 'Administrador']);
-        $teacherRole = Role::create(['name' => 'Profesor']);
-        $studentRole = Role::create(['name' => 'Alumno']);
-
         $admin = User::create([
             'name' => 'Admin',
             'email' => 'admin@mail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
-        $admin->assignRole($adminRole);
+        $admin->assignRole('Administrador');
 
         $teacher = User::create([
             'name' => 'Teacher',
             'email' => 'teacher@mail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
-        $teacher->assignRole($teacherRole);
+        $teacher->assignRole('Profesor');
 
         $student = User::create([
             'name' => 'Student',
             'email' => 'student@mail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
-        $student->assignRole($studentRole);
+        $student->assignRole('Alumno');
+
+	    $sinVerificar = User::create([
+		    'name' => 'Student2',
+		    'email' => 'student2@mail.com',
+		    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+	    ]);
+		$sinVerificar->assignRole('Usuario sin verificar');
     }
 }

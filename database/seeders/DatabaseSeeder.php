@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         Storage::disk('public')->deleteDirectory('videos');
         Storage::disk('public')->makeDirectory('videos');
 
+		$this->call(PermissionsSeeder::class);
         $this->call(ThematicAreaSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(PlaceSeeder::class);
