@@ -80,7 +80,7 @@ class VerifyUserTest extends TestCase
 		Livewire::test(VerifyUser::class)
 			->emit('verify', $user->id);
 
-		$user->fresh();
+		$user->refresh();
 		$this->assertTrue($user->hasRole('Alumno'));
 		$this->assertFalse($user->hasRole('Usuario sin verificar'));
 	}
