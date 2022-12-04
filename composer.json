@@ -7,6 +7,12 @@
         "laravel"
     ],
     "license": "MIT",
+	"repositories": [
+    	{
+        	"type": "path",
+        	"url": "./packages/vladimir-yuldashev/laravel-queue-rabbitmq"
+    	}
+	],
     "require": {
         "php": "^8.0.2",
         "arcanedev/log-viewer": "^9.0",
@@ -28,7 +34,7 @@
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-permission": "^5",
         "vinkla/hashids": "^10.0",
-        "vladimir-yuldashev/laravel-queue-rabbitmq": "^13.0",
+        "vladimir-yuldashev/laravel-queue-rabbitmq": "dev-master",
         "yoeunes/toastr": "^2.0"
     },
     "require-dev": {
