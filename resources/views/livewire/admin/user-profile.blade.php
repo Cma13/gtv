@@ -34,6 +34,9 @@
                             class="inline-flex items-center justify-end px-2 py-1 text-xs font-bold leading-none text-white bg-red-600 rounded-full">{{ $this->countVerifyElements() }}</span>
                     @endif
                 </x-jet-dropdown-link>
+                <x-jet-dropdown-link href="{{ route('verify-users.index') }}">
+                    {{ __('Verify Users') }}
+                </x-jet-dropdown-link>
             @endrole
 
             <div class="border-t border-gray-100"></div>

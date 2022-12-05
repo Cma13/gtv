@@ -25,6 +25,7 @@ class DeletePlaceTest extends TestCase
         Livewire::test(ListPlaces::class)
             ->call('delete', $place);
 
-        $this->assertDatabaseCount('places', 0);
+        //$this->assertDatabaseCount('places', 0);
+	    $this->assertSoftDeleted($place);
     }
 }

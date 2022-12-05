@@ -17,7 +17,7 @@ trait TestHelpers
 {
     protected function createAdmin()
     {
-        $adminRole = Role::create(['name' => 'Administrador']);
+        $adminRole = Role::firstOrCreate(['name' => 'Administrador']);
 
         $user = User::create([
             'name' => 'Admin',
@@ -31,7 +31,7 @@ trait TestHelpers
 
     protected function createStudent()
     {
-        $studentRole = Role::create(['name' => 'Alumno']);
+        $studentRole = Role::firstOrCreate(['name' => 'Alumno']);
 
         $user = User::create([
             'name' => 'Alumno',
@@ -45,7 +45,7 @@ trait TestHelpers
 
     protected function createTeacher()
     {
-        $teacherRole = Role::create(['name' => 'Profesor']);
+        $teacherRole = Role::firstOrCreate(['name' => 'Profesor']);
 
         $user = User::create([
             'name' => 'Profesor',
@@ -56,6 +56,20 @@ trait TestHelpers
 
         return $user;
     }
+
+	protected function createUnverifiedUser()
+	{
+		$unverifiedUser = Role::firstOrCreate(['name' => 'Usuario sin verificar']);
+
+		$user = User::create([
+			'name' => 'Usuario sin verificar',
+			'email' => 'usuario@mail.com',
+			'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+		]);
+		$user->assignRole($unverifiedUser);
+
+		return $user;
+	}
 
     protected function createPlace()
     {

@@ -352,8 +352,10 @@ class Welcome extends Component
             || auth()->user()->hasRole('Profesor')) {
 
             return view('livewire.welcome', compact('videos', 'thematicAreas', 'users', 'visits', 'points', 'places', 'photographies'));
-        }else{
+        }else if(auth()->user()->hasRole('Alumno')){
             return view('livewire.welcome', compact('videos',  'points', 'photographies'));
+        } else {
+			return view('livewire.welcome');
         }
 
     }
