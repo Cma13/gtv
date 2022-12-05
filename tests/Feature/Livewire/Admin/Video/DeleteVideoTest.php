@@ -37,7 +37,8 @@ class DeleteVideoTest extends TestCase
         Livewire::test(ListVideos::class)
             ->call('delete', $video);
 
-        $this->assertDatabaseCount('videos', 0);
-        $this->assertDatabaseCount('video_items', 0);
+        //$this->assertDatabaseCount('videos', 0);
+        //$this->assertDatabaseCount('video_items', 0);
+	    $this->assertSoftDeleted($video);
     }
 }

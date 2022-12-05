@@ -34,6 +34,7 @@ class DeletePhotographyTest extends TestCase
         Livewire::test(Photographies::class)
             ->call('delete', $photography);
 
-        $this->assertDatabaseCount('photographies', 0);
+        //$this->assertDatabaseCount('photographies', 0);
+	    $this->assertSoftDeleted($photography);
     }
 }

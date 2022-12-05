@@ -1,14 +1,6 @@
 <div>
     <div class="flex items-center mb-6">
-        <h1 class="text-2xl font-semibold text-gray-700">Listado de usuarios</h1>
-
-        @hasanyrole('Administrador')
-        <button type="button"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 ml-auto"
-                wire:click="$emitTo('admin.user.create-user', 'openCreationModal')">
-            Añadir
-        </button>
-        @endhasanyrole
+        <h1 class="text-2xl font-semibold text-gray-700">Verificación de usuarios</h1>
     </div>
 
     <div class="mb-3">
@@ -16,10 +8,8 @@
             <select class="text-black  bg-blue-100 hover:bg-grey-200 focus:ring-4 focus:ring-blue-300
                     font-medium rounded-lg text-sm py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700
                     focus:outline-none dark:focus:ring-blue-800 ml-auto" wire:model="searchColumn">
-                <option value="id">ID</option>
                 <option value="name">NOMBRE</option>
-                <option value="created_at">FECHA DE CREACIÓN</option>
-                <option value="updated_at">FECHA DE ACTUALIZACIÓN</option>
+                <option value="email">EMAIL</option>
             </select>
         </div>
 
@@ -29,11 +19,7 @@
         <x-jet-button wire:click="resetFilters">Eliminar filtros</x-jet-button>
     </div>
 
-    @livewire('admin.user.create-user')
-
     @if(count($users))
-        @livewire('admin.user.edit-user')
-
         <x-table>
             <x-slot name="thead">
                 <th scope="col" class="px-6 py-3"></th>
@@ -60,9 +46,6 @@
                     @elseif($sortField === 'email' && $sortDirection === 'desc')
                         <i class="fa-solid fa-arrow-down"></i>
                     @endif
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Rol
                 </th>
                 <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('created_at')">
                     Fecha creación
@@ -107,9 +90,6 @@
                             {{ $user->email }}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            {{ $user->roles->first()->name }}
-                        </td>
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                             {{ $user->created_at }}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
@@ -119,13 +99,9 @@
                             <span class="font-medium text-blue-600 cursor-pointer" wire:click="show('{{ $user->id }}')">
                                 <i class="fa-solid fa-eye"></i>
                             </span>
-                            <span class="font-medium text-yellow-400 cursor-pointer"
-                                  wire:click="$emitTo('admin.user.edit-user', 'openEditModal', '{{ $user->id }}')">
-                                <i class="fa-solid fa-pencil"></i>
-                            </span>
-                            <span class="font-medium text-red-500 cursor-pointer"
-                                  wire:click="$emit('deleteUser', '{{ $user->id }}')">
-                                <i class="fa-solid fa-trash"></i>
+                            <span class="font-medium text-green-500 cursor-pointer"
+                                  wire:click="$emit('verifyUser', '{{ $user->id }}')">
+                                <i class="fa-regular fa-circle-check"></i>
                             </span>
                         </td>
                     </tr>
@@ -139,7 +115,7 @@
             </div>
         @endif
     @else
-        <p class="mt-4">No se han encontrado resultados</p>
+        <p class="mt-4">No hay usuarios sin verificar</p>
     @endif
 
     {{-- Modal show --}}
@@ -171,7 +147,7 @@
                 </div>
                 <div>
                     <x-jet-label>
-                        Rol: {{ isset($user) ? $user->roles->first()->name : '' }}
+                        Rol: {{ isset($user) ? $user->roles->first()->name : ''}}
                     </x-jet-label>
                 </div>
                 <div>
@@ -196,22 +172,21 @@
 
     @push('scripts')
         <script>
-            Livewire.on('deleteUser', userId => {
+            Livewire.on('verifyUser', userId => {
                 Swal.fire({
-                    title: '¿Quieres eliminar este usuario?',
-                    text: 'Esta operación es irreversible',
-                    icon: 'warning',
+                    title: '¿Quieres verificar este alumno?',
+                    icon: 'question',
                     showCancelButton: true,
                     cancelButtonText: "Cancelar",
-                    confirmButtonColor: '#d33',
+                    confirmButtonColor: '#028f39',
                     cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Eliminar'
+                    confirmButtonText: 'Verificar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        Livewire.emitTo('admin.user.list-users', 'delete', userId)
+                        Livewire.emitTo('admin.verify-user.verify-user', 'verify', userId)
                         Swal.fire(
                             '¡Hecho!',
-                            'El usuario ha sido eliminado.',
+                            'El alumno ha sido verificado.',
                             'success'
                         )
                     }
