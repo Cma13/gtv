@@ -96,12 +96,12 @@
                             {{ $user->updated_at }}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap flex gap-4 mt-2">
-                            <span class="font-medium text-blue-600 cursor-pointer" wire:click="show('{{ $user->id }}')">
+                            <span class="text-xl text-blue-600 cursor-pointer" wire:click="show('{{ $user->id }}')">
                                 <i class="fa-solid fa-eye"></i>
                             </span>
-                            <span class="font-medium text-green-500 cursor-pointer"
+                            <span class="text-xl text-green-500 cursor-pointer"
                                   wire:click="$emit('verifyUser', '{{ $user->id }}')">
-                                <i class="fa-regular fa-circle-check"></i>
+                                <i class="fa-solid fa-circle-check"></i>
                             </span>
                         </td>
                     </tr>

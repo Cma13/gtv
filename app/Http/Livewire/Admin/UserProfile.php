@@ -13,6 +13,11 @@ class UserProfile extends Component
         return countVerifyElementsHelper();
     }
 
+    public function countUnVerifiedUsers()
+    {
+        return countUnVerifiedUsersHelper();
+    }
+
     public function render()
     {
         return view('livewire.admin.user-profile');
