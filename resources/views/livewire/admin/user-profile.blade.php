@@ -7,7 +7,7 @@
                     <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}"
                         alt="{{ Auth::user()->login }}" />
                     @hasanyrole('Administrador|Profesor')
-                        @if ($this->countVerifyElements())
+                        @if ($this->countVerifyElements() || $this->countUnVerifiedUsers())
                             <span
                                 class="absolute top-0 right-0 inline-block w-4 h-4 bg-red-600 border-2 border-white rounded-full"></span>
                         @endif
@@ -18,9 +18,12 @@
 
         <x-slot name="content">
             <!-- Account Management -->
-            <div class="block px-4 py-2 text-sm text-gray-400">
-                {{ auth()->user()->roles->first()->name }}
+            <div class="block">
+                <span class="px-4 py-2 text-sm text-black font-bold">{{ auth()->user()->name }}</span>
+                <span class="px-4 py-2 text-sm text-gray-400">{{ auth()->user()->roles->first()->name }}</span>
             </div>
+
+            <div class="border-t border-gray-100 my-1"></div>
 
             <x-jet-dropdown-link href="{{ route('profile.show') }}">
                 {{ __('Profile') }}
@@ -28,7 +31,7 @@
 
             @hasanyrole('Administrador|Profesor')
                 <x-jet-dropdown-link href="{{ route('verify.index') }}">
-                    {{ __('Verificate') }}
+                    {{ __('Verify Posts') }}
                     @if ($this->countVerifyElements())
                         <span
                             class="inline-flex items-center justify-end px-2 py-1 text-xs font-bold leading-none text-white bg-red-600 rounded-full">{{ $this->countVerifyElements() }}</span>
@@ -36,6 +39,10 @@
                 </x-jet-dropdown-link>
                 <x-jet-dropdown-link href="{{ route('verify-users.index') }}">
                     {{ __('Verify Users') }}
+                    @if ($this->countUnVerifiedUsers())
+                        <span
+                            class="inline-flex items-center justify-end px-2 py-1 text-xs font-bold leading-none text-white bg-red-600 rounded-full">{{ $this->countUnVerifiedUsers() }}</span>
+                    @endif
                 </x-jet-dropdown-link>
             @endrole
 
