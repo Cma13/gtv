@@ -17,7 +17,6 @@ class CreatePointOfInterestThematicAreaTable extends Migration
 
             $table->string('title',145);
             $table->string('description',2000)->nullable();
-            $table->integer('code_id')->nullable();
 
             $table->foreignId('thematic_area_id')->references('id')
                 ->on('thematic_areas')->onDelete('cascade');
