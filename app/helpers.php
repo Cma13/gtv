@@ -3,6 +3,7 @@
 use App\Models\Photography;
 use App\Models\Place;
 use App\Models\PointOfInterest;
+use App\Models\User;
 use App\Models\Video;
 
 function countVerifyElementsHelper()
@@ -27,4 +28,13 @@ function countDeletedElements()
     $total = $points + $places + $videos + $photos;
 
     return $total;
+}
+
+function countUnVerifiedUsersHelper()
+{
+    $count = 0;
+    foreach (User::role('Usuario sin verificar')->get() as $user) {
+        $count++;
+    }
+    return $count;
 }
