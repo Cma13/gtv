@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Point;
 use App\Models\Place;
 use App\Models\PointOfInterest;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -80,7 +81,7 @@ class ShowPoint extends Component
     public function orderBySitio($query, $direction)
     {
         return $query->orderBy(Place::select('name')
-        ->whereColum('places.id', 'point_of_interests.place_id'), $direction);
+            ->whereColum('places.id', 'point_of_interests.place_id'), $direction);
     }
 
     public function resetFilters()
@@ -96,10 +97,19 @@ class ShowPoint extends Component
 
     public function render()
     {
-        $points = PointOfInterest::where($this->searchColumn, 'like', '%' . $this->search . '%')
-            ->where('verified', true)
-            ->orderBy($this->sortField, $this->sortDirection)
-            ->paginate(10);
+        if ($this->sortField === 'place_id') {
+            $points = PointOfInterest::select('point_of_interests.*')
+                ->join('places', 'places.id', '=', 'point_of_interests.place_id')
+                ->where('point_of_interests.' . $this->searchColumn, 'like', '%' . $this->search . '%')
+                ->where('point_of_interests.verified', true)
+                ->orderBy('places.name', $this->sortDirection)
+                ->paginate(10);
+        } else {
+            $points = PointOfInterest::where($this->searchColumn, 'like', '%' . $this->search . '%')
+                ->where('verified', true)
+                ->orderBy($this->sortField, $this->sortDirection)
+                ->paginate(10);
+        }
 
         return view('livewire.admin.point.show-point', compact('points'));
     }
