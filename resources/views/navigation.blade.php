@@ -36,9 +36,6 @@
                             </x-jet-nav-link>
                         @endhasrole
                         @role('Administrador')
-                            <x-jet-nav-link href="{{ route('video-items.index') }}" :active="request()->routeIs('video-items.index')">
-                                Vídeo items
-                            </x-jet-nav-link>
                             <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
                                 Usuarios
                             </x-jet-nav-link>

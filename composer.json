@@ -20,6 +20,7 @@
         "enqueue/amqp-bunny": "^0.10.9",
         "fedeisas/laravel-mail-css-inliner": "dev-master",
         "guzzlehttp/guzzle": "^7.0.1",
+        "james-heinrich/getid3": "^1.9",
         "laravel/framework": "^9.0",
         "laravel/jetstream": "^2.8",
         "laravel/legacy-factories": "^1.3",

@@ -3,10 +3,10 @@
 namespace App\Http\Livewire\Admin\Video;
 
 use App\Jobs\ProcessVideo;
-use App\Jobs\ProcessVideoItem;
 use App\Models\PointOfInterest;
 use App\Models\Video;
-use App\Models\VideoItem;
+use getID3;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -84,47 +84,65 @@ class CreateVideo extends Component
     {
         $this->validate();
 
-        if(auth()->user()->hasRole('Administrador')
-            || auth()->user()->hasRole('Profesor')) {
-                $fileRoute = $this->createForm['file']->store('public/videos');
+        if (
+            auth()->user()->hasRole('Administrador')
+            || auth()->user()->hasRole('Profesor')
+        ) {
+            $fileRoute = $this->createForm['file']->store('public/videos');
+            $metadata = $this->getMetaDataVideo($this->createForm['file']->getRealPath(), $this->createForm['file']->getFileName());
 
-                $video = Video::create([
-                    'route' => $fileRoute,
-                    'point_of_interest_id' => $this->createForm['pointOfInterest'],
-                    'order'=> $this->order,
-                    'creator' => auth()->user()->id,
-                    'updater' => null,
-                    'thematic_area_id' => $this->createForm['thematicArea'],
-                    'description' => $this->createForm['description'],
-                    'verified' => true
-                ]);
-            } elseif(auth()->user()->hasRole('Alumno')) {
-                $fileRoute = $this->createForm['file']->store('public/videos');
+            $video = Video::create([
+                'route' => $fileRoute,
+                'point_of_interest_id' => $this->createForm['pointOfInterest'],
+                'order' => $this->order,
+                'creator' => auth()->user()->id,
+                'updater' => null,
+                'thematic_area_id' => $this->createForm['thematicArea'],
+                'description' => $this->createForm['description'],
+                'format' => $metadata['format'],
+                'channelMode' => $metadata['channelMode'],
+                'resolution' => $metadata['resolution'],
+                'verified' => true
+            ]);
+        } elseif (auth()->user()->hasRole('Alumno')) {
+            $fileRoute = $this->createForm['file']->store('public/videos');
+            $metadata = $this->getMetaDataVideo($this->createForm['file']->getRealPath(), $this->createForm['file']->getFileName());
 
-                $video = Video::create([
-                    'route' => $fileRoute,
-                    'point_of_interest_id' => $this->createForm['pointOfInterest'],
-                    'order'=> $this->order,
-                    'creator' => auth()->user()->id,
-                    'updater' => null,
-                    'thematic_area_id' => $this->createForm['thematicArea'],
-                    'description' => $this->createForm['description'],
-                ]);
-            }
+            $video = Video::create([
+                'route' => $fileRoute,
+                'point_of_interest_id' => $this->createForm['pointOfInterest'],
+                'order' => $this->order,
+                'creator' => auth()->user()->id,
+                'updater' => null,
+                'thematic_area_id' => $this->createForm['thematicArea'],
+                'description' => $this->createForm['description'],
+                'format' => $metadata['format'],
+                'channelMode' => $metadata['channelMode'],
+                'resolution' => $metadata['resolution'],
+            ]);
+        }
 
         ProcessVideo::dispatch($video);
-
-        $videoItem = VideoItem::create([
-            'video_id' => $video->id,
-        ]);
-
-        ProcessVideoItem::dispatch($videoItem);
 
         $this->reset('videoTemporaryUrl');
         $this->reset('createForm');
         $this->emit('videoCreated');
         $this->emitTo('admin.video.list-videos', 'render');
         $this->emitTo('admin.user-profile', 'render');
+    }
+
+    public function getMetaDataVideo($fileRoute, $fileName)
+    {
+        if (Storage::exists('/livewire-tmp/' . $fileName)) {
+            $getID3 = new getID3;
+            $respuesta = $getID3->analyze($fileRoute);
+
+            return [
+                'format' => $respuesta['fileformat'],
+                'channelMode' => $respuesta['audio']['channelmode'],
+                'resolution' => $respuesta['video']['resolution_x'] . 'x' . $respuesta['video']['resolution_y']
+            ];
+        }
     }
 
     public function render()

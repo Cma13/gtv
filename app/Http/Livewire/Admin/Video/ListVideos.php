@@ -37,6 +37,9 @@ class ListVideos extends Component
         'updaterId' => null,
         'createdAt' => null,
         'updatedAt' => null,
+        'format' => null,
+        'channelMode' => null,
+        'resolution' => null,
     ];
 
     public function show(Video $video)
@@ -55,6 +58,9 @@ class ListVideos extends Component
         $this->detailsModal['updaterId'] = $video->updater;
         $this->detailsModal['createdAt'] = $video->created_at;
         $this->detailsModal['updatedAt'] = $video->updated_at;
+        $this->detailsModal['format'] = $video->format;
+        $this->detailsModal['channelMode'] = $video->channelMode;
+        $this->detailsModal['resolution'] = $video->resolution;        
     }
 
     public function delete(Video $video)
