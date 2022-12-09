@@ -30,27 +30,21 @@
             </x-jet-dropdown-link>
 
             @hasrole('Administrador')
-                <x-jet-dropdown-link>
-                    <button 
-                        id="doubleDropdownButton"
-                        data-dropdown-toggle="doubleDropdown"
-                        data-dropdown-placement="right-start"
-                        type="button"
-                        class="flex items-center justify-between w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
+                <div x-data="{ open: false }" x-on:mouseleave="open = false">
+                    <x-jet-dropdown-link class="flex justify-between" href="" x-on:mouseover="open = true">
                         {{ __('Tools') }}
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                    <div id="doubleDropdown"
-                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700">
-                        <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="doubleDropdownButton">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </x-jet-dropdown-link>
+                    <div x-show="open" x-transition:enter.duration.200ms x-transition:leave.duration.200ms
+                        class="z-10 w-auto bg-gray-100 divide-y divide-gray-100 rounded dark:bg-gray-700">
+                        <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
                             <li>
                                 <a href="#"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Overview</a>
+                                    class="block px-4 py-2 hover:bg-gray-300 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Overview</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">My
+                                    class="block px-4 py-2 hover:bg-gray-300 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">My
                                     downloads</a>
                             </li>
                             <li>
@@ -63,7 +57,7 @@
                             </li>
                         </ul>
                     </div>
-                </x-jet-dropdown-link>
+                </div>
             @endhasrole
 
             @hasanyrole('Administrador|Profesor')
