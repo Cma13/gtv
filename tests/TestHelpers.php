@@ -17,6 +17,7 @@ trait TestHelpers
     protected function createAdmin()
     {
         $adminRole = Role::firstOrCreate(['name' => 'Administrador']);
+        $unverifiedUser = Role::firstOrCreate(['name' => 'Usuario sin verificar']);
 
         $user = User::create([
             'name' => 'Admin',

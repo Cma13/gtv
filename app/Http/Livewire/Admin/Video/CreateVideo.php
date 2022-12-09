@@ -89,7 +89,7 @@ class CreateVideo extends Component
             || auth()->user()->hasRole('Profesor')
         ) {
             $fileRoute = $this->createForm['file']->store('public/videos');
-            $metadata = $this->getMetaDataVideo($this->createForm['file']->getRealPath(), $this->createForm['file']->getFileName());
+            $metadata = $this->getMetaDataVideo($this->createForm['file']->getRealPath());
 
             $video = Video::create([
                 'route' => $fileRoute,
@@ -106,7 +106,7 @@ class CreateVideo extends Component
             ]);
         } elseif (auth()->user()->hasRole('Alumno')) {
             $fileRoute = $this->createForm['file']->store('public/videos');
-            $metadata = $this->getMetaDataVideo($this->createForm['file']->getRealPath(), $this->createForm['file']->getFileName());
+            $metadata = $this->getMetaDataVideo($this->createForm['file']->getRealPath());
 
             $video = Video::create([
                 'route' => $fileRoute,
@@ -131,18 +131,16 @@ class CreateVideo extends Component
         $this->emitTo('admin.user-profile', 'render');
     }
 
-    public function getMetaDataVideo($fileRoute, $fileName)
+    public function getMetaDataVideo($fileRoute)
     {
-        if (Storage::exists('/livewire-tmp/' . $fileName)) {
-            $getID3 = new getID3;
-            $respuesta = $getID3->analyze($fileRoute);
+        $getID3 = new getID3;
+        $respuesta = $getID3->analyze($fileRoute);
 
-            return [
-                'format' => $respuesta['fileformat'],
-                'channelMode' => $respuesta['audio']['channelmode'],
-                'resolution' => $respuesta['video']['resolution_x'] . 'x' . $respuesta['video']['resolution_y']
-            ];
-        }
+        return [
+            'format' => $respuesta['fileformat'],
+            'channelMode' => $respuesta['audio']['channelmode'],
+            'resolution' => $respuesta['video']['resolution_x'] . 'x' . $respuesta['video']['resolution_y']
+        ];
     }
 
     public function render()
