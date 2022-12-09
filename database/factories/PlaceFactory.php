@@ -1,19 +1,28 @@
 <?php
 
-
-
 namespace Database\Factories;
 
-use App\Models\Place;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
-use Faker\Generator as Faker;
 
-$factory->define(Place::class, function (Faker $faker) {
-    return [
-        'name'=> $faker->city,
-        'description' => $faker->sentence(5),
-        'creator' => $faker->randomElement(User::all()->pluck('id')->toArray()),
-        'updater' => $faker->randomElement(User::all()->pluck('id')->toArray()),
-        'verified' => true
-    ];
-});
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Place>
+ */
+class PlaceFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition()
+    {
+        return [
+	        'name'=> fake()->city(),
+	        'description' => fake()->sentence(5),
+	        'creator' => User::Verified()->inRandomOrder()->first()->id,
+	        'updater' => User::Verified()->inRandomOrder()->first()->id,
+	        'verified' => true
+        ];
+    }
+}

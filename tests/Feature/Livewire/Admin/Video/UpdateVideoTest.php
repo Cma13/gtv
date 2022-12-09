@@ -16,7 +16,7 @@ class UpdateVideoTest extends TestCase
 
         $pointOfInterestA = $this->createPointOfInterest($place->id);
         $thematicAreaA = $this->createThematicArea($pointOfInterestA->id);
-        $videoA = factory(Video::class)->create([
+        $videoA = Video::factory()->create([
             'point_of_interest_id' => $pointOfInterestA->id,
             'thematic_area_id' => $thematicAreaA->id,
             'description' => 'Initial description',
@@ -63,7 +63,7 @@ class UpdateVideoTest extends TestCase
 
         $pointOfInterestA = $this->createPointOfInterest($place->id);
         $thematicAreaA = $this->createThematicArea($pointOfInterestA->id);
-        $videoA = factory(Video::class)->create([
+        $videoA = Video::factory()->create([
             'point_of_interest_id' => $pointOfInterestA->id,
             'thematic_area_id' => $thematicAreaA->id,
             'description' => 'Initial description',
@@ -110,7 +110,7 @@ class UpdateVideoTest extends TestCase
 
         $pointOfInterestA = $this->createPointOfInterest($place->id);
         $thematicAreaA = $this->createThematicArea($pointOfInterestA->id);
-        $videoA = factory(Video::class)->create([
+        $videoA = Video::factory()->create([
             'point_of_interest_id' => $pointOfInterestA->id,
             'thematic_area_id' => $thematicAreaA->id,
             'description' => 'Initial description',
@@ -158,7 +158,7 @@ class UpdateVideoTest extends TestCase
 
         $pointOfInterestA = $this->createPointOfInterest($place->id);
         $thematicAreaA = $this->createThematicArea($pointOfInterestA->id);
-        $videoA = factory(Video::class)->create([
+        $videoA = Video::factory()->create([
             'point_of_interest_id' => $pointOfInterestA->id,
             'thematic_area_id' => $thematicAreaA->id,
             'description' => 'Initial description',
@@ -206,7 +206,7 @@ class UpdateVideoTest extends TestCase
 
         $pointOfInterestA = $this->createPointOfInterest($place->id);
         $thematicAreaA = $this->createThematicArea($pointOfInterestA->id);
-        $videoA = factory(Video::class)->create([
+        $videoA = Video::factory()->create([
             'point_of_interest_id' => $pointOfInterestA->id,
             'thematic_area_id' => $thematicAreaA->id,
             'description' => 'Initial description',
@@ -254,7 +254,7 @@ class UpdateVideoTest extends TestCase
 
         $pointOfInterestA = $this->createPointOfInterest($place->id);
         $thematicAreaA = $this->createThematicArea($pointOfInterestA->id);
-        $videoA = factory(Video::class)->create([
+        $videoA = Video::factory()->create([
             'point_of_interest_id' => $pointOfInterestA->id,
             'thematic_area_id' => $thematicAreaA->id,
             'description' => 'Initial description',
@@ -302,7 +302,7 @@ class UpdateVideoTest extends TestCase
 
         $pointOfInterestA = $this->createPointOfInterest($place->id);
         $thematicAreaA = $this->createThematicArea($pointOfInterestA->id);
-        $videoA = factory(Video::class)->create([
+        $videoA = Video::factory()->create([
             'point_of_interest_id' => $pointOfInterestA->id,
             'thematic_area_id' => $thematicAreaA->id,
             'description' => 'Initial description',
@@ -350,7 +350,7 @@ class UpdateVideoTest extends TestCase
 
         $pointOfInterestA = $this->createPointOfInterest($place->id);
         $thematicAreaA = $this->createThematicArea($pointOfInterestA->id);
-        $videoA = factory(Video::class)->create([
+        $videoA = Video::factory()->create([
             'point_of_interest_id' => $pointOfInterestA->id,
             'thematic_area_id' => $thematicAreaA->id,
             'description' => 'Initial description',

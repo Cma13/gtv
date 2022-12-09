@@ -14,7 +14,7 @@ class UpdateThematicAreaTest extends TestCase
     {
         $adminUser = $this->createAdmin();
 
-        $thematicArea = factory(ThematicArea::class)->create([
+        $thematicArea = ThematicArea::factory()->create([
             'name' => 'Nombre',
             'description' => 'Descripción',
         ]);
@@ -48,7 +48,7 @@ class UpdateThematicAreaTest extends TestCase
     {
         $adminUser = $this->createAdmin();
 
-        $thematicArea = factory(ThematicArea::class)->create([
+        $thematicArea = ThematicArea::factory()->create([
             'name' => 'Nombre',
             'description' => 'Descripción',
         ]);
@@ -82,7 +82,7 @@ class UpdateThematicAreaTest extends TestCase
     {
         $adminUser = $this->createAdmin();
 
-        $thematicArea = factory(ThematicArea::class)->create([
+        $thematicArea = ThematicArea::factory()->create([
             'name' => 'Nombre',
             'description' => 'Descripción',
         ]);
@@ -116,7 +116,7 @@ class UpdateThematicAreaTest extends TestCase
     {
         $adminUser = $this->createAdmin();
 
-        $thematicArea = factory(ThematicArea::class)->create([
+        $thematicArea = ThematicArea::factory()->create([
             'name' => 'Nombre',
             'description' => 'Descripción',
         ]);
@@ -151,7 +151,7 @@ class UpdateThematicAreaTest extends TestCase
     {
         $adminUser = $this->createAdmin();
 
-        $thematicArea = factory(ThematicArea::class)->create([
+        $thematicArea = ThematicArea::factory()->create([
             'name' => 'Nombre',
             'description' => 'Descripción',
         ]);

@@ -18,8 +18,8 @@ class VideoSeeder extends Seeder
     {
         Storage::disk('public')->deleteDirectory('videos');
 
-        factory(Video::class,10)->create()->each(function (Video $video) {
-            factory(VideoItem::class)->create([
+        Video::factory(10)->create()->each(function (Video $video) {
+            VideoItem::factory()->create([
                 'video_id' => $video->id,
             ]);
         });

@@ -12,7 +12,7 @@ class UpdatePlaceTest extends TestCase
     public function testICanUpdateAnExistingPlace()
     {
         $adminUser = $this->createAdmin();
-        $placeA = factory(Place::class)->create([
+        $placeA = Place::factory()->create([
             'name' => 'Place A',
             'description' => 'Initial description',
         ]);
@@ -40,7 +40,7 @@ class UpdatePlaceTest extends TestCase
     public function testDescriptionFieldIsRequiredWhenUpdatingAPlace()
     {
         $adminUser = $this->createAdmin();
-        $placeA = factory(Place::class)->create([
+        $placeA = Place::factory()->create([
             'name' => 'Place A',
             'description' => 'Initial description',
         ]);
