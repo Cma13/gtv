@@ -43,6 +43,8 @@ class CreateVideo extends Component
 
     public function openCreationModal()
     {
+        $this->reset('createForm');
+
         $this->createForm['open'] = true;
         $this->getPointsOfInterest();
     }
