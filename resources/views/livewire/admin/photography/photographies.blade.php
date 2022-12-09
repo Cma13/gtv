@@ -300,7 +300,7 @@
 
                     <input type="file" wire:model="createForm.route" class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 mt-1"></input>
 
-                    <x-jet-input-error for="editForm.route" class="mt-2" />
+                    <x-jet-input-error for="createForm.route" class="mt-2" />
                 </div>
                 <div class="mb-6">
                     <label for="pointsOfInterest" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
@@ -310,9 +310,9 @@
                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             wire:model="createForm.pointOfInterestId">
-                        <option>Seleccione un punto de interés</option>
+                        <option value="">Seleccione un punto de interés</option>
                         @foreach ($pointsOfInterest as $pointOfInterest)
-                            <option value="{{ $pointOfInterest->id}}">{{ $pointOfInterest->id }}</option>
+                            <option value="{{ $pointOfInterest->id}}">{{ $pointOfInterest->name }}</option>
                         @endforeach
                     </select>
                     @error('createForm.pointOfInterestId') <span class="text-red-600">{{ $message }}</span> @enderror
@@ -326,7 +326,7 @@
                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             wire:model="createForm.thematicAreaId">
-                        <option>Seleccione un area de temática</option>
+                        <option value="">Seleccione un área de temática</option>
                         @if( ! is_null($thematicAreas))
                             @foreach ($thematicAreas as $thematicArea)
                                 <option value="{{ $thematicArea->id }}">{{ $thematicArea->name }}</option>
@@ -381,7 +381,7 @@
                             p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
                             dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-1">
                         @foreach($pointsOfInterest as $pointOfInterest)
-                            <option value="{{ $pointOfInterest->id }}">{{ $pointOfInterest->id }}</option>
+                            <option value="{{ $pointOfInterest->id }}">{{ $pointOfInterest->name }}</option>
                         @endforeach
                     </select>
 
@@ -397,7 +397,7 @@
                             text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
                             p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
                             dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-1">
-                        <option value="">Seleccione un area de temática</option>
+                        <option value="">Seleccione un área de temática</option>
                         @if( ! is_null($thematicAreas))
                             @foreach($thematicAreas as $thematicArea)
                                 <option value="{{ $thematicArea->id }}">{{ $thematicArea->name }}</option>

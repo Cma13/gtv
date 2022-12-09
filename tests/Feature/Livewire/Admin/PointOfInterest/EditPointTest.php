@@ -17,7 +17,7 @@ class EditPointTest extends TestCase
     {
         $adminUser = $this->createAdmin();
         $place = $this->createPlace();
-        $pointOfInterest = factory(PointOfInterest::class)->create([
+        $pointOfInterest = PointOfInterest::factory()->create([
             'place_id' => $place->id,
         ]);
 
@@ -53,7 +53,7 @@ class EditPointTest extends TestCase
     {
         $adminUser = $this->createAdmin();
         $place = $this->createPlace();
-        $pointOfInterest = factory(PointOfInterest::class)->create([
+        $pointOfInterest = PointOfInterest::factory()->create([
             'place_id' => $place->id,
         ]);
 
@@ -89,7 +89,7 @@ class EditPointTest extends TestCase
     {
         $adminUser = $this->createAdmin();
         $place = $this->createPlace();
-        $pointOfInterest = factory(PointOfInterest::class)->create([
+        $pointOfInterest = PointOfInterest::factory()->create([
             'place_id' => $place->id,
         ]);
 
@@ -125,7 +125,7 @@ class EditPointTest extends TestCase
     {
         $adminUser = $this->createAdmin();
         $place = $this->createPlace();
-        $pointOfInterest = factory(PointOfInterest::class)->create([
+        $pointOfInterest = PointOfInterest::factory()->create([
             'place_id' => $place->id,
         ]);
 
@@ -161,7 +161,7 @@ class EditPointTest extends TestCase
     {
         $adminUser = $this->createAdmin();
         $place = $this->createPlace();
-        $pointOfInterest = factory(PointOfInterest::class)->create([
+        $pointOfInterest = PointOfInterest::factory()->create([
             'place_id' => $place->id,
         ]);
 
@@ -197,7 +197,7 @@ class EditPointTest extends TestCase
     {
         $adminUser = $this->createAdmin();
         $place = $this->createPlace();
-        $pointOfInterest = factory(PointOfInterest::class)->create([
+        $pointOfInterest = PointOfInterest::factory()->create([
             'place_id' => $place->id,
         ]);
 
@@ -233,7 +233,7 @@ class EditPointTest extends TestCase
     {
         $adminUser = $this->createAdmin();
         $place = $this->createPlace();
-        $pointOfInterest = factory(PointOfInterest::class)->create([
+        $pointOfInterest = PointOfInterest::factory()->create([
             'place_id' => $place->id,
         ]);
 
@@ -270,7 +270,7 @@ class EditPointTest extends TestCase
     {
         $adminUser = $this->createAdmin();
         $place = $this->createPlace();
-        $pointOfInterest = factory(PointOfInterest::class)->create([
+        $pointOfInterest = PointOfInterest::factory()->create([
             'place_id' => $place->id,
         ]);
 
@@ -307,7 +307,7 @@ class EditPointTest extends TestCase
     {
         $adminUser = $this->createAdmin();
         $place = $this->createPlace();
-        $pointOfInterest = factory(PointOfInterest::class)->create([
+        $pointOfInterest = PointOfInterest::factory()->create([
             'place_id' => $place->id,
         ]);
 
@@ -344,7 +344,7 @@ class EditPointTest extends TestCase
     {
         $adminUser = $this->createAdmin();
         $place = $this->createPlace();
-        $pointOfInterest = factory(PointOfInterest::class)->create([
+        $pointOfInterest = PointOfInterest::factory()->create([
             'place_id' => $place->id,
         ]);
 

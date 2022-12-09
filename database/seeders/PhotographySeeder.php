@@ -18,6 +18,6 @@ class PhotographySeeder extends Seeder
         Storage::disk('public')->deleteDirectory('photos');
         Storage::disk('public')->makeDirectory('photos');
 
-        factory(Photography::class, 30)->create();
+        Photography::factory(30)->create();
     }
 }

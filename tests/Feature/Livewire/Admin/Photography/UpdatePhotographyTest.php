@@ -18,7 +18,7 @@ class UpdatePhotographyTest extends TestCase
         $pointOfInterestA = $this->createPointOfInterest($place->id);
         $thematicAreaA = $this->createThematicArea($pointOfInterestA->id);
 
-        $photographyA = factory(Photography::class)->create([
+        $photographyA = Photography::factory()->create([
             'point_of_interest_id' => $pointOfInterestA->id,
             'thematic_area_id' => $thematicAreaA->id,
         ]);
@@ -63,7 +63,7 @@ class UpdatePhotographyTest extends TestCase
         $pointOfInterestA = $this->createPointOfInterest($place->id);
         $thematicAreaA = $this->createThematicArea($pointOfInterestA->id);
 
-        $photographyA = factory(Photography::class)->create([
+        $photographyA = Photography::factory()->create([
             'point_of_interest_id' => $pointOfInterestA->id,
             'thematic_area_id' => $thematicAreaA->id,
         ]);
@@ -108,7 +108,7 @@ class UpdatePhotographyTest extends TestCase
         $pointOfInterestA = $this->createPointOfInterest($place->id);
         $thematicAreaA = $this->createThematicArea($pointOfInterestA->id);
 
-        $photographyA = factory(Photography::class)->create([
+        $photographyA = Photography::factory()->create([
             'point_of_interest_id' => $pointOfInterestA->id,
             'thematic_area_id' => $thematicAreaA->id,
         ]);
@@ -152,7 +152,7 @@ class UpdatePhotographyTest extends TestCase
         $pointOfInterestA = $this->createPointOfInterest($place->id);
         $thematicAreaA = $this->createThematicArea($pointOfInterestA->id);
 
-        $photographyA = factory(Photography::class)->create([
+        $photographyA = Photography::factory()->create([
             'point_of_interest_id' => $pointOfInterestA->id,
             'thematic_area_id' => $thematicAreaA->id,
         ]);

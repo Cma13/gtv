@@ -8,6 +8,7 @@ use App\Models\PointOfInterest;
 use App\Models\ThematicArea;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -46,7 +47,7 @@ class Photographies extends Component
     ];
 
     protected $rules = [
-        'createForm.route' => 'image|max:5120',
+        'createForm.route' => 'image|mimes:png,jpg,jpeg|max:5120',
         'createForm.pointOfInterestId' => 'required|integer',
         'createForm.thematicAreaId' => 'required|integer',
     ];
@@ -109,10 +110,23 @@ class Photographies extends Component
         $this->thematicAreas = ThematicArea::all();
     }
 
+	public function updatedCreateformRoute()
+	{
+		$this->withValidator(function (Validator $validator) {
+			$validator->after(function ($validator) {
+				if ($validator->failed()) {
+					$this->createForm['route'] = null;
+				}
+			});
+		})->validateOnly('createForm.route');
+	}
+
     public function updatedCreateFormPointOfInterestId()
     {
         $this->createForm['thematicAreaId'] = '';
-        $this->thematicAreas = PointOfInterest::find($this->createForm['pointOfInterestId'])->thematicAreas;
+		if ($this->createForm['pointOfInterestId']) {
+			$this->thematicAreas = PointOfInterest::find($this->createForm['pointOfInterestId'])->thematicAreas;
+		}
     }
 
     public function updatedEditFormPointOfInterestId()
@@ -123,7 +137,7 @@ class Photographies extends Component
 
     public function save()
     {
-        $this->validate();
+		$this->validate();
 
         if(auth()->user()->hasRole('Administrador')
             || auth()->user()->hasRole('Profesor')) {
