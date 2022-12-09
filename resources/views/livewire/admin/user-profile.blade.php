@@ -29,6 +29,43 @@
                 {{ __('Profile') }}
             </x-jet-dropdown-link>
 
+            @hasrole('Administrador')
+                <x-jet-dropdown-link>
+                    <button 
+                        id="doubleDropdownButton"
+                        data-dropdown-toggle="doubleDropdown"
+                        data-dropdown-placement="right-start"
+                        type="button"
+                        class="flex items-center justify-between w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                        {{ __('Tools') }}
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <div id="doubleDropdown"
+                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700">
+                        <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="doubleDropdownButton">
+                            <li>
+                                <a href="#"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Overview</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">My
+                                    downloads</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Billing</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Rewards</a>
+                            </li>
+                        </ul>
+                    </div>
+                </x-jet-dropdown-link>
+            @endhasrole
+
             @hasanyrole('Administrador|Profesor')
                 <x-jet-dropdown-link href="{{ route('verify.index') }}">
                     {{ __('Verify Posts') }}
