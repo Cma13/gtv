@@ -9,14 +9,12 @@ use App\Http\Livewire\Admin\User\ListUsers;
 use App\Http\Livewire\Admin\Verify\ListVerify;
 use App\Http\Livewire\Admin\VerifyUser\VerifyUser;
 use App\Http\Livewire\Admin\Video\ListVideos;
-use App\Http\Livewire\Admin\VideoItem\ListVideoItems;
 use App\Http\Livewire\Admin\Visit\ShowVisits;
 use App\Http\Livewire\Welcome;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['role:Administrador']], function () {
     Route::get('users', ListUsers::class)->name('users.index');
-    Route::get('video-items', ListVideoItems::class)->name('video-items.index');
 });
 
 Route::group(['middleware' => ['role:Profesor|Administrador']], function () {

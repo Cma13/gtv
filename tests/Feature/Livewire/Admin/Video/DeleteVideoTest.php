@@ -19,7 +19,6 @@ class DeleteVideoTest extends TestCase
         $this->actingAs($adminUser);
 
         $this->assertDatabaseCount('videos', 1);
-        $this->assertDatabaseCount('video_items', 1);
 
         $this->assertDatabaseHas('videos', [
             'point_of_interest_id' => $video->pointOfInterest->id,
@@ -30,15 +29,9 @@ class DeleteVideoTest extends TestCase
             'description' => $video->description,
         ]);
 
-        $this->assertDatabaseHas('video_items', [
-            'video_id' => $video->id,
-        ]);
-
         Livewire::test(ListVideos::class)
             ->call('delete', $video);
 
-        //$this->assertDatabaseCount('videos', 0);
-        //$this->assertDatabaseCount('video_items', 0);
 	    $this->assertSoftDeleted($video);
     }
 }

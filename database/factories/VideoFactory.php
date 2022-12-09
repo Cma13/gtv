@@ -28,6 +28,9 @@ class VideoFactory extends Factory
 	        'thematic_area_id' => $pointOfInterest->thematicAreas->shuffle()->first()->id,
 	        'description' => fake()->sentence(5),
 	        'verified' => true,
+		    'format' => fake()->randomElement(['mp4', 'mov', 'ogg']),
+		    'channelMode' => fake()->randomElement(['stereo', 'mono']),
+		    'resolution' => fake()->randomElement(['640x480', '1280x720', '1920x1080']),
         ];
     }
 }

@@ -8,7 +8,6 @@ use App\Models\PointOfInterest;
 use App\Models\ThematicArea;
 use App\Models\User;
 use App\Models\Video;
-use App\Models\VideoItem;
 use App\Models\Visit;
 use Spatie\Permission\Models\Role;
 
@@ -17,7 +16,7 @@ trait TestHelpers
     protected function createAdmin()
     {
         $adminRole = Role::firstOrCreate(['name' => 'Administrador']);
-	    $unverifiedUser = Role::firstOrCreate(['name' => 'Usuario sin verificar']);
+        $unverifiedUser = Role::firstOrCreate(['name' => 'Usuario sin verificar']);
 
         $user = User::create([
             'name' => 'Admin',
@@ -114,11 +113,6 @@ trait TestHelpers
     protected function createVideo()
     {
         $video = Video::factory()->create();
-
-        VideoItem::factory()->create([
-            'video_id' => $video->id,
-        ]);
-
         return $video;
     }
 
