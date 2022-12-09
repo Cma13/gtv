@@ -10,6 +10,7 @@ use App\Http\Livewire\Admin\Verify\ListVerify;
 use App\Http\Livewire\Admin\VerifyUser\VerifyUser;
 use App\Http\Livewire\Admin\Video\ListVideos;
 use App\Http\Livewire\Admin\Visit\ShowVisits;
+use App\Http\Livewire\Map;
 use App\Http\Livewire\Welcome;
 use Illuminate\Support\Facades\Route;
 
@@ -34,5 +35,6 @@ Route::group(['middleware' => ['role:Alumno|Profesor|Administrador']], function 
 });
 
 Route::get('/', Welcome::class)->name('welcome');
+Route::get('/mapa', Map::class)->name('map');
 
 
