@@ -12,11 +12,6 @@ class Video extends Model
 
     protected $guarded = [];
 
-    public function videoItems()
-    {
-        return $this->hasMany(VideoItem::class);
-    }
-
     public function creator()
     {
         return $this->belongsTo(User::class, 'creator');

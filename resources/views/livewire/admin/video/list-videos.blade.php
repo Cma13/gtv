@@ -3,6 +3,7 @@
         <h1 class="text-2xl font-semibold text-gray-700">Listado de vídeos</h1>
 
         <button type="button"
+                dusk="add-button"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 ml-auto"
                 wire:click="$emitTo('admin.video.create-video', 'openCreationModal')">
             Añadir
@@ -18,9 +19,6 @@
                 <option value="description">DESCRIPCIÓN</option>
                 <option value="point_of_interest_id">PUNTO DE INTERÉS</option>
                 <option value="thematic_area_id">ÁREA TEMÁTICA</option>
-                <option value="creator">CREADOR</option>
-                <option value="updater">ACTUALIZADOR</option>
-                <option value="created_at">FECHA DE CREACIÓN</option>
             </select>
         </div>
 
@@ -72,30 +70,6 @@
                                 <i class="fa-solid fa-arrow-down"></i>
                     @endif
                 </th>
-                <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('creator')">
-                    Creador
-                    @if($sortField === 'creator' && $sortDirection === 'asc')
-                        <i class="fa-solid fa-arrow-up">
-                            @elseif($sortField === 'creator' && $sortDirection === 'desc')
-                                <i class="fa-solid fa-arrow-down"></i>
-                    @endif
-                </th>
-                <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('updater')">
-                    Actualizador
-                    @if($sortField === 'updater' && $sortDirection === 'asc')
-                        <i class="fa-solid fa-arrow-up">
-                            @elseif($sortField === 'updater' && $sortDirection === 'desc')
-                                <i class="fa-solid fa-arrow-down"></i>
-                    @endif
-                </th>
-                <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('created_at')">
-                    Fecha creación
-                    @if($sortField === 'created_at' && $sortDirection === 'asc')
-                        <i class="fa-solid fa-arrow-up">
-                            @elseif($sortField === 'created_at' && $sortDirection === 'desc')
-                                <i class="fa-solid fa-arrow-down"></i>
-                    @endif
-                </th>
                 <th scope="col" class="px-6 py-3">
                     <span class="sr-only">Actions</span>
                 </th>
@@ -126,17 +100,6 @@
                             @else
                                <span class="text-red-600">Ninguna</span>
                             @endif
-                        </td>
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            {{ \App\Models\User::find($video->creator)->name }}
-                        </td>
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            @if($video->updater)
-                                {{ \App\Models\User::find($video->updater)->name }}
-                            @endif
-                        </td>
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            {{ $video->created_at }}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap flex gap-4">
                             <span class="font-medium text-blue-600 cursor-pointer" wire:click="show('{{ $video->id }}')">
@@ -170,11 +133,10 @@
         <x-slot name="title">
             <span class="text-2xl">Detalles del vídeo #{{ $detailsModal['id'] }}</span>
         </x-slot>
-
         <x-slot name="content">
             <div class="space-y-3">
-                @if($detailsModal['route'] !== null)
-                    @livewire('admin.video.video-preview', ['route' => $detailsModal['route']])
+                @if($detailsModal['route'])
+                    @livewire('admin.video.video-preview', ['route' => $detailsModal['route']], key('route-' . $detailsModal['id']))
                 @endif
                 <div>
                     <x-jet-label>
@@ -232,6 +194,21 @@
                 <div>
                     <x-jet-label>
                         Fecha de actualización: {{ $detailsModal['updatedAt'] }}
+                    </x-jet-label>
+                </div>
+                <div>
+                    <x-jet-label>
+                        Formato: {{ $detailsModal['format'] }}
+                    </x-jet-label>
+                </div>
+                <div>
+                    <x-jet-label>
+                        Salida de audio: {{ $detailsModal['channelMode'] }}
+                    </x-jet-label>
+                </div>
+                <div>
+                    <x-jet-label>
+                        Resolución: {{ $detailsModal['resolution'] }}
                     </x-jet-label>
                 </div>
             </div>

@@ -18,7 +18,6 @@ class ListVideoTest extends TestCase
         $this->actingAs($adminUser);
 
         $this->assertDatabaseCount('videos', 2);
-        $this->assertDatabaseCount('video_items', 2);
 
         $this->get('videos')
             ->assertOk()

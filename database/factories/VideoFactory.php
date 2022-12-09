@@ -28,6 +28,9 @@ $factory->define(Video::class, function (Faker $faker) {
         'updater' => null,
         'thematic_area_id' => $faker->randomElement($thematicAreas),
         'description' => $description,
-        'verified' => true,
+        'verified' => true,                
+        'format' => $faker->randomElement(['mp4', 'mov', 'ogg']),
+        'channelMode' => $faker->randomElement(['stereo', 'mono']),
+        'resolution' => $faker->randomElement(['640x480', '1280x720', '1920x1080']),
     ];
 });

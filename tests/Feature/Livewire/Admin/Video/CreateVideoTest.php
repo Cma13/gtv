@@ -3,53 +3,12 @@
 namespace Tests\Feature\Livewire\Admin\Video;
 
 use App\Http\Livewire\Admin\Video\CreateVideo;
-use App\Models\Video;
 use Illuminate\Http\UploadedFile;
 use Livewire\Livewire;
 use Tests\TestCase;
 
 class CreateVideoTest extends TestCase
 {
-    public function testICanCreateAVideo()
-    {
-        $adminUser = $this->createAdmin();
-        $place = $this->createPlace();
-        $pointOfInterest = $this->createPointOfInterest($place->id);
-        $thematicArea = $this->createThematicArea($pointOfInterest->id);
-
-        $this->actingAs($adminUser);
-
-        $this->assertDatabaseCount('videos', 0);
-        $this->assertDatabaseCount('video_items', 0);
-
-        $file = UploadedFile::fake()->create('video.mp4', 1, 'video/mp4');
-
-        Livewire::test(CreateVideo::class)
-            ->set('createForm.file', $file)
-            ->set('createForm.pointOfInterest', $pointOfInterest->id)
-            ->set('createForm.thematicArea', $thematicArea->id)
-            ->set('createForm.description', 'Video description')
-            ->call('save');
-
-        $this->assertDatabaseCount('videos', 1);
-        $this->assertDatabaseCount('video_items', 1);
-
-        $this->assertDatabaseHas('videos', [
-            'point_of_interest_id' => $pointOfInterest->id,
-            'order' => 1,
-            'creator' => $adminUser->id,
-            'updater' => null,
-            'thematic_area_id' => $thematicArea->id,
-            'description' => 'Video description',
-        ]);
-
-        $createdVideo = Video::first();
-
-        $this->assertDatabaseHas('video_items', [
-            'video_id' => $createdVideo->id,
-        ]);
-    }
-
     public function testFileFieldIsRequiredWhenCreatingAVideo()
     {
         $adminUser = $this->createAdmin();
@@ -60,7 +19,6 @@ class CreateVideoTest extends TestCase
         $this->actingAs($adminUser);
 
         $this->assertDatabaseCount('videos', 0);
-        $this->assertDatabaseCount('video_items', 0);
 
         Livewire::test(CreateVideo::class)
             ->set('createForm.pointOfInterest', $pointOfInterest->id)
@@ -70,7 +28,6 @@ class CreateVideoTest extends TestCase
             ->assertHasErrors(['createForm.file' => 'required']);
 
         $this->assertDatabaseCount('videos', 0);
-        $this->assertDatabaseCount('video_items', 0);
     }
 
     public function testPointOfInterestFieldIsRequiredWhenCreatingAVideo()
@@ -83,7 +40,6 @@ class CreateVideoTest extends TestCase
         $this->actingAs($adminUser);
 
         $this->assertDatabaseCount('videos', 0);
-        $this->assertDatabaseCount('video_items', 0);
 
         $file = UploadedFile::fake()->create('video.mp4', 1, 'video/mp4');
 
@@ -95,7 +51,6 @@ class CreateVideoTest extends TestCase
             ->assertHasErrors(['createForm.pointOfInterest' => 'required']);
 
         $this->assertDatabaseCount('videos', 0);
-        $this->assertDatabaseCount('video_items', 0);
     }
 
     public function testThematicAreaIsRequiredWhenCreatingAVideo()
@@ -108,7 +63,6 @@ class CreateVideoTest extends TestCase
         $this->actingAs($adminUser);
 
         $this->assertDatabaseCount('videos', 0);
-        $this->assertDatabaseCount('video_items', 0);
 
         $file = UploadedFile::fake()->create('video.mp4', 1, 'video/mp4');
 
@@ -121,7 +75,6 @@ class CreateVideoTest extends TestCase
             ->assertHasErrors(['createForm.thematicArea' => 'required']);
 
         $this->assertDatabaseCount('videos', 0);
-        $this->assertDatabaseCount('video_items', 0);
     }
 
     public function testThematicAreaExistsInDatabaseWhenCreatingAVideo()
@@ -134,7 +87,6 @@ class CreateVideoTest extends TestCase
         $this->actingAs($adminUser);
 
         $this->assertDatabaseCount('videos', 0);
-        $this->assertDatabaseCount('video_items', 0);
 
         $file = UploadedFile::fake()->create('video.mp4', 1, 'video/mp4');
 
@@ -147,7 +99,6 @@ class CreateVideoTest extends TestCase
             ->assertHasErrors(['createForm.thematicArea' => 'exists']);
 
         $this->assertDatabaseCount('videos', 0);
-        $this->assertDatabaseCount('video_items', 0);
     }
 
     public function testDescriptionFieldIsRequiredWhenCreatingAVideo()
@@ -160,7 +111,6 @@ class CreateVideoTest extends TestCase
         $this->actingAs($adminUser);
 
         $this->assertDatabaseCount('videos', 0);
-        $this->assertDatabaseCount('video_items', 0);
 
         $file = UploadedFile::fake()->create('video.mp4', 1, 'video/mp4');
 
@@ -173,7 +123,6 @@ class CreateVideoTest extends TestCase
             ->assertHasErrors(['createForm.description' => 'required']);
 
         $this->assertDatabaseCount('videos', 0);
-        $this->assertDatabaseCount('video_items', 0);
     }
 
     public function testDescriptionFieldIsAStringWhenCreatingAVideo()
@@ -186,7 +135,6 @@ class CreateVideoTest extends TestCase
         $this->actingAs($adminUser);
 
         $this->assertDatabaseCount('videos', 0);
-        $this->assertDatabaseCount('video_items', 0);
 
         $file = UploadedFile::fake()->create('video.mp4', 1, 'video/mp4');
 
@@ -199,7 +147,6 @@ class CreateVideoTest extends TestCase
             ->assertHasErrors(['createForm.description' => 'string']);
 
         $this->assertDatabaseCount('videos', 0);
-        $this->assertDatabaseCount('video_items', 0);
     }
 
     public function testDescriptionFieldHasMaxLengthWhenCreatingAVideo()
@@ -212,7 +159,6 @@ class CreateVideoTest extends TestCase
         $this->actingAs($adminUser);
 
         $this->assertDatabaseCount('videos', 0);
-        $this->assertDatabaseCount('video_items', 0);
 
         $file = UploadedFile::fake()->create('video.mp4', 1, 'video/mp4');
 
@@ -225,6 +171,5 @@ class CreateVideoTest extends TestCase
             ->assertHasErrors(['createForm.description' => 'max']);
 
         $this->assertDatabaseCount('videos', 0);
-        $this->assertDatabaseCount('video_items', 0);
     }
 }
