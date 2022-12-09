@@ -61,6 +61,8 @@ class ListVideos extends Component
         $this->detailsModal['format'] = $video->format;
         $this->detailsModal['channelMode'] = $video->channelMode;
         $this->detailsModal['resolution'] = $video->resolution;        
+
+        $this->emitTo('admin.video-preview', 'show', ['route' => $this->detailsModal['route']]);
     }
 
     public function delete(Video $video)

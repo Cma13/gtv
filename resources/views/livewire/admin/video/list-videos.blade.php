@@ -133,11 +133,10 @@
         <x-slot name="title">
             <span class="text-2xl">Detalles del vídeo #{{ $detailsModal['id'] }}</span>
         </x-slot>
-
         <x-slot name="content">
             <div class="space-y-3">
-                @if($detailsModal['route'] !== null)
-                    @livewire('admin.video.video-preview', ['route' => $detailsModal['route']])
+                @if($detailsModal['route'])
+                    @livewire('admin.video.video-preview', ['route' => $detailsModal['route']], key('route-' . $detailsModal['id']))
                 @endif
                 <div>
                     <x-jet-label>
