@@ -2,55 +2,52 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\PointOfInterest;
 use Livewire\Component;
+use Livewire\WithPagination;
+use App\Models\PointOfInterest;
+use App\Models\User;
 
 class Map extends Component
 {
-	public $murcia = [
-		'position' => [
-			'lat' => -1.3437809,
-			'lng' => 38.0723083
-		],
-		'zoom' => 9
-	];
+	use WithPagination;
 
-	public $size = [
-		'width' => '100%',
-		'height' => '800px'
-	];
+	public $search;
+	public $searchColumn = 'id';
 
-	private function pointOfInterestToMarkers($pointsOfInterest) {
-		$markers = [];
-		foreach ($pointsOfInterest as $point) {
-			$markers[] = [
-				'position' => [
-					'lng' => (float) $point->longitude,
-					'lat' => (float) $point->latitude
-				],
-				'content' => <<<EOT
-					<dl>
-						<p><b>Nombre: </b>{$point->name}</p>
-						<p><b>Coordenadas: </b>{$point->latitude}, {$point->longitude}</p>
-						<p><b>Sitio: </b>{$point->place->name}</p>
-					</dl>
-					EOT
-			];
+	public $sortField = 'id';
+	public $sortDirection = 'desc';
+
+	protected $queryString = ['search'];
+
+	public function sort($field)
+	{
+		if ($this->sortField != $field) {
+			$this->sortField = $field;
+			$this->sortDirection = 'asc';
+		} else {
+			$this->sortDirection = $this->sortDirection == 'asc' ? 'desc' : 'asc';
 		}
-		return $markers;
+
 	}
 
-    public function render()
-    {
-	    $mapOptions = [
-	    'center' => [
-		    'lat' => 9.73175,
-		    'lng' => 20.35300
-	    ],
-	    'zoom' => 2.3
-    ];
-		$points = PointOfInterest::all();
-		$markers = $this->pointOfInterestToMarkers($points);
-        return view('livewire.map', compact('markers', 'mapOptions'));
-    }
+	public function resetFilters()
+	{
+		$this->reset(['search', 'sortField', 'sortDirection']);
+		$this->resetPage();
+	}
+
+	public function updatingSearch()
+	{
+		$this->resetPage();
+	}
+
+	public function render()
+	{
+		$points = PointOfInterest::where($this->searchColumn, 'like', '%' . $this->search . '%')
+			->where('verified', true)
+			->orderBy($this->sortField, $this->sortDirection)
+			->paginate(10);
+
+		return view('livewire.map', compact('points'));
+	}
 }
