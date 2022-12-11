@@ -32,13 +32,13 @@ class CreateVideoTest extends DuskTestCase
                 ->attach('@input-video', Storage::path('videoTest/sampleVideo.mp4'))
                 ->pause(500)
                 ->select('@points', $pointOfInterest->id)
-                ->pause(100)
+                ->pause(500)
                 ->select('@areas', $thematicArea->id)
-                ->pause(100)
+                ->pause(200)
                 ->type('@description', $description)
-                ->pause(100)
+                ->pause(200)
                 ->click('@crear')
-                ->pause(100);
+                ->pause(500);
         });
         $this->assertDatabaseCount('videos', 1);
     }
