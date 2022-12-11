@@ -60,4 +60,11 @@ class User extends Authenticatable
 			$query->where('name', 'Usuario sin verificar');
 		});
 	}
+
+	public function scopeUnverified($query)
+	{
+		$query->whereHas('roles', function (Builder $query) {
+			$query->where('name', 'Usuario sin verificar');
+		});
+	}
 }
