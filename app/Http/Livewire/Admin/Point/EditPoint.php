@@ -27,8 +27,8 @@ class EditPoint extends Component
     protected $rules = [
         'editForm.name' => 'required',
         'editForm.distance' => 'required|numeric',
-        'editForm.latitude' => 'required|numeric',
-        'editForm.longitude' => 'required|numeric',
+        'editForm.latitude' => 'required|numeric|max:90|min:-90',
+        'editForm.longitude' => 'required|numeric|max:180|min:-180',
         'editForm.place' => 'required|exists:places,id',
     ];
 
