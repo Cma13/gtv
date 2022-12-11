@@ -1,59 +1,48 @@
 <div class="w-full h-full">
-	<div id="map" class="w-full h-full">
-	</div>
-	<script src="https://maps.googleapis.com/maps/api/js?key={{ config('api-keys.google-maps-api') }}&callback=initMap&v=weekly" defer></script>
-	<script>
-		let map, activeInfoWindow;
-		let markersMap = new Map();
+	<div id="map" class="w-full h-full" wire:ignore></div>
 
-		function initMap() {
-			map = new google.maps.Map(document.getElementById("map"), @js($mapOptions));
-			updateOrCreateMarkers(@js($markers));
-		}
+	@push('scripts')
+		<script src="https://maps.googleapis.com/maps/api/js?key={{ config('api-keys.google-maps-api') }}&callback=initMap&v=weekly" defer></script>
+		<script>
+			let map, activeInfoWindow;
+			let markersMap = new Map();
 
-		function updateOrCreateMarkers(markers) {
-			if (!Array.isArray(markers)) markers = new Array(markers);
-			markers.forEach(markerDetails => {
-				const newMarker = new google.maps.Marker({
-					position: markerDetails.position,
-					map
-				});
-				markersMap.set(markerDetails.id, newMarker);
+			function initMap() {
+				map = new google.maps.Map(document.getElementById("map"), @js($mapOptions));
+				updateOrCreateMarkers(@js($initialMarkers));
+			}
 
-				const infoWindow = new google.maps.InfoWindow({
-					content: `${markerDetails.content}`,
-				});
-
-				newMarker.addListener("click", (event) => {
-					if(activeInfoWindow) activeInfoWindow.close();
-					infoWindow.open({
-						anchor: newMarker,
-						shouldFocus: false,
+			function updateOrCreateMarkers(markers) {
+				if (!Array.isArray(markers)) markers = new Array(markers);
+				markers.forEach(markerDetails => {
+					const newMarker = new google.maps.Marker({
+						position: markerDetails.position,
+						title: markerDetails.name,
 						map
 					});
-					activeInfoWindow = infoWindow;
-				});
-			})
-		}
+					markersMap.set(markerDetails.id, newMarker);
 
-		function deleteMarkers(...id) {
-			id.flat().forEach(id => {
-				markersMap.get(id)?.setMap(null);
-				markersMap.delete(id);
-			})
-		}
+					const infoWindow = new google.maps.InfoWindow({
+						content: `${markerDetails.content}`,
+					});
 
-		function enableMarkers(...id) {
-			id.flat().forEach(id => markersMap.get(id)?.setMap(map));
-		}
+					newMarker.addListener("click", (event) => {
+						if(activeInfoWindow) activeInfoWindow.close();
+						infoWindow.open({
+							anchor: newMarker,
+							shouldFocus: false,
+							map
+						});
+						activeInfoWindow = infoWindow;
+					});
+				})
+			}
 
-		function disableMarkers(...id) {
-			id.flat().forEach(id => markersMap.get(id)?.setMap(null));
-		}
+			function syncMarkers(enabledId) {
+				markersMap.forEach((marker, id) => marker.setMap(enabledId.map(String).includes(String(id)) ? map : null));
+			}
 
-		function syncMarkers(...enabledId) {
-			enabledId = enabledId.flat().map(String);
-			markersMap.forEach((marker, id) => marker.setMap(enabledId.includes(id) ? map : null));
-		}
-	</script>
+			window.addEventListener('syncMarkers', event => syncMarkers(event.detail.markers));
+		</script>
+	@endpush
 </div>

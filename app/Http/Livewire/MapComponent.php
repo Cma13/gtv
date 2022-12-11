@@ -2,24 +2,37 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\PointOfInterest;
 use Livewire\Component;
 
 class MapComponent extends Component
 {
+	protected $listeners = ['syncMarkers'];
+
 	public $mapOptions = [
 		'center' => [
-			'lat' => 9.73175,
-			'lng' => 20.35300
+			'lat' => 0,
+			'lng' => 20
 		],
-		'zoom' => 2.3
+		'zoom' => 2
 	];
+
+	public $initialPoints = [];
+	public $initialMarkers = [];
+
+	public function mount() {
+		$this->initialMarkers = $this->pointOfInterestToMarkers($this->initialPoints);
+	}
+
+	public function syncMarkers($markers) {
+		$this->dispatchBrowserEvent('syncMarkers', ['markers' => $markers]);
+	}
 
 	public function pointOfInterestToMarkers($pointsOfInterest) {
 		$markers = [];
 		foreach ($pointsOfInterest as $point) {
 			$markers[] = [
 				'id' => $point->id,
+				'name' => $point->name,
 				'position' => [
 					'lng' => (float) $point->longitude,
 					'lat' => (float) $point->latitude
@@ -38,8 +51,6 @@ class MapComponent extends Component
 
     public function render()
     {
-		$points = PointOfInterest::all();
-		$markers = $this->pointOfInterestToMarkers($points);
-        return view('livewire.map-component', compact('markers'));
+        return view('livewire.map-component');
     }
 }

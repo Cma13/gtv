@@ -40,6 +40,9 @@
                                 Usuarios
                             </x-jet-nav-link>
                         @endrole
+                        <x-jet-nav-link href="{{ route('map') }}" :active="request()->routeIs('map')">
+                            Mapa
+                        </x-jet-nav-link>
                     @endhasrole
                 </div>
                 <div class="ml-8 my-auto">
