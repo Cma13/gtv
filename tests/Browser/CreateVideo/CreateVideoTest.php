@@ -25,18 +25,20 @@ class CreateVideoTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($pointOfInterest, $thematicArea, $description) {
             $browser->loginAs(User::find(1))
                 ->visitRoute('videos.index')
+	            ->pause(100)
                 ->assertSee('Listado de vídeos')
                 ->click('@add-button')
+	            ->pause(100)
                 ->attach('@input-video', Storage::path('videoTest/sampleVideo.mp4'))
-                ->pause(50)
-                ->select('@points', $pointOfInterest->id)
                 ->pause(500)
+                ->select('@points', $pointOfInterest->id)
+                ->pause(100)
                 ->select('@areas', $thematicArea->id)
-                ->pause(200)
+                ->pause(100)
                 ->type('@description', $description)
-                ->pause(200)
+                ->pause(100)
                 ->click('@crear')
-                ->pause(500);
+                ->pause(100);
         });
         $this->assertDatabaseCount('videos', 1);
     }
