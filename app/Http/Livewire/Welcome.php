@@ -87,7 +87,6 @@ class Welcome extends Component
     public $detailsModalPoints = [
         'open' => false,
         'id' => null,
-        'distance' => null,
         'latitude' => null,
         'longitude' => null,
         'placeId' => null,
@@ -191,7 +190,6 @@ class Welcome extends Component
     {
         $this->detailsModalPoints['open'] = true;
         $this->detailsModalPoints['id'] = $point->id;
-        $this->detailsModalPoints['distance'] = $point->distance;
         $this->detailsModalPoints['latitude'] = $point->latitude;
         $this->detailsModalPoints['longitude'] = $point->longitude;
         $this->detailsModalPoints['placeId'] = $point->place->id;

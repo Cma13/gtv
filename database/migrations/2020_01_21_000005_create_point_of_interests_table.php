@@ -16,7 +16,6 @@ class CreatePointOfInterestsTable extends Migration
         Schema::create('point_of_interests', function (Blueprint $table) {
             $table->id();
             $table->string('name',45);
-            $table->integer('distance')->nullable();
             $table->decimal('latitude',12,10)->nullable();
             $table->decimal('longitude',13,10)->nullable();
             $table->foreignId('place_id')->references('id')->on('places')->onDelete('cascade');

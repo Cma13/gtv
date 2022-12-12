@@ -23,7 +23,6 @@ class DeletePointTest extends TestCase
         $this->assertDatabaseCount('point_of_interests', 1);
 
         $this->assertDatabaseHas('point_of_interests', [
-            'distance' => $pointOfInterest->distance,
             'longitude' => $pointOfInterest->longitude,
             'latitude' => $pointOfInterest->latitude,
             'place_id' => $pointOfInterest->place_id,

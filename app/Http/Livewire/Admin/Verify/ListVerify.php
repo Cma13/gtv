@@ -14,7 +14,6 @@ class ListVerify extends Component
         'QR',
         'ID',
         'NOMBRE',
-        'DISTANCIA',
         'LATITUD / LONGITUD',
         'SITIO',
         'CREADOR',

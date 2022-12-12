@@ -186,9 +186,6 @@
                                                                              ID
                                                                              </td>
                                                                              <td class="px-6 py-3">
-                                                                             DISTANCIA
-                                                                             </td>
-                                                                             <td class="px-6 py-3">
                                                                              SITIO
                                                                              </td>
                                                                              </tr>
@@ -196,9 +193,6 @@
                                                                              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                                                              <td class="px-6 py-4">
                                                                              {{$point->id}}
-                                                                             </td>
-                                                                             <td class="px-6 py-4">
-                                                                             {{$point->distance}}
                                                                              </td>
                                                                              <td class="px-6 py-4">
                                                                              {{$point->place->name}}
@@ -577,11 +571,6 @@
 
                                                                     <x-slot name="content">
                                                                     <div class="space-y-3">
-                                                                    <div>
-                                                                    <x-jet-label>
-                                                                    Distancia: {{ $detailsModalPoints['distance']}}
-                                                                    </x-jet-label>
-                                                                    </div>
                                                                     <div>
                                                                     <x-jet-label>
                                                                     Latitud: {{ $detailsModalPoints['latitude'] }}
