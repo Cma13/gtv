@@ -7,6 +7,7 @@ use App\Models\Place;
 use App\Models\PointOfInterest;
 use Livewire\Component;
 use function view;
+use Illuminate\Support\Facades\Log;
 
 class CreatePoint extends Component
 {
@@ -79,6 +80,10 @@ class CreatePoint extends Component
                 'creator' => auth()->user()->id,
                 'updater' => null,
             ]);
+        }
+        $isCreated = $pointOfInterest;
+        if ($isCreated) {
+            Log::info('User with ID ' . auth()->user()->id . 'was created a point of interest with name ' . $pointOfInterest->name .$pointOfInterest);
         }
 
         ProcessPointOfInterest::dispatch($pointOfInterest);

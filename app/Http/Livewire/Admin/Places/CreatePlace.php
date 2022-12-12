@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Places;
 use App\Jobs\ProcessPlace;
 use App\Models\Place;
 use Livewire\Component;
+use Illuminate\Support\Facades\Log;
 
 class CreatePlace extends Component
 {
@@ -54,6 +55,11 @@ class CreatePlace extends Component
             }
 
         ProcessPlace::dispatch($place);
+
+        $isCreated = $place;
+        if ($isCreated) {
+            Log::info('User with ID ' . auth()->user()->id . 'was created a place with name ' . $place->name . $place);
+        }
 
         $this->reset('createForm');
         $this->emit('placeCreated');

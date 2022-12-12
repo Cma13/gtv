@@ -43,14 +43,15 @@ class EditPlace extends Component
     {
         $this->validate();
 
-        $place->update([
+        $isUpdated = $place->update([
             'name' => $this->editForm['name'],
             'description' => $this->editForm['description'],
             'updater' => auth()->user()->id,
         ]);
 
-        Log::info('Place with ID ' . $place->id . ' was updated ' . $place);
-
+        if ($isUpdated) {
+            Log::info('User with ID ' . auth()->user()->id . 'was updated a place with name ' . $place->name . $place);
+        }
         $this->editForm['open'] = false;
         $this->reset(['editForm']);
 
