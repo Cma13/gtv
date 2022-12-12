@@ -12,7 +12,6 @@ class ListPhotographyTest extends TestCase
         $adminUser = $this->createAdmin();
         $place = $this->createPlace();
         $pointOfInterest = $this->createPointOfInterest($place->id);
-        $this->createThematicArea($pointOfInterest->id);
 
         $photographyA = $this->createPhotography();
         $photographyB = $this->createPhotography();

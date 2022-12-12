@@ -40,8 +40,6 @@ class Welcome extends Component
         'route' => null,
         'order' => null,
         'pointOfInterest' => null,
-        'thematicAreaName' => null,
-        'thematicAreaId' => null,
         'creatorName' => null,
         'creatorId' => null,
         'updaterName' => null,
@@ -89,7 +87,6 @@ class Welcome extends Component
     public $detailsModalPoints = [
         'open' => false,
         'id' => null,
-        'distance' => null,
         'latitude' => null,
         'longitude' => null,
         'placeId' => null,
@@ -122,8 +119,6 @@ class Welcome extends Component
         'route' => null,
         'order' => null,
         'pointOfInterestId' => null,
-        'thematicAreaId' => null,
-        'thematicAreaName' => null,
         'creatorId' => null,
         'creatorName' => null,
         'updaterId' => null,
@@ -140,8 +135,6 @@ class Welcome extends Component
         $this->detailsModalVideos['route'] = Storage::url($video->route);
         $this->detailsModalVideos['order'] = $video->order;
         $this->detailsModalVideos['pointOfInterest'] = $video->pointOfInterest->id;
-        $this->detailsModalVideos['thematicAreaName'] = $video->thematicArea->name ?? '';
-        $this->detailsModalVideos['thematicAreaId'] = $video->thematicArea->id ?? '';
         $this->detailsModalVideos['creatorName'] = User::find($video->creator)->name;
         $this->detailsModalVideos['creatorId'] = $video->creator;
         $this->detailsModalVideos['updaterName'] = $video->updater ? User::find($video->updater)->name : null;;
@@ -197,7 +190,6 @@ class Welcome extends Component
     {
         $this->detailsModalPoints['open'] = true;
         $this->detailsModalPoints['id'] = $point->id;
-        $this->detailsModalPoints['distance'] = $point->distance;
         $this->detailsModalPoints['latitude'] = $point->latitude;
         $this->detailsModalPoints['longitude'] = $point->longitude;
         $this->detailsModalPoints['placeId'] = $point->place->id;
@@ -231,8 +223,6 @@ class Welcome extends Component
         $this->detailsModalPhotographies['route'] = $photography->route;
         $this->detailsModalPhotographies['order'] = $photography->order;
         $this->detailsModalPhotographies['pointOfInterestId'] = $photography['point_of_interest_id'];
-        $this->detailsModalPhotographies['thematicAreaId'] = $photography->thematicArea->id ?? '';
-        $this->detailsModalPhotographies['thematicAreaName'] = $photography->thematicArea->name ?? '';
         $this->detailsModalPhotographies['creatorId'] = User::find($photography->creator)->id;
         $this->detailsModalPhotographies['creatorName'] = User::find($photography->creator)->name;
         $this->detailsModalPhotographies['createdAt'] = $photography->created_at;

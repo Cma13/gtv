@@ -20,11 +20,7 @@ class PointOfInterestSeeder extends Seeder
         $pointsOfInterest->each(function($pointOfInterest) {
             $pointOfInterest->save();
             $thematicAreas= ThematicArea::all()->pluck('id')->toArray();
-            $pointOfInterest->thematicAreas()->attach(Arr::random($thematicAreas, 2),
-                [
-                    'title' => fake()->sentence,
-                    'description' => fake()->text,
-                ]);
+            $pointOfInterest->thematicAreas()->attach(Arr::random($thematicAreas, 2));
         });
     }
 }

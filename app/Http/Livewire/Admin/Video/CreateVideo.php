@@ -14,7 +14,7 @@ class CreateVideo extends Component
 {
     use WithFileUploads;
 
-    public $pointsOfInterest = [], $thematicAreas = [], $order = 1;
+    public $pointsOfInterest = [], $order = 1;
     public $videoTemporaryUrl;
 
     protected $listeners = ['openCreationModal'];
@@ -23,21 +23,18 @@ class CreateVideo extends Component
         'open' => false,
         'file' => null,
         'pointOfInterest' => '',
-        'thematicArea' => '',
         'description' => '',
     ];
 
     protected $rules = [
         'createForm.file' => 'required|mimetypes:video/x-ms-asf,video/x-flv,video/mp4,application/x-mpegURL,video/MP2T,video/3gpp,video/quicktime,video/x-msvideo,video/x-ms-wmv,video/avi',
         'createForm.pointOfInterest' => 'required',
-        'createForm.thematicArea' => 'required|exists:thematic_areas,id',
         'createForm.description' => 'required|string|max:2000',
     ];
 
     protected $validationAttributes = [
         'createForm.file' => 'vídeo',
         'createForm.pointOfInterest' => 'punto de interés',
-        'createForm.thematicArea' => 'área temática',
         'createForm.description' => 'descripción',
     ];
 
@@ -54,12 +51,6 @@ class CreateVideo extends Component
         $this->pointsOfInterest = PointOfInterest::all();
     }
 
-    public function getThematicAreas()
-    {
-        $selectedPointOfInterest = PointOfInterest::find($this->createForm['pointOfInterest']);
-        $this->thematicAreas = $selectedPointOfInterest->thematicAreas;
-    }
-
     public function updatedCreateFormFile()
     {
         $this->videoTemporaryUrl = $this->createForm['file']->temporaryUrl();
@@ -68,9 +59,7 @@ class CreateVideo extends Component
     public function updatedCreateFormPointOfInterest()
     {
         $this->reset('order');
-        $this->createForm['thematicArea'] = '';
         $this->setVideoOrder();
-        $this->getThematicAreas();
     }
 
     public function setVideoOrder()
@@ -99,7 +88,6 @@ class CreateVideo extends Component
                 'order' => $this->order,
                 'creator' => auth()->user()->id,
                 'updater' => null,
-                'thematic_area_id' => $this->createForm['thematicArea'],
                 'description' => $this->createForm['description'],
                 'format' => $metadata['format'],
                 'channelMode' => $metadata['channelMode'],
@@ -116,7 +104,6 @@ class CreateVideo extends Component
                 'order' => $this->order,
                 'creator' => auth()->user()->id,
                 'updater' => null,
-                'thematic_area_id' => $this->createForm['thematicArea'],
                 'description' => $this->createForm['description'],
                 'format' => $metadata['format'],
                 'channelMode' => $metadata['channelMode'],
