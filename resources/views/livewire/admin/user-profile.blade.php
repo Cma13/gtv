@@ -29,37 +29,6 @@
                 {{ __('Profile') }}
             </x-jet-dropdown-link>
 
-            @hasrole('Administrador')
-                <div x-data="{ open: false }" x-on:mouseleave="open = false">
-                    <x-jet-dropdown-link class="flex justify-between" href="" x-on:mouseover="open = true">
-                        {{ __('Tools') }}
-                        <i class="fa-solid fa-arrow-down"></i>
-                    </x-jet-dropdown-link>
-                    <div x-show="open" x-transition:enter.duration.200ms x-transition:leave.duration.200ms
-                        class="z-10 w-auto bg-gray-100 divide-y divide-gray-100 rounded dark:bg-gray-700">
-                        <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
-                            <li>
-                                <a href="#"
-                                    class="block px-4 py-2 hover:bg-gray-300 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Overview</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block px-4 py-2 hover:bg-gray-300 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">My
-                                    downloads</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Billing</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Rewards</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            @endhasrole
-
             @hasanyrole('Administrador|Profesor')
                 <x-jet-dropdown-link href="{{ route('verify.index') }}">
                     {{ __('Verify Posts') }}
@@ -77,6 +46,12 @@
                 </x-jet-dropdown-link>
             @endrole
 
+            @hasrole('Administrador')
+                <x-jet-dropdown-link href="{{ route('log-viewer::dashboard') }}">
+                    Logs
+                </x-jet-dropdown-link>
+            @endhasrole
+
             <div class="border-t border-gray-100"></div>
 
             <!-- Authentication -->
@@ -91,3 +66,9 @@
         </x-slot>
     </x-jet-dropdown>
 </div>
+
+<style scoped>
+    .dropdown:hover>.dropdown-content {
+        display: block;
+    }
+</style>
