@@ -17,12 +17,11 @@ class CreateVideoTest extends DuskTestCase
         $this->createAdmin();
         $place = $this->createPlace();
         $pointOfInterest = $this->createPointOfInterest($place->id);
-        $thematicArea = $this->createThematicArea($pointOfInterest->id);
         $description = 'This is a description';
 
         $this->assertDatabaseCount('videos', 0);
 
-        $this->browse(function (Browser $browser) use ($pointOfInterest, $thematicArea, $description) {
+        $this->browse(function (Browser $browser) use ($pointOfInterest, $description) {
             $browser->loginAs(User::find(1))
                 ->visitRoute('videos.index')
 	            ->pause(100)
@@ -33,8 +32,6 @@ class CreateVideoTest extends DuskTestCase
                 ->pause(500)
                 ->select('@points', $pointOfInterest->id)
                 ->pause(500)
-                ->select('@areas', $thematicArea->id)
-                ->pause(200)
                 ->type('@description', $description)
                 ->pause(200)
                 ->click('@crear')

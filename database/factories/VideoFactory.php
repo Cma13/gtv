@@ -25,7 +25,6 @@ class VideoFactory extends Factory
 	        'order' => 1 + $pointOfInterest->videos->count(),
 	        'creator' => User::Verified()->inRandomOrder()->first()->id,
 	        'updater' => null,
-	        'thematic_area_id' => $pointOfInterest->thematicAreas->shuffle()->first()->id,
 	        'description' => fake()->sentence(5),
 	        'verified' => true,
 		    'format' => fake()->randomElement(['mp4', 'mov', 'ogg']),

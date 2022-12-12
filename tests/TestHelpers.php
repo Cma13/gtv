@@ -102,10 +102,7 @@ trait TestHelpers
     {
         $thematicArea = ThematicArea::factory()->create();
 
-        $thematicArea->pointsOfInterest()->attach($pointOfInterestId, [
-            'title' => fake()->sentence,
-            'description' => fake()->text,
-        ]);
+        $thematicArea->pointsOfInterest()->attach($pointOfInterestId);
 
         return $thematicArea;
     }

@@ -26,9 +26,4 @@ class Video extends Model
     {
         return $this->belongsTo(PointOfInterest::class);
     }
-
-    public function thematicArea()
-    {
-        return $this->belongsTo(ThematicArea::class);
-    }
 }

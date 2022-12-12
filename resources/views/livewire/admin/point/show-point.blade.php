@@ -16,7 +16,6 @@
                     focus:outline-none dark:focus:ring-blue-800 ml-auto" wire:model="searchColumn">
                 <option value="id">ID</option>
                 <option value="name">NOMBRE</option>
-                <option value="distance">DISTANCIA</option>
                 <option value="place_id">SITIO</option>
                 <option value="creator">CREADOR</option>
                 <option value="updater">ACTUALIZADOR</option>
@@ -55,14 +54,6 @@
                     <i class="fa-solid fa-arrow-up">
                         @elseif($sortField === 'name' && $sortDirection === 'desc')
                             <i class="fa-solid fa-arrow-down"></i>
-                    @endif
-                </th>
-                <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('distance')">
-                    Distancia
-                    @if($sortField === 'distance' && $sortDirection === 'asc')
-                        <i class="fa-solid fa-arrow-up">
-                            @elseif($sortField === 'distance' && $sortDirection === 'desc')
-                                <i class="fa-solid fa-arrow-down"></i>
                     @endif
                 </th>
                 <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('place_id')">
@@ -123,9 +114,6 @@
                             {{$point->name}}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            {{$point->distance}}
-                        </td>
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                             {{$point->place->name}}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
@@ -181,11 +169,6 @@
                 <div>
                     <x-jet-label>
                         Nombre: {{ $detailsModal['name']}}
-                    </x-jet-label>
-                </div>
-                <div>
-                    <x-jet-label>
-                        Distancia: {{ $detailsModal['distance']}}
                     </x-jet-label>
                 </div>
                 <div>

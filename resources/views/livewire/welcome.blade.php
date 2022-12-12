@@ -186,9 +186,6 @@
                                                                              ID
                                                                              </td>
                                                                              <td class="px-6 py-3">
-                                                                             DISTANCIA
-                                                                             </td>
-                                                                             <td class="px-6 py-3">
                                                                              SITIO
                                                                              </td>
                                                                              </tr>
@@ -196,9 +193,6 @@
                                                                              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                                                              <td class="px-6 py-4">
                                                                              {{$point->id}}
-                                                                             </td>
-                                                                             <td class="px-6 py-4">
-                                                                             {{$point->distance}}
                                                                              </td>
                                                                              <td class="px-6 py-4">
                                                                              {{$point->place->name}}
@@ -286,9 +280,6 @@
                                                                              <td class="px-6 py-3">
                                                                              DESCRIPCIÓN
                                                                              </td>
-                                                                             <td class="px-6 py-3">
-                                                                             ÁREA TEMÁTICA
-                                                                             </td>
                                                                              </tr>
                                                                              @foreach($videos as $video)
                                                                              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -297,9 +288,6 @@
                                                                              </td>
                                                                              <td class="px-6 py-4">
                                                                              {{ $video->description }}
-                                                                             </td>
-                                                                             <td class="px-6 py-4">
-                                                                             {{ $video->thematicArea->name }}
                                                                              </td>
                                                                              <td class="px-6 py-4 text-right">
                                                                              <button wire:click="showVideos('{{ $video->id }}')" class="text-orange-500 hover:text-orange-400 hover:underline ml-2 font-semibold">
@@ -333,9 +321,6 @@
                                                                              <td class="px-6 py-3">
                                                                              PUNTO INTERÉS
                                                                              </td>
-                                                                             <td class="px-6 py-3">
-                                                                             ÁREA TEMÁTICA
-                                                                             </td>
                                                                              </tr>
                                                                              @foreach($photographies as $photography)
                                                                              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -344,9 +329,6 @@
                                                                              </td>
                                                                              <td class="px-6 py-4">
                                                                              {{ $photography->point_of_interest_id }}
-                                                                             </td>
-                                                                             <td class="px-6 py-4">
-                                                                             {{ $photography->thematic_area_id }}
                                                                              </td>
                                                                              <td class="px-6 py-4 text-right">
                                                                              <button wire:click="showPhotographies('{{ $photography->id }}')" class="text-orange-500 hover:text-orange-400 hover:underline ml-2 font-semibold">
@@ -391,15 +373,6 @@
                                                                     <div>
                                                                     <x-jet-label>
                                                                     Punto de interés: {{ $detailsModalVideos['pointOfInterest'] }}
-                                                                    </x-jet-label>
-                                                                    </div>
-                                                                    <div>
-                                                                    <x-jet-label>
-                                                                    @if( ! empty($detailsModalVideos['thematicAreaId']))
-                                                                    Área temática: {{ $detailsModalVideos['thematicAreaName'] }} ({{ $detailsModalVideos['thematicAreaId'] }})
-                                                                    @else
-                                                                    Área temática: <span class="text-red-600">Sin área temática</span>
-                                                                    @endif
                                                                     </x-jet-label>
                                                                     </div>
                                                                     <div>
@@ -600,11 +573,6 @@
                                                                     <div class="space-y-3">
                                                                     <div>
                                                                     <x-jet-label>
-                                                                    Distancia: {{ $detailsModalPoints['distance']}}
-                                                                    </x-jet-label>
-                                                                    </div>
-                                                                    <div>
-                                                                    <x-jet-label>
                                                                     Latitud: {{ $detailsModalPoints['latitude'] }}
                                                                     </x-jet-label>
                                                                     </div>
@@ -740,16 +708,6 @@
                                                                            <div class="mb-4">
                                                                            <x-jet-label>
                                                                            Punto de interes: {{ $detailsModalPhotographies['pointOfInterestId'] }}
-                                                                           </x-jet-label>
-                                                                           </div>
-
-                                                                           <div class="mb-4">
-                                                                           <x-jet-label>
-                                                                           @if( ! empty($detailsModalPhotographies['thematicAreaId']))
-                                                                           Área temática: {{ $detailsModalPhotographies['thematicAreaName'] }} (ID: {{ $detailsModalPhotographies['thematicAreaId'] }})
-                                                                           @else
-                                                                           Área temática: <span class="text-red-600">Sin área temática</span>
-                                                                           @endif
                                                                            </x-jet-label>
                                                                            </div>
 

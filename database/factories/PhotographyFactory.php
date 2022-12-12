@@ -23,7 +23,6 @@ class PhotographyFactory extends Factory
 	        'route' => 'https://via.placeholder.com/640x480?text=Foto',
 	        'order' => fake()->randomDigit(),
 	        'point_of_interest_id' => PointOfInterest::inRandomOrder()->first()->id,
-	        'thematic_area_id' => ThematicArea::inRandomOrder()->first()->id,
 	        'creator' => User::Verified()->inRandomOrder()->first()->id,
 	        'updater' => null,
 	        'updated_at' => null,

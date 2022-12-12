@@ -10,7 +10,7 @@ use function view;
 
 class EditPoint extends Component
 {
-    public $distance, $latitude, $longitude, $pointId;
+    public $latitude, $longitude, $pointId;
     public $places = [];
 
     protected $listeners = ['openEditModal'];
@@ -18,7 +18,6 @@ class EditPoint extends Component
     public $editForm = [
         'open' => false,
         'name' => '',
-        'distance' => '',
         'latitude' => '',
         'longitude' => '',
         'place' => '',
@@ -26,15 +25,13 @@ class EditPoint extends Component
 
     protected $rules = [
         'editForm.name' => 'required',
-        'editForm.distance' => 'required|numeric',
-        'editForm.latitude' => 'required|numeric',
-        'editForm.longitude' => 'required|numeric',
+        'editForm.latitude' => 'required|numeric|max:90|min:-90',
+        'editForm.longitude' => 'required|numeric|max:180|min:-180',
         'editForm.place' => 'required|exists:places,id',
     ];
 
     protected $validationAttributes = [
         'editForm.name' => 'nombre',
-        'editForm.distance' => 'distancia',
         'editForm.latitude' => 'latitud',
         'editForm.longitude' => 'longitud',
         'editForm.place' => 'sitio',
@@ -46,7 +43,6 @@ class EditPoint extends Component
 
         $this->pointId = $point->id;
         $this->editForm['name'] = $point->name ;
-        $this->editForm['distance'] = $point->distance ;
         $this->editForm['latitude'] = $point->latitude;
         $this->editForm['longitude'] = $point->longitude;
         $this->editForm['place'] = $point->place->id;
@@ -68,7 +64,6 @@ class EditPoint extends Component
         $point->update([
             'updater' => auth()->user()->id,
             'name' => $this->editForm['name'],
-            'distance' => $this->editForm['distance'],
             'latitude' => $this->editForm['latitude'],
             'longitude' => $this->editForm['longitude'],
             'place_id' => $this->editForm['place'],

@@ -20,7 +20,6 @@ class PointOfInterestFactory extends Factory
     {
         return [
 			'name' => fake()->city(),
-	        'distance' => fake()->randomNumber(2),
 	        'latitude' => fake()->latitude(-70, 70),
 	        'longitude' => fake()->longitude(),
 	        'creator'=> User::Verified()->inRandomOrder()->first()->id,
