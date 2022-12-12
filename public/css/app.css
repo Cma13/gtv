@@ -12022,6 +12022,24 @@ input:checked + .toggle-bg {
 .h-\[400px\] {
   height: 400px;
 }
+.max-h-20 {
+  max-height: 5rem;
+}
+.max-h-32 {
+  max-height: 8rem;
+}
+.max-h-48 {
+  max-height: 12rem;
+}
+.max-h-56 {
+  max-height: 14rem;
+}
+.max-h-64 {
+  max-height: 16rem;
+}
+.max-h-72 {
+  max-height: 18rem;
+}
 .min-h-screen {
   min-height: 100vh;
 }
