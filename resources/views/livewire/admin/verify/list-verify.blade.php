@@ -40,9 +40,6 @@
                                         {{ $point->name }}
                                     </td>
                                     <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                        {{ $point->distance }}
-                                    </td>
-                                    <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                                         {{ $point->latitude }} / {{ $point->longitude }}
                                     </td>
                                     <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
@@ -171,13 +168,6 @@
                                         {{ $video->order }}
                                     </td>
                                     <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                        @if (!is_null($video->thematic_area_id) && !is_null($video->pointOfInterest))
-                                            {{ $video->thematicArea->name }}
-                                        @else
-                                            <span>Ninguna</span>
-                                        @endif
-                                    </td>
-                                    <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                                         {{ \App\Models\User::find($video->creator)->name }}
                                     </td>
                                     <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
@@ -244,14 +234,6 @@
                                             {{ $photo->point_of_interest_id }}
                                         @else
                                             <span class="text-red-600">Ninguno</span>
-                                        @endif
-                                    </td>
-                                    <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                        @if (!is_null($photo->thematic_area_id) && !empty($photo->point_of_interest_id))
-                                            {{ \App\Models\ThematicArea::find($photo->thematic_area_id)->name }}
-                                            (ID: {{ $photo->thematic_area_id }})
-                                        @else
-                                            <p>Ninguna</p>
                                         @endif
                                     </td>
                                     <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">

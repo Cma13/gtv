@@ -1,36 +1,35 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
-
 namespace Database\Factories;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\PointOfInterest;
 use App\Models\User;
-use App\Models\Video;
-use Faker\Generator as Faker;
 
-$factory->define(Video::class, function (Faker $faker) {
-    $pointOfInterest = $faker->randomElement(PointOfInterest::all()->pluck('id')->toArray());
-    $thematicAreas = PointOfInterest::find($pointOfInterest)->thematicAreas->pluck('id')->toArray();
-    $description = $faker->sentence(5);
-
-    $foundVideos = PointOfInterest::find($pointOfInterest)->videos;
-
-    \count($foundVideos) > 0
-        ? $order = \count($foundVideos) + 1
-        : $order = 1;
-
-    return [
-        'route' => 'videos/' . $faker->uuid() . '.mp4',
-        'point_of_interest_id' => $pointOfInterest,
-        'order' => $order,
-        'creator' => $faker->randomElement(User::all()->pluck('id')->toArray()),
-        'updater' => null,
-        'thematic_area_id' => $faker->randomElement($thematicAreas),
-        'description' => $description,
-        'verified' => true,                
-        'format' => $faker->randomElement(['mp4', 'mov', 'ogg']),
-        'channelMode' => $faker->randomElement(['stereo', 'mono']),
-        'resolution' => $faker->randomElement(['640x480', '1280x720', '1920x1080']),
-    ];
-});
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Video>
+ */
+class VideoFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition()
+    {
+	    $pointOfInterest = PointOfInterest::inRandomOrder()->first();
+	    return [
+	        'route' => 'videos/' . fake()->uuid() . '.mp4',
+	        'point_of_interest_id' => $pointOfInterest->id,
+	        'order' => 1 + $pointOfInterest->videos->count(),
+	        'creator' => User::Verified()->inRandomOrder()->first()->id,
+	        'updater' => null,
+	        'description' => fake()->sentence(5),
+	        'verified' => true,
+		    'format' => fake()->randomElement(['mp4', 'mov', 'ogg']),
+		    'channelMode' => fake()->randomElement(['stereo', 'mono']),
+		    'resolution' => fake()->randomElement(['640x480', '1280x720', '1920x1080']),
+        ];
+    }
+}

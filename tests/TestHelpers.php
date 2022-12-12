@@ -9,7 +9,6 @@ use App\Models\ThematicArea;
 use App\Models\User;
 use App\Models\Video;
 use App\Models\Visit;
-use Faker\Factory;
 use Spatie\Permission\Models\Role;
 
 trait TestHelpers
@@ -32,6 +31,7 @@ trait TestHelpers
     protected function createStudent()
     {
         $studentRole = Role::firstOrCreate(['name' => 'Alumno']);
+	    $unverifiedUser = Role::firstOrCreate(['name' => 'Usuario sin verificar']);
 
         $user = User::create([
             'name' => 'Alumno',
@@ -46,6 +46,7 @@ trait TestHelpers
     protected function createTeacher()
     {
         $teacherRole = Role::firstOrCreate(['name' => 'Profesor']);
+	    $unverifiedUser = Role::firstOrCreate(['name' => 'Usuario sin verificar']);
 
         $user = User::create([
             'name' => 'Profesor',
@@ -73,52 +74,77 @@ trait TestHelpers
 
     protected function createPlace()
     {
-        return \factory(Place::class)->create();
+        return Place::factory()->create();
     }
 
     protected function createPointOfInterest($placeId)
     {
-        return \factory(PointOfInterest::class)->create([
+        return PointOfInterest::factory()->create([
             'place_id' => $placeId,
         ]);
     }
 
     protected function createPointNotVerified($placeId)
     {
-        return \factory(PointOfInterest::class)->create([
+        return PointOfInterest::factory()->create([
             'place_id' => $placeId,
             'verified' => false,
         ]);
     }
 
     protected function createVisit($pointId){
-        return \factory(Visit::class)->create([
+        return Visit::factory()->create([
            'point_of_interest_id' => $pointId,
         ]);
     }
 
     protected function createThematicArea($pointOfInterestId)
     {
-        $faker = Factory::create();
+        $thematicArea = ThematicArea::factory()->create();
 
-        $thematicArea = \factory(ThematicArea::class)->create();
-
-        $thematicArea->pointsOfInterest()->attach($pointOfInterestId, [
-            'title' => $faker->sentence,
-            'description' => $faker->text,
-        ]);
+        $thematicArea->pointsOfInterest()->attach($pointOfInterestId);
 
         return $thematicArea;
     }
 
     protected function createVideo()
     {
-        $video = \factory(Video::class)->create();
+        $video = Video::factory()->create();
         return $video;
     }
 
     protected function createPhotography()
     {
-        return \factory(Photography::class)->create();
+        return Photography::factory()->create();
     }
+
+	protected function createPointOfInterestPlaceThematicAreas($options = [], $place = null, $thematicAreas = null)
+	{
+		if (!$place) {
+			$place = Place::factory()->create();
+		}
+
+		$options = array_replace([
+			'place_id' => $place->id,
+		], $options);
+
+		$pointOfInterest = PointOfInterest::factory()->create($options);
+
+		if (!$thematicAreas) {
+			$thematicAreas = ThematicArea::factory()->create();
+			$thematicAreasId = $thematicAreas->id;
+		} else {
+			if (is_iterable($thematicAreas)) {
+				foreach ($thematicAreas as $thematicArea) {
+					$thematicAreasId[] = $thematicArea->id;
+				}
+			} else {
+				$thematicAreasId = $thematicAreas->id;
+			}
+		}
+
+		$pointOfInterest->thematicAreas()->attach($thematicAreasId);
+
+		return $pointOfInterest;
+	}
 }

@@ -302,25 +302,27 @@
         },
         {
             "name": "bunny/bunny",
-            "version": "v0.5.1",
+            "version": "v0.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jakubkulhan/bunny.git",
-                "reference": "e03224f076a21fa386b1da1b29381c3e0acab603"
+                "reference": "5b74a0faadab727ddbe1e6002c1013558f96af75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jakubkulhan/bunny/zipball/e03224f076a21fa386b1da1b29381c3e0acab603",
-                "reference": "e03224f076a21fa386b1da1b29381c3e0acab603",
+                "url": "https://api.github.com/repos/jakubkulhan/bunny/zipball/5b74a0faadab727ddbe1e6002c1013558f96af75",
+                "reference": "5b74a0faadab727ddbe1e6002c1013558f96af75",
                 "shasum": ""
             },
             "require": {
+                "ext-pcntl": "*",
                 "php": "^7.1 || ^8.0",
                 "react/event-loop": "^1.0 || ^0.5 || ^0.4",
                 "react/promise": "~2.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.3"
+                "phpunit/phpunit": "^9.5 || ^7.5.20",
+                "symfony/process": "^6.1 || ^4.4"
             },
             "type": "library",
             "autoload": {
@@ -355,9 +357,9 @@
             ],
             "support": {
                 "issues": "https://github.com/jakubkulhan/bunny/issues",
-                "source": "https://github.com/jakubkulhan/bunny/tree/v0.5.1"
+                "source": "https://github.com/jakubkulhan/bunny/tree/v0.5.2"
             },
-            "time": "2021-09-12T21:45:53+00:00"
+            "time": "2022-11-30T21:14:36+00:00"
         },
         {
             "name": "consoletvs/charts",
@@ -2567,16 +2569,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "2.3.7",
+            "version": "2.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "a36bd2be4f5387c0f3a8792a0d76b7d68865abbf"
+                "reference": "c493585c130544c4e91d2e0e131e6d35cb0cbc47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/a36bd2be4f5387c0f3a8792a0d76b7d68865abbf",
-                "reference": "a36bd2be4f5387c0f3a8792a0d76b7d68865abbf",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/c493585c130544c4e91d2e0e131e6d35cb0cbc47",
+                "reference": "c493585c130544c4e91d2e0e131e6d35cb0cbc47",
                 "shasum": ""
             },
             "require": {
@@ -2604,7 +2606,7 @@
                 "symfony/finder": "^5.3 | ^6.0",
                 "symfony/yaml": "^2.3 | ^3.0 | ^4.0 | ^5.0 | ^6.0",
                 "unleashedtech/php-coding-standard": "^3.1.1",
-                "vimeo/psalm": "^4.24.0"
+                "vimeo/psalm": "^4.24.0 || ^5.0.0"
             },
             "suggest": {
                 "symfony/yaml": "v2.3+ required if using the Front Matter extension"
@@ -2669,7 +2671,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-11-03T17:29:46+00:00"
+            "time": "2022-12-10T16:02:17+00:00"
         },
         {
             "name": "league/config",
@@ -8180,7 +8182,7 @@
             "dist": {
                 "type": "path",
                 "url": "./packages/vladimir-yuldashev/laravel-queue-rabbitmq",
-                "reference": "fe3e610436b4843a983af68d938967fdf50fbb67"
+                "reference": "a92a21c89e33b1b0813c319a9fc3f69f330395b2"
             },
             "require": {
                 "ext-json": "*",
@@ -8814,16 +8816,16 @@
         },
         {
             "name": "laravel-lang/lang",
-            "version": "12.5.8",
+            "version": "12.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Lang/lang.git",
-                "reference": "c11b2cb92a8873b9ea16b25012b5b13dce7a2935"
+                "reference": "ca1495ac2c609001d8c126df51d2802d2c80a73c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/c11b2cb92a8873b9ea16b25012b5b13dce7a2935",
-                "reference": "c11b2cb92a8873b9ea16b25012b5b13dce7a2935",
+                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/ca1495ac2c609001d8c126df51d2802d2c80a73c",
+                "reference": "ca1495ac2c609001d8c126df51d2802d2c80a73c",
                 "shasum": ""
             },
             "require": {
@@ -8885,7 +8887,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2022-12-05T18:46:34+00:00"
+            "time": "2022-12-10T09:50:11+00:00"
         },
         {
             "name": "laravel/dusk",

@@ -2,12 +2,10 @@
 
 namespace Tests\Feature\Livewire\Admin\Verify;
 
-use App\Http\Livewire\Admin\Point\CreatePoint;
 use App\Http\Livewire\Admin\Verify\DeletedVerify;
 use App\Http\Livewire\Admin\Verify\ListVerify;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
 use Tests\TestCase;
 
@@ -26,7 +24,6 @@ class VerifyElementsTest extends TestCase
 
         Livewire::test(ListVerify::class)
             ->assertSee($point->name)
-            ->assertSee($point->distance)
             ->assertSee($point->longitude)
             ->assertSee($point->latitude);
     }

@@ -1,15 +1,25 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
-
 namespace Database\Factories;
 
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(\App\Models\ThematicArea::class, function (Faker $faker) {
-    return [
-        'name'=> $faker->word,
-        'description'=> $faker->sentence(2),
-        'updated_at' => null,
-    ];
-});
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ThematicArea>
+ */
+class ThematicAreaFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition()
+    {
+        return [
+	        'name'=> fake()->word,
+	        'description'=> fake()->sentence(5),
+	        'updated_at' => null,
+        ];
+    }
+}

@@ -26,8 +26,8 @@ class ShowPointTest extends TestCase
         $this->get('points-of-interest')
             ->assertOk()
             ->assertSeeInOrder([
-                $pointOfInterest2->latitude,
-                $pointOfInterest1->latitude,
+                $pointOfInterest2->name,
+                $pointOfInterest1->name,
             ]);;
 
     }

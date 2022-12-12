@@ -29,7 +29,6 @@ class ShowPoint extends Component
         'open' => false,
         'id' => null,
         'name' => null,
-        'distance' => null,
         'latitude' => null,
         'longitude' => null,
         'placeId' => null,
@@ -47,7 +46,6 @@ class ShowPoint extends Component
         $this->detailsModal['open'] = true;
         $this->detailsModal['id'] = $point->id;
         $this->detailsModal['name'] = $point->name;
-        $this->detailsModal['distance'] = $point->distance;
         $this->detailsModal['latitude'] = $point->latitude;
         $this->detailsModal['longitude'] = $point->longitude;
         $this->detailsModal['placeId'] = $point->place->id;
@@ -62,9 +60,11 @@ class ShowPoint extends Component
 
     public function delete(PointOfInterest $pointOfInterest)
     {
-        $pointOfInterest->delete();
+        $isDeleted = $pointOfInterest->delete();
 
-        Log::info('Point with ID ' . $pointOfInterest->id . ' was deleted ' . $pointOfInterest);
+        if($isDeleted) {
+            Log::alert('Point with name ' . $pointOfInterest->name . ' was deleted by user with ID ' . auth()->user()->id .$pointOfInterest);
+        }
     }
 
     public function sort($field)

@@ -12,7 +12,7 @@ class PointOfInterest extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = ['id', 'created_at', 'deleted_at', 'updated_at'];
-    protected $dates = ['created_at','updated_at', 'last_update_date'];
+    protected $dates = ['created_at','updated_at'];
 
     public function creator()
     {
@@ -26,7 +26,7 @@ class PointOfInterest extends Model
 
     public function thematicAreas()
     {
-        return $this->belongsToMany(ThematicArea::class)->withPivot('point_of_interest_id', 'title', 'description');
+        return $this->belongsToMany(ThematicArea::class)->withPivot('point_of_interest_id');
     }
 
     public function photographies()
@@ -58,36 +58,12 @@ class PointOfInterest extends Model
         return $pointOfInterest;
     }
 
-    public function syncthematicAreas($thematicAreas, $title, $description)
-    {
-        $this->thematicAreas()->detach();
-
-        if(!$this->existThematicAreaId($thematicAreas)) {
-            $this->thematicAreas()->attach($thematicAreas, [
-                'title' => $title,
-                'description' => $description,
-            ]);
-        }
-
-        return $this->thematicAreas()->updateExistingPivot($thematicAreas, [
-            'title' => $title,
-            'description' => $description,
-        ]);
-    }
-
-    public function existThematicAreaId($id)
-    {
-        return $this->thematicAreas()
-            ->where('thematic_area_id', '=', $id)
-            ->exists();
-    }
-
     public static function boot()
     {
         parent::boot();
 
         static::updating(function($pointsofinterest) {
-            $pointsofinterest->last_update_date = Carbon::now();
+            $pointsofinterest->updated_at = Carbon::now()->toDateTimeString();
             $pointsofinterest->updater = auth()->user()->id;
         });
 

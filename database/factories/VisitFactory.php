@@ -6,7 +6,7 @@ use App\Models\PointOfInterest;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Visit>
  */
 class VisitFactory extends Factory
 {
@@ -18,15 +18,15 @@ class VisitFactory extends Factory
     public function definition()
     {
         return [
-            'hour' => $this->faker->dateTime(),
-            'deviceid' => $this->faker->uuid,
-            'appversion' => $this->faker->numberBetween(1, 10),
-            'useragent' => $this->faker->word,
-            'ssoo' => $this->faker->word,
-            'ssooversion' => $this->faker->numberBetween(1, 10),
-            'latitude' => $this->faker->latitude,
-            'longitude' => $this->faker->longitude,
-            'point_of_interest_id' => $this->faker->randomElement(PointOfInterest::all()->pluck('id')->toArray())
+	        'hour' => fake()->dateTime(),
+	        'deviceid' => fake()->uuid(),
+	        'appversion' => fake()->numberBetween(1, 10),
+	        'useragent' => fake()->userAgent(),
+	        'ssoo' => fake()->word(),
+	        'ssooversion' => fake()->numberBetween(1, 10),
+	        'latitude' => fake()->latitude(-70, 70),
+	        'longitude' => fake()->longitude,
+	        'point_of_interest_id' => PointOfInterest::inRandomOrder()->first()->id,
         ];
     }
 }

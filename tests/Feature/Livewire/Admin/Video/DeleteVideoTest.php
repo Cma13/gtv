@@ -13,7 +13,6 @@ class DeleteVideoTest extends TestCase
         $adminUser = $this->createAdmin();
         $place = $this->createPlace();
         $pointOfInterest = $this->createPointOfInterest($place->id);
-        $this->createThematicArea($pointOfInterest->id);
         $video = $this->createVideo();
 
         $this->actingAs($adminUser);
@@ -25,7 +24,6 @@ class DeleteVideoTest extends TestCase
             'order' => $video->order,
             'creator' => $video->creator,
             'updater' => $video->updater,
-            'thematic_area_id' => $video->thematicArea->id,
             'description' => $video->description,
         ]);
 

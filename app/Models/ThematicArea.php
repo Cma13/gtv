@@ -12,17 +12,7 @@ class ThematicArea extends Model
     protected $guarded = ['id'];
 
     public function pointsOfInterest(){
-        return $this->belongsToMany(PointOfInterest::class)->withPivot('thematic_area_id', 'title', 'description');
-    }
-
-    public function photographies()
-    {
-        return $this->hasMany(Photography::class);
-    }
-
-    public function videos()
-    {
-        return $this->hasMany(Video::class);
+        return $this->belongsToMany(PointOfInterest::class)->withPivot('thematic_area_id');
     }
 
     public function users()

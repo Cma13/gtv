@@ -232,4 +232,6 @@ return [
 
     ],
 
+	'faker_locale' => 'es',
+
 ];

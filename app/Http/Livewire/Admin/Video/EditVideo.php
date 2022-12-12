@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class EditVideo extends Component
 {
-    public $pointsOfInterest = [], $thematicAreas = [];
+    public $pointsOfInterest = [];
     public $videoId, $videoRoute;
 
     protected $listeners = ['openEditModal'];
@@ -17,19 +17,16 @@ class EditVideo extends Component
     public $editForm = [
         'open' => false,
         'pointOfInterest' => '',
-        'thematicArea' => '',
         'description' => '',
     ];
 
     protected $rules = [
         'editForm.pointOfInterest' => 'required',
-        'editForm.thematicArea' => 'required|exists:thematic_areas,id',
         'editForm.description' => 'required|string|max:2000',
     ];
 
     protected $validationAttributes = [
         'editForm.pointOfInterest' => 'punto de interés',
-        'editForm.thematicArea' => 'área temática',
         'editForm.description' => 'descripción',
     ];
 
@@ -40,11 +37,9 @@ class EditVideo extends Component
         $this->videoId = $video->id;
         $this->videoRoute = Storage::url($video->route);
         $this->editForm['pointOfInterest'] = $video->pointOfInterest->id ?? '';
-        $this->editForm['thematicArea'] = $video->thematicArea->id ?? '';
         $this->editForm['description'] = $video->description;
 
         $this->getPointsOfInterest();
-        $this->getThematicAreas();
 
         $this->editForm['open'] = true;
     }
@@ -54,22 +49,6 @@ class EditVideo extends Component
         $this->pointsOfInterest = PointOfInterest::all();
     }
 
-    public function getThematicAreas()
-    {
-        if ( ! empty($this->thematicAreas)) {
-            $selectedPointOfInterest = PointOfInterest::find($this->editForm['pointOfInterest']);
-        } else {
-            $selectedPointOfInterest = PointOfInterest::first();
-        }
-        $this->thematicAreas = $selectedPointOfInterest->thematicAreas;
-    }
-
-    public function updatedEditFormPointOfInterest()
-    {
-        $this->editForm['thematicArea'] = '';
-        $this->getThematicAreas();
-    }
-
     public function update(Video $video)
     {
         $this->validate();
@@ -77,7 +56,6 @@ class EditVideo extends Component
         $video->update([
             'updater' => auth()->user()->id,
             'point_of_interest_id' => $this->editForm['pointOfInterest'],
-            'thematic_area_id' => $this->editForm['thematicArea'],
             'description' => $this->editForm['description'],
         ]);
 

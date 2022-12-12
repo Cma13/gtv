@@ -19,7 +19,6 @@
                     <option value="id">ID</option>
                     <option value="point_of_interest_id">PUNTO DE INTERÉS</option>
                     @hasanyrole('Administrador|Profesor')
-                        <option value="thematic_area_id">ÁREA TEMÁTICA</option>
                         <option value="creator">CREADOR</option>
                         <option value="Updater">ACTUALIZADOR</option>
                     @endhasanyrole
@@ -61,14 +60,6 @@
                         @if($sortField === 'point_of_interest_id' && $sortDirection === 'asc')
                             <i class="fa-solid fa-arrow-up">
                         @elseif($sortField === 'point_of_interest_id' && $sortDirection === 'desc')
-                            <i class="fa-solid fa-arrow-down"></i>
-                        @endif
-                    </th>
-                    <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('thematic_area_id')">
-                        Área temática
-                        @if($sortField === 'thematic_area_id' && $sortDirection === 'asc')
-                            <i class="fa-solid fa-arrow-up">
-                        @elseif($sortField === 'thematic_area_id' && $sortDirection === 'desc')
                             <i class="fa-solid fa-arrow-down"></i>
                         @endif
                     </th>
@@ -128,14 +119,6 @@
                                     {{ $photography->point_of_interest_id }}
                                 @else
                                     <span class="text-red-600">Ninguno</span>
-                                @endif
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                @if( ! is_null($photography->thematic_area_id) && ! empty($photography->point_of_interest_id))
-                                    {{ \App\Models\ThematicArea::find($photography->thematic_area_id)->name }}
-                                    (ID: {{ $photography->thematic_area_id }})
-                                @else
-                                    <p class="text-red-600">Ninguna</p>
                                 @endif
                             </td>
                             <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
@@ -220,16 +203,6 @@
                             Punto de interés: {{ $showModal['pointOfInterestId'] }}
                         </x-jet-label>
                     </div>
-
-                    <div class="mb-4">
-                        <x-jet-label>
-                            @if( ! empty($showModal['thematicAreaId']))
-                                Área temática: {{ $showModal['thematicAreaName'] }} (ID: {{ $showModal['thematicAreaId'] }})
-                            @else
-                                Área temática: <span class="text-red-600">Ninguna</span>
-                            @endif
-                        </x-jet-label>
-                    </div>
                 @else
                     <div class="mb-4">
                         <x-jet-label>
@@ -300,7 +273,7 @@
 
                     <input type="file" wire:model="createForm.route" class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 mt-1"></input>
 
-                    <x-jet-input-error for="editForm.route" class="mt-2" />
+                    <x-jet-input-error for="createForm.route" class="mt-2" />
                 </div>
                 <div class="mb-6">
                     <label for="pointsOfInterest" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
@@ -310,30 +283,12 @@
                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             wire:model="createForm.pointOfInterestId">
-                        <option>Seleccione un punto de interés</option>
+                        <option value="">Seleccione un punto de interés</option>
                         @foreach ($pointsOfInterest as $pointOfInterest)
-                            <option value="{{ $pointOfInterest->id}}">{{ $pointOfInterest->id }}</option>
+                            <option value="{{ $pointOfInterest->id}}">{{ $pointOfInterest->name }}</option>
                         @endforeach
                     </select>
                     @error('createForm.pointOfInterestId') <span class="text-red-600">{{ $message }}</span> @enderror
-                </div>
-
-                <div class="mb-6">
-                    <label for="thematicAreas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
-                        Área temática
-                    </label>
-                    <select id="thematicAreas" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
-                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            wire:model="createForm.thematicAreaId">
-                        <option>Seleccione un area de temática</option>
-                        @if( ! is_null($thematicAreas))
-                            @foreach ($thematicAreas as $thematicArea)
-                                <option value="{{ $thematicArea->id }}">{{ $thematicArea->name }}</option>
-                            @endforeach
-                        @endif
-                    </select>
-                    @error('createForm.thematicAreaId') <span class="text-red-600">{{ $message }}</span> @enderror
                 </div>
             </div>
         </x-slot>
@@ -381,31 +336,11 @@
                             p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
                             dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-1">
                         @foreach($pointsOfInterest as $pointOfInterest)
-                            <option value="{{ $pointOfInterest->id }}">{{ $pointOfInterest->id }}</option>
+                            <option value="{{ $pointOfInterest->id }}">{{ $pointOfInterest->name }}</option>
                         @endforeach
                     </select>
 
                     <x-jet-input-error for="editForm.pointOfInterest" class="mt-2" />
-                </div>
-
-                <div class="mb-4">
-                    <x-jet-label>
-                        Área temática
-                    </x-jet-label>
-
-                    <select wire:model="editForm.thematicAreaId" class="bg-gray-50 border border-gray-300
-                            text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
-                            p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
-                            dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-1">
-                        <option value="">Seleccione un area de temática</option>
-                        @if( ! is_null($thematicAreas))
-                            @foreach($thematicAreas as $thematicArea)
-                                <option value="{{ $thematicArea->id }}">{{ $thematicArea->name }}</option>
-                            @endforeach
-                        @endif
-                    </select>
-
-                    <x-jet-input-error for="editForm.thematicAreaId" class="mt-2" />
                 </div>
             </div>
         </x-slot>

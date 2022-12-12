@@ -7,10 +7,11 @@ use App\Models\Place;
 use App\Models\PointOfInterest;
 use Livewire\Component;
 use function view;
+use Illuminate\Support\Facades\Log;
 
 class CreatePoint extends Component
 {
-    public $distance, $latitude, $longitude;
+    public $latitude, $longitude;
     public $places = [];
 
     protected $listeners = ['openCreationModal'];
@@ -18,7 +19,6 @@ class CreatePoint extends Component
     public $createForm = [
         'open' => false,
         'name' => '',
-        'distance' => '',
         'latitude' => '',
         'longitude' => '',
         'place' => '',
@@ -26,15 +26,13 @@ class CreatePoint extends Component
 
     protected $rules = [
         'createForm.name' => 'required',
-        'createForm.distance' => 'required|numeric',
         'createForm.latitude' => 'required|numeric',
-        'createForm.longitude' => 'required||numeric',
+        'createForm.longitude' => 'required|numeric',
         'createForm.place' => 'required|exists:places,id',
     ];
 
     protected $validationAttributes = [
         'createForm.name' => 'nombre',
-        'createForm.distance' => 'distancia',
         'createForm.latitude' => 'latitud',
         'createForm.longitude' => 'longitud',
         'createForm.place' => 'sitio',
@@ -66,7 +64,6 @@ class CreatePoint extends Component
         ) {
             $pointOfInterest = PointOfInterest::create([
                 'name' => $this->createForm['name'],
-                'distance' => $this->createForm['distance'],
                 'latitude' => $this->createForm['latitude'],
                 'longitude' => $this->createForm['longitude'],
                 'place_id' => $this->createForm['place'],
@@ -77,13 +74,16 @@ class CreatePoint extends Component
         } else if(auth()->user()->hasRole('Alumno')) {
             $pointOfInterest = PointOfInterest::create([
                 'name' => $this->createForm['name'],
-                'distance' => $this->createForm['distance'],
                 'latitude' => $this->createForm['latitude'],
                 'longitude' => $this->createForm['longitude'],
                 'place_id' => $this->createForm['place'],
                 'creator' => auth()->user()->id,
                 'updater' => null,
             ]);
+        }
+        $isCreated = $pointOfInterest;
+        if ($isCreated) {
+            Log::info('User with ID ' . auth()->user()->id . 'was created a point of interest with name ' . $pointOfInterest->name .$pointOfInterest);
         }
 
         ProcessPointOfInterest::dispatch($pointOfInterest);

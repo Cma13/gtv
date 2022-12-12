@@ -18,7 +18,6 @@
                 <option value="id">ID</option>
                 <option value="description">DESCRIPCIÓN</option>
                 <option value="point_of_interest_id">PUNTO DE INTERÉS</option>
-                <option value="thematic_area_id">ÁREA TEMÁTICA</option>
             </select>
         </div>
 
@@ -62,14 +61,6 @@
                 <th scope="col" class="px-6 py-3">
                     Orden
                 </th>
-                <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('thematic_area_id')">
-                    Área temática
-                    @if($sortField === 'thematic_area_id' && $sortDirection === 'asc')
-                        <i class="fa-solid fa-arrow-up">
-                            @elseif($sortField === 'thematic_area_id' && $sortDirection === 'desc')
-                                <i class="fa-solid fa-arrow-down"></i>
-                    @endif
-                </th>
                 <th scope="col" class="px-6 py-3">
                     <span class="sr-only">Actions</span>
                 </th>
@@ -93,13 +84,6 @@
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                             {{ $video->order }}
-                        </td>
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            @if( ! is_null($video->thematic_area_id) &&  ! is_null($video->pointOfInterest))
-                                {{ $video->thematicArea->name }}
-                            @else
-                               <span class="text-red-600">Ninguna</span>
-                            @endif
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap flex gap-4">
                             <span class="font-medium text-blue-600 cursor-pointer" wire:click="show('{{ $video->id }}')">
@@ -159,15 +143,6 @@
                             Punto de interés: {{ $detailsModal['pointOfInterest'] }}
                         @else
                             Punto de interés: <span class="text-red-600">Ninguno</span>
-                        @endif
-                    </x-jet-label>
-                </div>
-                <div>
-                    <x-jet-label>
-                        @if( ! empty($detailsModal['thematicAreaId']) && ! empty($detailsModal['pointOfInterest']))
-                            Área temática: {{ $detailsModal['thematicAreaName'] }} ({{ $detailsModal['thematicAreaId'] }})
-                        @else
-                            Área temática: <span class="text-red-600">Ninguna</span>
                         @endif
                     </x-jet-label>
                 </div>

@@ -14,6 +14,6 @@ class ThematicAreaSeeder extends Seeder
      */
     public function run()
     {
-        factory(ThematicArea::class,10)->create();
+        ThematicArea::factory(10)->create();
     }
 }
