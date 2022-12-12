@@ -2,14 +2,9 @@
 
 namespace Tests\Feature\Livewire\Admin\VerifyUser;
 
-use App\Http\Livewire\Admin\Point\CreatePoint;
-use App\Http\Livewire\Admin\Verify\DeletedVerify;
-use App\Http\Livewire\Admin\Verify\ListVerify;
 use App\Http\Livewire\Admin\VerifyUser\VerifyUser;
-use Carbon\Carbon;
 use Database\Seeders\PermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
 use Tests\TestCase;
 

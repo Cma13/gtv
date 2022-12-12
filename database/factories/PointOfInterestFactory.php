@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Place;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,7 +24,7 @@ class PointOfInterestFactory extends Factory
 	        'longitude' => fake()->longitude(),
 	        'creator'=> User::Verified()->inRandomOrder()->first()->id,
 	        'updater' => User::Verified()->inRandomOrder()->first()->id,
-	        'place_id'=> User::Verified()->inRandomOrder()->first()->id,
+	        'place_id'=> Place::inRandomOrder()->first()->id,
 	        'verified' => true,
         ];
     }

@@ -17,6 +17,6 @@ class VideoSeeder extends Seeder
     {
         Storage::disk('public')->deleteDirectory('videos');
 
-        Video::factory(10)->create();
+        Video::factory(200)->create();
     }
 }

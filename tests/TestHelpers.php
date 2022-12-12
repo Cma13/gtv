@@ -117,4 +117,34 @@ trait TestHelpers
     {
         return Photography::factory()->create();
     }
+
+	protected function createPointOfInterestPlaceThematicAreas($options = [], $place = null, $thematicAreas = null)
+	{
+		if (!$place) {
+			$place = Place::factory()->create();
+		}
+
+		$options = array_replace([
+			'place_id' => $place->id,
+		], $options);
+
+		$pointOfInterest = PointOfInterest::factory()->create($options);
+
+		if (!$thematicAreas) {
+			$thematicAreas = ThematicArea::factory()->create();
+			$thematicAreasId = $thematicAreas->id;
+		} else {
+			if (is_iterable($thematicAreas)) {
+				foreach ($thematicAreas as $thematicArea) {
+					$thematicAreasId[] = $thematicArea->id;
+				}
+			} else {
+				$thematicAreasId = $thematicAreas->id;
+			}
+		}
+
+		$pointOfInterest->thematicAreas()->attach($thematicAreasId);
+
+		return $pointOfInterest;
+	}
 }

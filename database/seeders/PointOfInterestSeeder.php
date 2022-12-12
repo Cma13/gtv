@@ -16,11 +16,11 @@ class PointOfInterestSeeder extends Seeder
      */
     public function run()
     {
-        $pointsOfInterest = PointOfInterest::factory(20)->make();
+        $pointsOfInterest = PointOfInterest::factory(100)->make();
         $pointsOfInterest->each(function($pointOfInterest) {
             $pointOfInterest->save();
             $thematicAreas= ThematicArea::all()->pluck('id')->toArray();
-            $pointOfInterest->thematicAreas()->attach(Arr::random($thematicAreas, 2));
+            $pointOfInterest->thematicAreas()->attach(Arr::random($thematicAreas, random_int(1,4)));
         });
     }
 }
