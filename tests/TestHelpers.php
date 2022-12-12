@@ -143,11 +143,7 @@ trait TestHelpers
 			}
 		}
 
-		$pointOfInterest->thematicAreas()->attach($thematicAreasId,
-			[
-				'title' => fake()->sentence,
-				'description' => fake()->text,
-			]);
+		$pointOfInterest->thematicAreas()->attach($thematicAreasId);
 
 		return $pointOfInterest;
 	}
