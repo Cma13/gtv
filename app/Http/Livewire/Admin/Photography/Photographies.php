@@ -225,7 +225,7 @@ class Photographies extends Component
         $isDeleted = $photography->delete();
 
         if($isDeleted) {
-            Log::info('User with ID ' . auth()->user()->id . 'was deleted a photography with ID ' . $photography->id . $photography);
+            Log::alert('User with ID ' . auth()->user()->id . 'was deleted a photography with ID ' . $photography->id . $photography);
         }
     }
 
