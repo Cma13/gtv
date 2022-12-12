@@ -46,6 +46,12 @@
                 </x-jet-dropdown-link>
             @endrole
 
+            @hasrole('Administrador')
+                <x-jet-dropdown-link href="{{ route('log-viewer::dashboard') }}">
+                    Logs
+                </x-jet-dropdown-link>
+            @endhasrole
+
             <div class="border-t border-gray-100"></div>
 
             <!-- Authentication -->
@@ -60,3 +66,9 @@
         </x-slot>
     </x-jet-dropdown>
 </div>
+
+<style scoped>
+    .dropdown:hover>.dropdown-content {
+        display: block;
+    }
+</style>

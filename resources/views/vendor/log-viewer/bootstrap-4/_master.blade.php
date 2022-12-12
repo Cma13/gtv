@@ -237,6 +237,11 @@
                     </a>
                 </li>
             </ul>
+            <div class="nav-item">
+                <a href="{{ route('welcome') }}" class="nav-link text-white">
+                    <i class="fa fa-home" aria-hidden="true"></i> @lang('Beginning')
+                </a>
+            </div>
         </div>
     </nav>
 
