@@ -28,7 +28,7 @@ class CreatePoint extends Component
         'createForm.name' => 'required',
         'createForm.distance' => 'required|numeric',
         'createForm.latitude' => 'required|numeric',
-        'createForm.longitude' => 'required||numeric',
+        'createForm.longitude' => 'required|numeric',
         'createForm.place' => 'required|exists:places,id',
     ];
 

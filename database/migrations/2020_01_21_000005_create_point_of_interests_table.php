@@ -18,7 +18,7 @@ class CreatePointOfInterestsTable extends Migration
             $table->string('name',45);
             $table->integer('distance')->nullable();
             $table->decimal('latitude',12,10)->nullable();
-            $table->decimal('longitude',12,10)->nullable();
+            $table->decimal('longitude',13,10)->nullable();
             $table->foreignId('place_id')->references('id')->on('places')->onDelete('cascade');
             $table->foreignId('creator')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('updater')->nullable()->references('id')->on('users')->onDelete('cascade');

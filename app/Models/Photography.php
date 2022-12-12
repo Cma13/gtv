@@ -17,11 +17,6 @@ class Photography extends Model
         return $this->belongsTo(PointOfInterest::class);
     }
 
-    public function thematicArea()
-    {
-        return $this->belongsTo(ThematicArea::class);
-    }
-
     public function creator()
     {
         return $this->belongsTo(User::class);

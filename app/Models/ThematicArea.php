@@ -15,16 +15,6 @@ class ThematicArea extends Model
         return $this->belongsToMany(PointOfInterest::class)->withPivot('thematic_area_id');
     }
 
-    public function photographies()
-    {
-        return $this->hasMany(Photography::class);
-    }
-
-    public function videos()
-    {
-        return $this->hasMany(Video::class);
-    }
-
     public function users()
     {
         return $this->belongsToMany(User::class)->withPivot(['date', 'active']);
