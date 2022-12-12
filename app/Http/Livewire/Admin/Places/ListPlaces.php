@@ -52,9 +52,11 @@ class ListPlaces extends Component
 
     public function delete(Place $place)
     {
-        $place->delete();
+        $isDeleted = $place->delete();
 
-        Log::info('Place with ID ' . $place->id . ' was deleted ' . $place);
+        if ($isDeleted) {
+            Log::alert('Place with name ' . $place->name . ' was deleted by user with ID ' . auth()->user()->id .$place); 
+        }
     }
 
     public function sort($field)

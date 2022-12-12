@@ -60,9 +60,11 @@ class ShowPoint extends Component
 
     public function delete(PointOfInterest $pointOfInterest)
     {
-        $pointOfInterest->delete();
+        $isDeleted = $pointOfInterest->delete();
 
-        Log::info('Point with ID ' . $pointOfInterest->id . ' was deleted ' . $pointOfInterest);
+        if($isDeleted) {
+            Log::alert('Point with name ' . $pointOfInterest->name . ' was deleted by user with ID ' . auth()->user()->id .$pointOfInterest);
+        }
     }
 
     public function sort($field)

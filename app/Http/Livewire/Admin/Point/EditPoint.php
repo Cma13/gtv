@@ -57,19 +57,21 @@ class EditPoint extends Component
         $this->places = Place::all();
     }
 
-    public function update(PointOfInterest $point)
+    public function update(PointOfInterest $pointOfInterest)
     {
         $this->validate();
 
-        $point->update([
+        $isUpdated = $pointOfInterest->update([
             'updater' => auth()->user()->id,
             'name' => $this->editForm['name'],
             'latitude' => $this->editForm['latitude'],
             'longitude' => $this->editForm['longitude'],
             'place_id' => $this->editForm['place'],
         ]);
-
-        Log::info('Point of interest with ID ' . $point->id . ' was updated ' . $point);
+        if ($isUpdated) {
+            Log::info('User with ID ' . auth()->user()->id . 'was updated a point of interest with name ' . $pointOfInterest->name .$pointOfInterest);
+        }
+        
 
         $this->editForm['open'] = false;
         $this->reset(['editForm']);

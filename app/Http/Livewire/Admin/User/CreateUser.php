@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Log;
 
 class CreateUser extends Component
 {
@@ -78,6 +79,11 @@ class CreateUser extends Component
 
         ProcessUser::dispatch($user);
         Mail::to('admin@mail.com')->send(new UserCreated($user));
+
+        $isCreated = $user;
+        if ($isCreated) {
+            Log::info('New User with ID ' . auth()->user()->id . ' was created with role ' . $user->$role .$user);
+        }
 
         $this->reset('createForm');
         $this->emit('userCreated');

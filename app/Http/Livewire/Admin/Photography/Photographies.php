@@ -140,6 +140,12 @@ class Photographies extends Component
 
         ProcessPhotography::dispatch($photography);
 
+        $isCreated = $photography;
+
+        if($isCreated) {
+            Log::info('Photography with ID ' . $photography->id . ' was upload');
+        }
+
         $this->reset('createForm');
 
         $this->emit('photographyCreated');
@@ -165,9 +171,11 @@ class Photographies extends Component
         $photography['point_of_interest_id'] = $this->editForm['pointOfInterestId'];
         $photography['updater'] = auth()->user()->id;
 
-        $photography->update();
+        $isUpdated = $photography->update();
 
-        Log::info('Photography with ID ' . $photography->id . ' was updated ' . $photography);
+        if($isUpdated) {
+            Log::info('User with ID ' . auth()->user()->id . 'was updated a photography with ID ' . $photography->id . $photography);
+        }
 
         $this->reset(['editForm']);
         $this->reset(['editModal']);
@@ -214,9 +222,11 @@ class Photographies extends Component
 
     public function delete(Photography $photography)
     {
-        $photography->delete();
+        $isDeleted = $photography->delete();
 
-        Log::info('Photography with ID ' . $photography->id . ' was deleted ' . $photography);
+        if($isDeleted) {
+            Log::info('User with ID ' . auth()->user()->id . 'was deleted a photography with ID ' . $photography->id . $photography);
+        }
     }
 
     public function sort($field)
