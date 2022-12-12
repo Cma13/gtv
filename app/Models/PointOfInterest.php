@@ -12,7 +12,7 @@ class PointOfInterest extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = ['id', 'created_at', 'deleted_at', 'updated_at'];
-    protected $dates = ['created_at','updated_at', 'last_update_date'];
+    protected $dates = ['created_at','updated_at'];
 
     public function creator()
     {
@@ -63,7 +63,7 @@ class PointOfInterest extends Model
         parent::boot();
 
         static::updating(function($pointsofinterest) {
-            $pointsofinterest->last_update_date = Carbon::now();
+            $pointsofinterest->updated_at = Carbon::now()->toDateTimeString();
             $pointsofinterest->updater = auth()->user()->id;
         });
 
