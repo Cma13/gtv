@@ -18,7 +18,7 @@ class CreatePhotographiesTable extends Migration
             $table->string('route', 245);
             $table->integer('order');
             $table->foreignId('point_of_interest_id')->nullable()->references('id')
-                ->on('point_of_interests')->onDelete('cascade')->onDelete('set null');
+                ->on('point_of_interests')->onDelete('cascade');
             $table->foreignId('creator')->references('id')
                 ->on('users')->onDelete('cascade');
             $table->foreignId('updater')->nullable()->references('id')
