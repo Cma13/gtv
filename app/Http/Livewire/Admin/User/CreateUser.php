@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\Log;
 
 class CreateUser extends Component
 {
