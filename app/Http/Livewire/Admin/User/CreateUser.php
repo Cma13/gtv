@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Admin\User;
 use App\Jobs\ProcessUser;
 use App\Mail\UserCreated;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -70,7 +72,7 @@ class CreateUser extends Component
         $user = User::create([
             'name' => $this->createForm['name'],
             'email' => $this->createForm['email'],
-            'password'=> \bcrypt($this->createForm['password']),
+            'password'=> Hash::make($this->createForm['password']),
             'profile_photo_path' => $avatarRoute ?? null,
         ]);
 
@@ -78,7 +80,10 @@ class CreateUser extends Component
         $user->assignRole($role);
 
         ProcessUser::dispatch($user);
-        Mail::to('admin@mail.com')->send(new UserCreated($user));
+		if (config('mail.username')) {
+			Mail::to('admin@mail.com')->send(new UserCreated($user));
+		}
+	    Log::alert('User with ID ' . auth()->user()->id . ' created a user ' . $user);
 
         $isCreated = $user;
         if ($isCreated) {

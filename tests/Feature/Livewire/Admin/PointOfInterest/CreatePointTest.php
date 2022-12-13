@@ -315,4 +315,62 @@ class CreatePointTest extends TestCase
             'verified' => true
         ]);
     }
+
+	/** @test */
+	public function TestLatitudeIsValid()
+	{
+		$adminUser = $this->createAdmin();
+		$place = $this->createPlace();
+
+		$this->actingAs($adminUser);
+
+		$this->assertDatabaseCount('point_of_interests', 0);
+
+		Livewire::test(CreatePoint::class)
+			->set('createForm.latitude', '90.1')
+			->set('createForm.longitude', '0')
+			->set('createForm.place', $place->id)
+			->call('save')
+			->assertHasErrors(['createForm.latitude' => 'max']);
+
+		$this->assertDatabaseCount('point_of_interests', 0);
+
+		Livewire::test(CreatePoint::class)
+			->set('createForm.latitude', '-90.1')
+			->set('createForm.longitude', '15')
+			->set('createForm.place', $place->id)
+			->call('save')
+			->assertHasErrors(['createForm.latitude' => 'min']);
+
+		$this->assertDatabaseCount('point_of_interests', 0);
+	}
+
+	/** @test */
+	public function TestLongitudeIsValid()
+	{
+		$adminUser = $this->createAdmin();
+		$place = $this->createPlace();
+
+		$this->actingAs($adminUser);
+
+		$this->assertDatabaseCount('point_of_interests', 0);
+
+		Livewire::test(CreatePoint::class)
+			->set('createForm.latitude', '0')
+			->set('createForm.longitude', '180.1')
+			->set('createForm.place', $place->id)
+			->call('save')
+			->assertHasErrors(['createForm.longitude' => 'max']);
+
+		$this->assertDatabaseCount('point_of_interests', 0);
+
+		Livewire::test(CreatePoint::class)
+			->set('createForm.latitude', '0')
+			->set('createForm.longitude', '-180.1')
+			->set('createForm.place', $place->id)
+			->call('save')
+			->assertHasErrors(['createForm.longitude' => 'min']);
+
+		$this->assertDatabaseCount('point_of_interests', 0);
+	}
 }

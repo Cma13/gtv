@@ -27,9 +27,9 @@ class CreatePoint extends Component
 
     protected $rules = [
         'createForm.name' => 'required',
-        'createForm.description' => 'required|string|max:2000',
-        'createForm.latitude' => 'required|numeric',
-        'createForm.longitude' => 'required|numeric',
+	    'createForm.description' => 'required|string|max:2000',
+        'createForm.latitude' => 'required|numeric|max:90|min:-90',
+        'createForm.longitude' => 'required|numeric|max:180|min:-180',
         'createForm.place' => 'required|exists:places,id',
     ];
 
