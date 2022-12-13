@@ -31,7 +31,6 @@ class DeletePointTest extends TestCase
         Livewire::test(ShowPoint::class)
             ->call('delete', $pointOfInterest->id);
 
-        //$this->assertDatabaseCount('point_of_interests', 0);
 	    $this->assertSoftDeleted($pointOfInterest);
     }
 }
