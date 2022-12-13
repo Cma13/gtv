@@ -327,7 +327,6 @@ class CreatePointTest extends TestCase
 		$this->assertDatabaseCount('point_of_interests', 0);
 
 		Livewire::test(CreatePoint::class)
-			->set('createForm.distance', '10')
 			->set('createForm.latitude', '90.1')
 			->set('createForm.longitude', '0')
 			->set('createForm.place', $place->id)
@@ -337,7 +336,6 @@ class CreatePointTest extends TestCase
 		$this->assertDatabaseCount('point_of_interests', 0);
 
 		Livewire::test(CreatePoint::class)
-			->set('createForm.distance', '10')
 			->set('createForm.latitude', '-90.1')
 			->set('createForm.longitude', '15')
 			->set('createForm.place', $place->id)
@@ -358,7 +356,6 @@ class CreatePointTest extends TestCase
 		$this->assertDatabaseCount('point_of_interests', 0);
 
 		Livewire::test(CreatePoint::class)
-			->set('createForm.distance', '0')
 			->set('createForm.latitude', '0')
 			->set('createForm.longitude', '180.1')
 			->set('createForm.place', $place->id)
@@ -368,7 +365,6 @@ class CreatePointTest extends TestCase
 		$this->assertDatabaseCount('point_of_interests', 0);
 
 		Livewire::test(CreatePoint::class)
-			->set('createForm.distance', '0')
 			->set('createForm.latitude', '0')
 			->set('createForm.longitude', '-180.1')
 			->set('createForm.place', $place->id)

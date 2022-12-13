@@ -350,7 +350,6 @@ class EditPointTest extends TestCase
 
 		Livewire::test(EditPoint::class)
 			->set('editForm.name', 'Test')
-			->set('editForm.distance', '0')
 			->set('editForm.latitude', '90.1')
 			->set('editForm.longitude', '0')
 			->set('editForm.place', $place->id)
@@ -365,7 +364,6 @@ class EditPointTest extends TestCase
 
 		Livewire::test(EditPoint::class)
 			->set('editForm.name', 'Test')
-			->set('editForm.distance', '0')
 			->set('editForm.latitude', '-90.1')
 			->set('editForm.longitude', '0')
 			->set('editForm.place', $place->id)
@@ -394,7 +392,6 @@ class EditPointTest extends TestCase
 
 		Livewire::test(EditPoint::class)
 			->set('editForm.name', 'Test')
-			->set('editForm.distance', '0')
 			->set('editForm.latitude', '0')
 			->set('editForm.longitude', '180.1')
 			->set('editForm.place', $place->id)
@@ -409,7 +406,6 @@ class EditPointTest extends TestCase
 
 		Livewire::test(EditPoint::class)
 			->set('editForm.name', 'Test')
-			->set('editForm.distance', '0')
 			->set('editForm.latitude', '0')
 			->set('editForm.longitude', '-180.1')
 			->set('editForm.place', $place->id)
