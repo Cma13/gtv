@@ -66,9 +66,3 @@
         </x-slot>
     </x-jet-dropdown>
 </div>
-
-<style scoped>
-    .dropdown:hover>.dropdown-content {
-        display: block;
-    }
-</style>
