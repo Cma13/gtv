@@ -27,8 +27,9 @@ class CreatePointTest extends TestCase
 
         Livewire::test(CreatePoint::class)
             ->set('createForm.name', 'Prueba')
-            ->set('createForm.latitude', '10')
-            ->set('createForm.longitude', '15')
+            ->set('createForm.description', 'Descripción de prueba')
+            ->set('createForm.latitude', 10)
+            ->set('createForm.longitude', 15)
             ->set('createForm.place', $place->id)
             ->call('save');
 
@@ -52,11 +53,34 @@ class CreatePointTest extends TestCase
         $this->assertDatabaseCount('point_of_interests', 0);
 
         Livewire::test(CreatePoint::class)
-            ->set('createForm.latitude', '10')
-            ->set('createForm.longitude', '15')
+            ->set('createForm.description', 'Descripción de prueba')
+            ->set('createForm.latitude', 10)
+            ->set('createForm.longitude', 15)
             ->set('createForm.place', $place->id)
             ->call('save')
             ->assertHasErrors(['createForm.name' => 'required']);
+
+        $this->assertDatabaseCount('point_of_interests', 0);
+    }
+
+    
+    /** @test */
+    public function TestDescriptionIsRequired()
+    {
+        $adminUser = $this->createAdmin();
+        $place = $this->createPlace();
+
+        $this->actingAs($adminUser);
+
+        $this->assertDatabaseCount('point_of_interests', 0);
+
+        Livewire::test(CreatePoint::class)
+            ->set('createForm.name', 'Prueba')
+            ->set('createForm.latitude', 10)
+            ->set('createForm.longitude', 15)
+            ->set('createForm.place', $place->id)
+            ->call('save')
+            ->assertHasErrors(['createForm.description' => 'required']);
 
         $this->assertDatabaseCount('point_of_interests', 0);
     }
@@ -72,7 +96,9 @@ class CreatePointTest extends TestCase
         $this->assertDatabaseCount('point_of_interests', 0);
 
         Livewire::test(CreatePoint::class)
-            ->set('createForm.longitude', '15')
+            ->set('createForm.name', 'Prueba')
+            ->set('createForm.description', 'Descripción de prueba')
+            ->set('createForm.longitude', 15)
             ->set('createForm.place', $place->id)
             ->call('save')
             ->assertHasErrors(['createForm.latitude' => 'required']);
@@ -91,7 +117,9 @@ class CreatePointTest extends TestCase
         $this->assertDatabaseCount('point_of_interests', 0);
 
         Livewire::test(CreatePoint::class)
-            ->set('createForm.latitude', '15')
+            ->set('createForm.name', 'Prueba')
+            ->set('createForm.description', 'Descripción de prueba')
+            ->set('createForm.latitude', 15)
             ->set('createForm.place', $place->id)
             ->call('save')
             ->assertHasErrors(['createForm.longitude' => 'required']);
@@ -110,8 +138,10 @@ class CreatePointTest extends TestCase
         $this->assertDatabaseCount('point_of_interests', 0);
 
         Livewire::test(CreatePoint::class)
-            ->set('createForm.latitude', '10')
-            ->set('createForm.longitude', '15')
+            ->set('createForm.name', 'Prueba')
+            ->set('createForm.description', 'Descripción de prueba')
+            ->set('createForm.latitude', 10)
+            ->set('createForm.longitude', 15)
             ->call('save')
             ->assertHasErrors(['createForm.place' => 'required']);
 
@@ -129,9 +159,11 @@ class CreatePointTest extends TestCase
         $this->assertDatabaseCount('point_of_interests', 0);
 
         Livewire::test(CreatePoint::class)
-            ->set('createForm.latitude', '10')
-            ->set('createForm.longitude', '15')
-            ->set('createForm.place', '99999')
+            ->set('createForm.name', 'Prueba')
+            ->set('createForm.description', 'Descripción de prueba')
+            ->set('createForm.latitude', 10)
+            ->set('createForm.longitude', 15)
+            ->set('createForm.place', 'Sitio de prueba')
             ->call('save')
             ->assertHasErrors(['createForm.place' => 'exists']);
 
@@ -149,8 +181,10 @@ class CreatePointTest extends TestCase
         $this->assertDatabaseCount('point_of_interests', 0);
 
         Livewire::test(CreatePoint::class)
+            ->set('createForm.name', 'Prueba')
+            ->set('createForm.description', 'Descripción de prueba')
             ->set('createForm.latitude', 'aaaaaaaaaaa')
-            ->set('createForm.longitude', '15')
+            ->set('createForm.longitude', 15)
             ->set('createForm.place', $place->id)
             ->call('save')
             ->assertHasErrors(['createForm.latitude' => 'numeric']);
@@ -169,7 +203,9 @@ class CreatePointTest extends TestCase
         $this->assertDatabaseCount('point_of_interests', 0);
 
         Livewire::test(CreatePoint::class)
-            ->set('createForm.latitude', '10')
+            ->set('createForm.name', 'Prueba')
+            ->set('createForm.description', 'Descripción de prueba')
+            ->set('createForm.latitude', 10)
             ->set('createForm.longitude', 'aaaaaaaaa')
             ->set('createForm.place', $place->id)
             ->call('save')
@@ -185,6 +221,7 @@ class CreatePointTest extends TestCase
         $place = $this->createPlace();
         $point = [
             'name' => 'Prueba',
+            'description' => 'Descripción de prueba',
             'latitude' => 10,
             'longitude' => 10,
         ];
@@ -195,6 +232,7 @@ class CreatePointTest extends TestCase
 
         Livewire::test(CreatePoint::class)
             ->set('createForm.name', $point['name'])
+            ->set('createForm.description', $point['description'])
             ->set('createForm.latitude', $point['latitude'])
             ->set('createForm.longitude', $point['longitude'])
             ->set('createForm.place', $place->id)
@@ -202,6 +240,7 @@ class CreatePointTest extends TestCase
 
         $this->assertDatabaseHas('point_of_interests', [
             'name' => $point['name'],
+            'description' => $point['description'],
             'latitude' => $point['latitude'],
             'longitude' => $point['longitude'],
             'place_id' => $place->id,
@@ -216,6 +255,7 @@ class CreatePointTest extends TestCase
         $place = $this->createPlace();
         $point = [
             'name' => 'Prueba',
+            'description' => 'Descripción de prueba',
             'latitude' => 10,
             'longitude' => 10,
         ];
@@ -226,6 +266,7 @@ class CreatePointTest extends TestCase
 
         Livewire::test(CreatePoint::class)
             ->set('createForm.name', $point['name'])
+            ->set('createForm.description', $point['description'])
             ->set('createForm.latitude', $point['latitude'])
             ->set('createForm.longitude', $point['longitude'])
             ->set('createForm.place', $place->id)
@@ -233,6 +274,7 @@ class CreatePointTest extends TestCase
 
         $this->assertDatabaseHas('point_of_interests', [
             'name' => $point['name'],
+            'description' => $point['description'],
             'latitude' => $point['latitude'],
             'longitude' => $point['longitude'],
             'place_id' => $place->id,
@@ -247,6 +289,7 @@ class CreatePointTest extends TestCase
         $place = $this->createPlace();
         $point = [
             'name' => 'Prueba',
+            'description' => 'Descripción de prueba',
             'latitude' => 10,
             'longitude' => 10,
         ];
@@ -257,6 +300,7 @@ class CreatePointTest extends TestCase
 
         Livewire::test(CreatePoint::class)
             ->set('createForm.name', $point['name'])
+            ->set('createForm.description', $point['description'])
             ->set('createForm.latitude', $point['latitude'])
             ->set('createForm.longitude', $point['longitude'])
             ->set('createForm.place', $place->id)
@@ -264,6 +308,7 @@ class CreatePointTest extends TestCase
 
         $this->assertDatabaseHas('point_of_interests', [
             'name' => $point['name'],
+            'description' => $point['description'],
             'latitude' => $point['latitude'],
             'longitude' => $point['longitude'],
             'place_id' => $place->id,

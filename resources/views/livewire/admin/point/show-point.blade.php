@@ -16,6 +16,7 @@
                     focus:outline-none dark:focus:ring-blue-800 ml-auto" wire:model="searchColumn">
                 <option value="id">ID</option>
                 <option value="name">NOMBRE</option>
+                <option value="description">DESCRIPCIÓN</option>
                 <option value="place_id">SITIO</option>
                 <option value="creator">CREADOR</option>
                 <option value="updater">ACTUALIZADOR</option>
@@ -53,6 +54,14 @@
                     @if($sortField === 'name' && $sortDirection === 'asc')
                     <i class="fa-solid fa-arrow-up">
                         @elseif($sortField === 'name' && $sortDirection === 'desc')
+                            <i class="fa-solid fa-arrow-down"></i>
+                    @endif
+                </th>
+                <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('description')">
+                    Descripción
+                    @if($sortField === 'description' && $sortDirection === 'asc')
+                    <i class="fa-solid fa-arrow-up">
+                        @elseif($sortField === 'description' && $sortDirection === 'desc')
                             <i class="fa-solid fa-arrow-down"></i>
                     @endif
                 </th>
@@ -114,6 +123,9 @@
                             {{$point->name}}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                            {{$point->description}}
+                        </td>
+                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                             {{$point->place->name}}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
@@ -169,6 +181,11 @@
                 <div>
                     <x-jet-label>
                         Nombre: {{ $detailsModal['name']}}
+                    </x-jet-label>
+                </div>
+                <div>
+                    <x-jet-label>
+                        Descripción: {{ $detailsModal['description']}}
                     </x-jet-label>
                 </div>
                 <div>

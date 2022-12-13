@@ -18,6 +18,7 @@ class EditPoint extends Component
     public $editForm = [
         'open' => false,
         'name' => '',
+        'description' => '',
         'latitude' => '',
         'longitude' => '',
         'place' => '',
@@ -25,6 +26,7 @@ class EditPoint extends Component
 
     protected $rules = [
         'editForm.name' => 'required',
+        'editForm.description' => 'required|max:2000',
         'editForm.latitude' => 'required|numeric|max:90|min:-90',
         'editForm.longitude' => 'required|numeric|max:180|min:-180',
         'editForm.place' => 'required|exists:places,id',
@@ -32,6 +34,7 @@ class EditPoint extends Component
 
     protected $validationAttributes = [
         'editForm.name' => 'nombre',
+        'createForm.description' => 'descripción',
         'editForm.latitude' => 'latitud',
         'editForm.longitude' => 'longitud',
         'editForm.place' => 'sitio',
@@ -43,6 +46,7 @@ class EditPoint extends Component
 
         $this->pointId = $point->id;
         $this->editForm['name'] = $point->name ;
+        $this->editForm['description'] = $point->description ;
         $this->editForm['latitude'] = $point->latitude;
         $this->editForm['longitude'] = $point->longitude;
         $this->editForm['place'] = $point->place->id;
@@ -64,6 +68,7 @@ class EditPoint extends Component
         $isUpdated = $pointOfInterest->update([
             'updater' => auth()->user()->id,
             'name' => $this->editForm['name'],
+            'description' => $this->editForm['description'],
             'latitude' => $this->editForm['latitude'],
             'longitude' => $this->editForm['longitude'],
             'place_id' => $this->editForm['place'],
