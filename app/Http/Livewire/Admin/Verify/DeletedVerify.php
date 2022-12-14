@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class DeletedVerify extends Component
 {
-    public $listeners = ['moveToTrash'];
+    public $listeners = ['moveToTrash', 'hardDelete'];
 
     public $pointHeaders = [
         'QR',
