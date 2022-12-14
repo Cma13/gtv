@@ -17,8 +17,8 @@ class CreatePlacesTable extends Migration
             $table->id();
             $table->string('name', 30);
             $table->string('description', 2000);
-            $table->foreignId('creator')->references('id')->on('users')->onDelete('cascade');
-            $table->foreignId('updater')->nullable()->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('creator')->nullable()->references('id')->on('users')->nullOnDelete();
+            $table->foreignId('updater')->nullable()->references('id')->on('users')->nullOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });

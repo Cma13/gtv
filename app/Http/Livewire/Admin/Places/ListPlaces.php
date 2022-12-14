@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Places;
 
 use App\Models\Place;
+use App\Models\PointOfInterest;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
@@ -42,7 +43,7 @@ class ListPlaces extends Component
         $this->detailsModal['id'] = $place->id;
         $this->detailsModal['name'] = $place->name;
         $this->detailsModal['description'] = $place->description;
-        $this->detailsModal['creatorName'] = User::find($place->creator)->name;
+        $this->detailsModal['creatorName'] = $place->creator ? User::find($place->creator)->name : null;
         $this->detailsModal['creatorId'] = $place->creator;
         $this->detailsModal['updaterName'] = $place->updater ? User::find($place->updater)->name : null;
         $this->detailsModal['updaterId'] = $place->updater;
@@ -52,11 +53,15 @@ class ListPlaces extends Component
 
     public function delete(Place $place)
     {
-        $isDeleted = $place->delete();
+		if ($place->pointsOfInterest->isNotEmpty()) {
+			toastr()->error('Hay puntos de interés en este lugar. No se puede eliminar.', 'Error', ['timeOut' => 1000]);
+		} else {
+			$isDeleted = $place->delete();
 
-        if ($isDeleted) {
-            Log::alert('Place with name ' . $place->name . ' was deleted by user with ID ' . auth()->user()->id .$place); 
-        }
+			if ($isDeleted) {
+				Log::alert('Place with name ' . $place->name . ' was deleted by user with ID ' . auth()->user()->id .$place);
+			}
+		}
     }
 
     public function sort($field)

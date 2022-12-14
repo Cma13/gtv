@@ -18,8 +18,8 @@ class CreateVideosTable extends Migration
             $table->string('route', 245);
             $table->foreignId('point_of_interest_id')->nullable()->references('id')->on('point_of_interests')->onDelete('cascade');
             $table->integer('order');
-            $table->foreignId('creator')->references('id')->on('users')->onDelete('cascade');
-            $table->foreignId('updater')->nullable()->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('creator')->nullable()->references('id')->on('users')->nullOnDelete();
+            $table->foreignId('updater')->nullable()->references('id')->on('users')->nullOnDelete();
             $table->string('description', 2000);
             $table->softDeletes();
             $table->timestamps();

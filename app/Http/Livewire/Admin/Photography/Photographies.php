@@ -199,8 +199,13 @@ class Photographies extends Component
         $this->showModal['order'] = $photography->order;
         $this->showModal['pointOfInterestId'] = $photography['point_of_interest_id'];
 
-        $this->showModal['creatorId'] = User::find($photography->creator)->id;
-        $this->showModal['creatorName'] = User::find($photography->creator)->name;
+	    if (!is_null(User::find($photography->updater))) {
+		    $this->showModal['creatorId'] = User::find($photography->creator)->id;
+		    $this->showModal['creatorName'] = User::find($photography->creator)->name;
+	    } else {
+		    $this->showModal['creatorId'] = null;
+		    $this->showModal['creatorName'] = null;
+	    }
 
         $this->showModal['createdAt'] = $photography->created_at;
         $this->showModal['updatedAt'] = $photography->updated_at;

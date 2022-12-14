@@ -122,10 +122,12 @@
                                 @endif
                             </td>
                             <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                {{ \App\Models\User::find($photography->creator)->name }}
-                                @role('Administrador')
-                                    (ID: {{ \App\Models\User::find($photography->creator)->id }})
-                                @endrole
+                                @if($photography->creator)
+                                    {{ \App\Models\User::find($photography->creator)->name }}
+                                    @role('Administrador')
+                                        (ID: {{ \App\Models\User::find($photography->creator)->id }})
+                                    @endrole
+                                @endif
                             </td>
                             <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                                 @if($photography->updater)
@@ -216,11 +218,13 @@
                     </div>
                 @endif
 
-                <div class="mb-4">
-                    <x-jet-label>
-                        Creador: {{ $showModal['creatorName'] }} (ID: {{ $showModal['creatorId'] }})
-                    </x-jet-label>
-                </div>
+                @if($showModal['creatorId'])
+                    <div class="mb-4">
+                        <x-jet-label>
+                            Creador: {{ $showModal['creatorName'] }} (ID: {{ $showModal['creatorId'] }})
+                        </x-jet-label>
+                    </div>
+                @endif
 
                 @if( ! is_null($showModal['updaterId']))
                     <div class="mb-4">

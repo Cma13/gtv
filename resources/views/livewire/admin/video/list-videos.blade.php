@@ -148,7 +148,13 @@
                 </div>
                 <div>
                     <x-jet-label>
-                        Creador: {{ $detailsModal['creatorName'] }} ({{ $detailsModal['creatorId'] }})
+                        Creador:
+                        Actualizador:
+                        @if($detailsModal['creatorName'])
+                            {{ $detailsModal['creatorName'] }} ({{ $detailsModal['creatorId'] }})
+                        @else
+                            {{ 'ninguno' }}
+                        @endif
                     </x-jet-label>
                 </div>
                 <div>
