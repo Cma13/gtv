@@ -58,7 +58,7 @@
                                         <span
                                             class="text-2xl text-green-400 cursor-pointer text-center mr-1"
                                             wire:click="restoreElement({{ $point->id }}, 'point')">
-                                            <i class="fa-solid fa-arrow-rotate-left"></i>
+                                            <i class="fa-sharp fa-solid fa-trash-arrow-up"></i>
                                         </span>
                                         <span class="text-2xl text-red-500 cursor-pointer"
                                             wire:click="$emit('deleteElement', '{{ $point->id }}', 'point')">
