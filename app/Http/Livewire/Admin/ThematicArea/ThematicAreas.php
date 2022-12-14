@@ -99,6 +99,11 @@ class ThematicAreas extends Component
         $this->reset('createForm');
 
         $this->emit('thematicAreaCreated');
+
+        $isCreated = $thematicArea;
+        if ($isCreated) {
+            Log::info('User with ID ' . auth()->user()->id . 'was created a thematic area with name ' . $thematicArea->name .$thematicArea);
+        }
     }
 
     public function update(ThematicArea $thematicArea)
@@ -111,9 +116,11 @@ class ThematicAreas extends Component
         $thematicArea['name'] = $this->editForm['name'];
         $thematicArea['description'] = $this->editForm['description'];
 
-        $thematicArea->update();
+        $isUpdated = $thematicArea->update();
 
-        Log::info('Thematic area with ID ' . $thematicArea->id . ' was updated ' . $thematicArea);
+        if ($isUpdated) {
+            Log::info('User with ID ' . auth()->user()->id . 'was updated a thematic area with name ' . $thematicArea->name .$thematicArea);
+        }
 
         $this->editModal['open'] = false;
         $this->reset(['editForm']);
@@ -125,7 +132,11 @@ class ThematicAreas extends Component
     {
         $thematicArea->pointsOfInterest()->detach();
 
-        $thematicArea->delete();
+        $isDeleted = $thematicArea->delete();
+
+        if($isDeleted) {
+            Log::alert('Point with name ' . $thematicArea->name . ' was deleted by user with ID ' . auth()->user()->id .$thematicArea);
+        }
 
         Log::info('Thematic area with ID ' . $thematicArea->id . ' was deleted ' . $thematicArea);
     }

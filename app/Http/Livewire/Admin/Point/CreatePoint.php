@@ -19,6 +19,7 @@ class CreatePoint extends Component
     public $createForm = [
         'open' => false,
         'name' => '',
+        'description' => '',
         'latitude' => '',
         'longitude' => '',
         'place' => '',
@@ -26,13 +27,15 @@ class CreatePoint extends Component
 
     protected $rules = [
         'createForm.name' => 'required',
-        'createForm.latitude' => 'required|numeric',
-        'createForm.longitude' => 'required|numeric',
+	    'createForm.description' => 'required|string|max:2000',
+        'createForm.latitude' => 'required|numeric|max:90|min:-90',
+        'createForm.longitude' => 'required|numeric|max:180|min:-180',
         'createForm.place' => 'required|exists:places,id',
     ];
 
     protected $validationAttributes = [
         'createForm.name' => 'nombre',
+        'createForm.description' => 'descripción',
         'createForm.latitude' => 'latitud',
         'createForm.longitude' => 'longitud',
         'createForm.place' => 'sitio',
@@ -64,6 +67,7 @@ class CreatePoint extends Component
         ) {
             $pointOfInterest = PointOfInterest::create([
                 'name' => $this->createForm['name'],
+                'description' => $this->createForm['description'],
                 'latitude' => $this->createForm['latitude'],
                 'longitude' => $this->createForm['longitude'],
                 'place_id' => $this->createForm['place'],
@@ -74,6 +78,7 @@ class CreatePoint extends Component
         } else if(auth()->user()->hasRole('Alumno')) {
             $pointOfInterest = PointOfInterest::create([
                 'name' => $this->createForm['name'],
+                'description' => $this->createForm['description'],
                 'latitude' => $this->createForm['latitude'],
                 'longitude' => $this->createForm['longitude'],
                 'place_id' => $this->createForm['place'],

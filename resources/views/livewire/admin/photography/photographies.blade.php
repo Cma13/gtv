@@ -108,7 +108,7 @@
                             </td>
                             <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                                 <a class="max-w-xs" href="{{ $photography->route }}" target="_blank">
-                                    <img src="{{ $photography->route }}">
+                                    <img class="max-h-32" src="{{ $photography->route }}">
                                 </a>
                             </td>
                             <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
@@ -181,7 +181,7 @@
             <div class="space-y-6">
                 <div class="mb-4">
                     <a class="max-w-xs" href="{{ $showModal['route'] }}" target="_blank">
-                        <img src="{{ $showModal['route'] }}">
+                        <img class="max-h-72" src="{{ $showModal['route'] }}">
                     </a>
                 </div>
 
@@ -263,7 +263,7 @@
 
                 @if ($this->createForm['route'])
                     Preview
-                    <img src="{{ $this->createForm['route']->temporaryUrl() }}">
+                    <img class="max-h-72" src="{{ $this->createForm['route']->temporaryUrl() }}">
                 @endif
 
                 <div class="mb-6">
@@ -310,10 +310,10 @@
                 <div class="mb-4">
                     @if ($this->editForm['route'])
                         Preview:
-                        <img src="{{ $this->editForm['route']->temporaryUrl() }}">
+                        <img class="max-h-72" src="{{ $this->editForm['route']->temporaryUrl() }}">
                     @else
                         <a class="max-w-xs" href="{{ $this->editModal['route'] }}" target="_blank">
-                            <img src="{{ $this->editModal['route'] }}">
+                            <img class="max-h-72" src="{{ $this->editModal['route'] }}">
                         </a>
                     @endif
                 </div>

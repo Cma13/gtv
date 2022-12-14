@@ -28,7 +28,6 @@ class ListUsers extends Component
         'id' => null,
         'name' => '',
         'email' => '',
-        'password' => '',
         'emailVerifiedAt' => '',
         'createdAt' => '',
         'updatedAt' => '',
@@ -45,7 +44,6 @@ class ListUsers extends Component
         $this->detailsModal['id'] = $user->id;
         $this->detailsModal['name'] = $user->name;
         $this->detailsModal['email'] = $user->email;
-        $this->detailsModal['password'] = $user->password;
         $this->detailsModal['emailVerifiedAt'] = $user->email_verified_at;
         $this->detailsModal['createdAt'] = $user->created_at;
         $this->detailsModal['updatedAt'] = $user->updated_at;

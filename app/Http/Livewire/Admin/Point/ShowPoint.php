@@ -29,6 +29,7 @@ class ShowPoint extends Component
         'open' => false,
         'id' => null,
         'name' => null,
+        'description' => null,
         'latitude' => null,
         'longitude' => null,
         'placeId' => null,
@@ -46,6 +47,7 @@ class ShowPoint extends Component
         $this->detailsModal['open'] = true;
         $this->detailsModal['id'] = $point->id;
         $this->detailsModal['name'] = $point->name;
+        $this->detailsModal['description'] = $point->description;
         $this->detailsModal['latitude'] = $point->latitude;
         $this->detailsModal['longitude'] = $point->longitude;
         $this->detailsModal['placeId'] = $point->place->id;

@@ -302,27 +302,25 @@
         },
         {
             "name": "bunny/bunny",
-            "version": "v0.5.2",
+            "version": "v0.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jakubkulhan/bunny.git",
-                "reference": "5b74a0faadab727ddbe1e6002c1013558f96af75"
+                "reference": "e03224f076a21fa386b1da1b29381c3e0acab603"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jakubkulhan/bunny/zipball/5b74a0faadab727ddbe1e6002c1013558f96af75",
-                "reference": "5b74a0faadab727ddbe1e6002c1013558f96af75",
+                "url": "https://api.github.com/repos/jakubkulhan/bunny/zipball/e03224f076a21fa386b1da1b29381c3e0acab603",
+                "reference": "e03224f076a21fa386b1da1b29381c3e0acab603",
                 "shasum": ""
             },
             "require": {
-                "ext-pcntl": "*",
                 "php": "^7.1 || ^8.0",
                 "react/event-loop": "^1.0 || ^0.5 || ^0.4",
                 "react/promise": "~2.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.5 || ^7.5.20",
-                "symfony/process": "^6.1 || ^4.4"
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.3"
             },
             "type": "library",
             "autoload": {
@@ -357,9 +355,9 @@
             ],
             "support": {
                 "issues": "https://github.com/jakubkulhan/bunny/issues",
-                "source": "https://github.com/jakubkulhan/bunny/tree/v0.5.2"
+                "source": "https://github.com/jakubkulhan/bunny/tree/v0.5.1"
             },
-            "time": "2022-11-30T21:14:36+00:00"
+            "time": "2021-09-12T21:45:53+00:00"
         },
         {
             "name": "consoletvs/charts",
@@ -2675,16 +2673,16 @@
         },
         {
             "name": "league/config",
-            "version": "v1.1.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/config.git",
-                "reference": "a9d39eeeb6cc49d10a6e6c36f22c4c1f4a767f3e"
+                "reference": "754b3604fb2984c71f4af4a9cbe7b57f346ec1f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/config/zipball/a9d39eeeb6cc49d10a6e6c36f22c4c1f4a767f3e",
-                "reference": "a9d39eeeb6cc49d10a6e6c36f22c4c1f4a767f3e",
+                "url": "https://api.github.com/repos/thephpleague/config/zipball/754b3604fb2984c71f4af4a9cbe7b57f346ec1f3",
+                "reference": "754b3604fb2984c71f4af4a9cbe7b57f346ec1f3",
                 "shasum": ""
             },
             "require": {
@@ -2693,7 +2691,7 @@
                 "php": "^7.4 || ^8.0"
             },
             "require-dev": {
-                "phpstan/phpstan": "^0.12.90",
+                "phpstan/phpstan": "^1.8.2",
                 "phpunit/phpunit": "^9.5.5",
                 "scrutinizer/ocular": "^1.8.1",
                 "unleashedtech/php-coding-standard": "^3.1",
@@ -2753,7 +2751,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-08-14T12:15:32+00:00"
+            "time": "2022-12-11T20:36:23+00:00"
         },
         {
             "name": "league/flysystem",
@@ -8182,7 +8180,7 @@
             "dist": {
                 "type": "path",
                 "url": "./packages/vladimir-yuldashev/laravel-queue-rabbitmq",
-                "reference": "a92a21c89e33b1b0813c319a9fc3f69f330395b2"
+                "reference": "fe3e610436b4843a983af68d938967fdf50fbb67"
             },
             "require": {
                 "ext-json": "*",
@@ -8816,16 +8814,16 @@
         },
         {
             "name": "laravel-lang/lang",
-            "version": "12.6.0",
+            "version": "12.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Lang/lang.git",
-                "reference": "ca1495ac2c609001d8c126df51d2802d2c80a73c"
+                "reference": "4d099a2b7f5cfcda82cc8dc1c39620eb69d66d1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/ca1495ac2c609001d8c126df51d2802d2c80a73c",
-                "reference": "ca1495ac2c609001d8c126df51d2802d2c80a73c",
+                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/4d099a2b7f5cfcda82cc8dc1c39620eb69d66d1f",
+                "reference": "4d099a2b7f5cfcda82cc8dc1c39620eb69d66d1f",
                 "shasum": ""
             },
             "require": {
@@ -8887,7 +8885,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2022-12-10T09:50:11+00:00"
+            "time": "2022-12-11T22:31:57+00:00"
         },
         {
             "name": "laravel/dusk",
@@ -9359,16 +9357,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.2.19",
+            "version": "9.2.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "c77b56b63e3d2031bd8997fcec43c1925ae46559"
+                "reference": "af7463c955007de36db0c5e26d03e2f933c2e980"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/c77b56b63e3d2031bd8997fcec43c1925ae46559",
-                "reference": "c77b56b63e3d2031bd8997fcec43c1925ae46559",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/af7463c955007de36db0c5e26d03e2f933c2e980",
+                "reference": "af7463c955007de36db0c5e26d03e2f933c2e980",
                 "shasum": ""
             },
             "require": {
@@ -9424,7 +9422,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.19"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.20"
             },
             "funding": [
                 {
@@ -9432,7 +9430,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-11-18T07:47:47+00:00"
+            "time": "2022-12-13T07:49:28+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",

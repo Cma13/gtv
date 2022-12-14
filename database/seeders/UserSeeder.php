@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class UserSeeder extends Seeder
@@ -20,28 +21,28 @@ class UserSeeder extends Seeder
         $admin = User::create([
             'name' => 'Admin',
             'email' => 'admin@mail.com',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+			'password' => Hash::make('password'),
         ]);
         $admin->assignRole('Administrador');
 
         $teacher = User::create([
             'name' => 'Teacher',
             'email' => 'teacher@mail.com',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+	        'password' => Hash::make('password'),
         ]);
         $teacher->assignRole('Profesor');
 
         $student = User::create([
             'name' => 'Student',
             'email' => 'student@mail.com',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+	        'password' => Hash::make('password'),
         ]);
         $student->assignRole('Alumno');
 
 	    $sinVerificar = User::create([
 		    'name' => 'Student2',
 		    'email' => 'student2@mail.com',
-		    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+		    'password' => Hash::make('password'),
 	    ]);
 		$sinVerificar->assignRole('Usuario sin verificar');
     }

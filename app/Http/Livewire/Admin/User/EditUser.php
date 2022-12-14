@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\User;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -26,7 +27,7 @@ class EditUser extends Component
         'editForm.name' => 'required|string',
         'editForm.email' => 'required|confirmed|string|max:45|unique:users,email',
         'editForm.email_confirmation' => '',
-        'editForm.password' => 'required|confirmed|string|min:8|max:500',
+        'editForm.password' => 'confirmed|string|min:8|max:500',
         'editForm.password_confirmation' => '',
         'editForm.role' => 'required|exists:roles,id',
     ];
@@ -55,8 +56,6 @@ class EditUser extends Component
         $this->editForm['name'] = $user->name;
         $this->editForm['email'] = $user->email;
         $this->editForm['email_confirmation'] = $user->email;
-        $this->editForm['password'] = $user->password;
-        $this->editForm['password_confirmation'] = $user->password;
         $this->editForm['role'] = $user->roles->first()->id;
         $this->editForm['open'] = true;
     }
@@ -67,11 +66,16 @@ class EditUser extends Component
 
         $this->validate();
 
-        $isUpdated = $user->update([
+		$updateArray = [
             'name' => $this->editForm['name'],
             'email' => $this->editForm['email'],
-            'password'=> \bcrypt($this->editForm['password']),
-        ]);
+        ];
+
+		if ($this->editForm['password']) {
+			$updateArray['password'] = Hash::make($this->editForm['password']);
+		}
+
+        $isUpdated = $user->update($updateArray);
 
         $role = Role::findById($this->editForm['role']);
         $user->syncRoles($role);

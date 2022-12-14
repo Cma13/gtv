@@ -10,8 +10,15 @@
                     <x-jet-label>
                         Nombre
                     </x-jet-label>
-                    <input wire:model="editForm.name" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-1">
+                    <input wire:model="editForm.name" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-1"></input>
                     <x-jet-input-error for="editForm.name" class="mt-2" />
+                </div>
+                <div>
+                    <x-jet-label>
+                        Descripción
+                    </x-jet-label>
+                    <textarea wire:model="editForm.description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-1"></textarea>
+                    <x-jet-input-error for="editForm.description" class="mt-2" />
                 </div>
                 <div>
                     <x-jet-label>
