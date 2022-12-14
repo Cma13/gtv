@@ -129,11 +129,11 @@
                             {{$point->place->name}}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            {{\App\Models\User::find($point->creator)->name}}
+                            {{\App\Models\User::find($point->creator)?->name}}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                             @if($point->updater)
-                                {{\App\Models\User::find($point->updater)->name}}
+                                {{\App\Models\User::find($point->updater)?->name}}
                             @endif
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">

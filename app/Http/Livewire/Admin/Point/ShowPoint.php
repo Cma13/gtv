@@ -52,7 +52,7 @@ class ShowPoint extends Component
         $this->detailsModal['longitude'] = $point->longitude;
         $this->detailsModal['placeId'] = $point->place->id;
         $this->detailsModal['placeName'] = $point->place->name;
-        $this->detailsModal['creatorName'] = User::find($point->creator)->name;
+        $this->detailsModal['creatorName'] = $point->creator ? User::find($point->creator)->name : null;
         $this->detailsModal['creatorId'] = $point->creator;
         $this->detailsModal['updaterName'] = $point->updater ? User::find($point->updater)->name : null;;
         $this->detailsModal['updaterId'] = $point->updater;

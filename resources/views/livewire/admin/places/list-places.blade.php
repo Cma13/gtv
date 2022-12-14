@@ -103,10 +103,10 @@
                             {{ $place->description }}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            {{ \App\Models\User::find($place->creator)->name }}
+                            {{ \App\Models\User::find($place->creator)?->name }}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            {{ \App\Models\User::find($place->updater)->name }}
+                            {{ \App\Models\User::find($place->updater)?->name }}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                             {{ $place->created_at }}
@@ -120,7 +120,12 @@
                                 <i class="fa-solid fa-pencil"></i>
                             </span>
                             <span class="font-medium text-red-500 cursor-pointer"
-                                  wire:click="$emit('deletePlace', '{{ $place->id }}')">
+                                @if($place->pointsOfInterest->isEmpty())
+                                    wire:click="$emit('deletePlace', '{{ $place->id }}')"
+                                @else
+                                    wire:click="$emit('cantDelete')"
+                                @endif
+                                >
                                 <i class="fa-solid fa-trash"></i>
                             </span>
                         </td>
@@ -218,6 +223,13 @@
                         )
                     }
                 })
+            });
+            Livewire.on('cantDelete', () => {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Hay puntos de interés en este lugar. No se puede eliminar.',
+                    icon: 'error',
+                });
             });
         </script>
     @endpush
