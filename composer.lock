@@ -302,16 +302,16 @@
         },
         {
             "name": "bunny/bunny",
-            "version": "v0.5.1",
+            "version": "v0.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jakubkulhan/bunny.git",
-                "reference": "e03224f076a21fa386b1da1b29381c3e0acab603"
+                "reference": "1f6c8f2163efaf9455c3390435424d93649f1d83"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jakubkulhan/bunny/zipball/e03224f076a21fa386b1da1b29381c3e0acab603",
-                "reference": "e03224f076a21fa386b1da1b29381c3e0acab603",
+                "url": "https://api.github.com/repos/jakubkulhan/bunny/zipball/1f6c8f2163efaf9455c3390435424d93649f1d83",
+                "reference": "1f6c8f2163efaf9455c3390435424d93649f1d83",
                 "shasum": ""
             },
             "require": {
@@ -320,7 +320,12 @@
                 "react/promise": "~2.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.3"
+                "ext-pcntl": "*",
+                "phpunit/phpunit": "^9.5 || ^7.5.20",
+                "symfony/process": "^6.1 || ^4.4"
+            },
+            "suggest": {
+                "ext-pcntl": "For using synchronous AMQP/RabbitMQ client"
             },
             "type": "library",
             "autoload": {
@@ -355,9 +360,9 @@
             ],
             "support": {
                 "issues": "https://github.com/jakubkulhan/bunny/issues",
-                "source": "https://github.com/jakubkulhan/bunny/tree/v0.5.1"
+                "source": "https://github.com/jakubkulhan/bunny/tree/v0.5.4"
             },
-            "time": "2021-09-12T21:45:53+00:00"
+            "time": "2022-12-15T20:23:51+00:00"
         },
         {
             "name": "consoletvs/charts",
@@ -1938,16 +1943,16 @@
         },
         {
             "name": "laravel/fortify",
-            "version": "v1.14.0",
+            "version": "v1.14.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/fortify.git",
-                "reference": "20aeaf31edbf01e21348954088641cdb3d48ebe8"
+                "reference": "04b4b9c20e421c415d0427904a72e08a21bdec27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/fortify/zipball/20aeaf31edbf01e21348954088641cdb3d48ebe8",
-                "reference": "20aeaf31edbf01e21348954088641cdb3d48ebe8",
+                "url": "https://api.github.com/repos/laravel/fortify/zipball/04b4b9c20e421c415d0427904a72e08a21bdec27",
+                "reference": "04b4b9c20e421c415d0427904a72e08a21bdec27",
                 "shasum": ""
             },
             "require": {
@@ -1997,20 +2002,20 @@
                 "issues": "https://github.com/laravel/fortify/issues",
                 "source": "https://github.com/laravel/fortify"
             },
-            "time": "2022-11-23T09:03:43+00:00"
+            "time": "2022-12-09T16:51:26+00:00"
         },
         {
             "name": "laravel/framework",
-            "version": "v9.43.0",
+            "version": "v9.44.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "011f2e1d49a11c22519a7899b46ddf3bc5b0f40b"
+                "reference": "60808a7d9acd53461fd69634c08fc7e0a99fbf98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/011f2e1d49a11c22519a7899b46ddf3bc5b0f40b",
-                "reference": "011f2e1d49a11c22519a7899b46ddf3bc5b0f40b",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/60808a7d9acd53461fd69634c08fc7e0a99fbf98",
+                "reference": "60808a7d9acd53461fd69634c08fc7e0a99fbf98",
                 "shasum": ""
             },
             "require": {
@@ -2183,20 +2188,20 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-12-06T14:26:07+00:00"
+            "time": "2022-12-15T14:56:36+00:00"
         },
         {
             "name": "laravel/jetstream",
-            "version": "v2.12.6",
+            "version": "v2.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/jetstream.git",
-                "reference": "bfed92ddacb22053ddfe1208f098fbd9d9404d89"
+                "reference": "790559c879bfcf3f51df87ba274211e741d6683e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/jetstream/zipball/bfed92ddacb22053ddfe1208f098fbd9d9404d89",
-                "reference": "bfed92ddacb22053ddfe1208f098fbd9d9404d89",
+                "url": "https://api.github.com/repos/laravel/jetstream/zipball/790559c879bfcf3f51df87ba274211e741d6683e",
+                "reference": "790559c879bfcf3f51df87ba274211e741d6683e",
                 "shasum": ""
             },
             "require": {
@@ -2253,7 +2258,7 @@
                 "issues": "https://github.com/laravel/jetstream/issues",
                 "source": "https://github.com/laravel/jetstream"
             },
-            "time": "2022-12-05T15:16:43+00:00"
+            "time": "2022-12-15T14:58:38+00:00"
         },
         {
             "name": "laravel/legacy-factories",
@@ -8180,7 +8185,7 @@
             "dist": {
                 "type": "path",
                 "url": "./packages/vladimir-yuldashev/laravel-queue-rabbitmq",
-                "reference": "fe3e610436b4843a983af68d938967fdf50fbb67"
+                "reference": "a92a21c89e33b1b0813c319a9fc3f69f330395b2"
             },
             "require": {
                 "ext-json": "*",
@@ -8625,20 +8630,20 @@
         },
         {
             "name": "fakerphp/faker",
-            "version": "v1.20.0",
+            "version": "v1.21.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FakerPHP/Faker.git",
-                "reference": "37f751c67a5372d4e26353bd9384bc03744ec77b"
+                "reference": "92efad6a967f0b79c499705c69b662f738cc9e4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FakerPHP/Faker/zipball/37f751c67a5372d4e26353bd9384bc03744ec77b",
-                "reference": "37f751c67a5372d4e26353bd9384bc03744ec77b",
+                "url": "https://api.github.com/repos/FakerPHP/Faker/zipball/92efad6a967f0b79c499705c69b662f738cc9e4d",
+                "reference": "92efad6a967f0b79c499705c69b662f738cc9e4d",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1 || ^8.0",
+                "php": "^7.4 || ^8.0",
                 "psr/container": "^1.0 || ^2.0",
                 "symfony/deprecation-contracts": "^2.2 || ^3.0"
             },
@@ -8649,7 +8654,8 @@
                 "bamarni/composer-bin-plugin": "^1.4.1",
                 "doctrine/persistence": "^1.3 || ^2.0",
                 "ext-intl": "*",
-                "symfony/phpunit-bridge": "^4.4 || ^5.2"
+                "phpunit/phpunit": "^9.5.26",
+                "symfony/phpunit-bridge": "^5.4.16"
             },
             "suggest": {
                 "doctrine/orm": "Required to use Faker\\ORM\\Doctrine",
@@ -8661,7 +8667,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "v1.20-dev"
+                    "dev-main": "v1.21-dev"
                 }
             },
             "autoload": {
@@ -8686,9 +8692,9 @@
             ],
             "support": {
                 "issues": "https://github.com/FakerPHP/Faker/issues",
-                "source": "https://github.com/FakerPHP/Faker/tree/v1.20.0"
+                "source": "https://github.com/FakerPHP/Faker/tree/v1.21.0"
             },
-            "time": "2022-07-20T13:12:54+00:00"
+            "time": "2022-12-13T13:54:32+00:00"
         },
         {
             "name": "filp/whoops",
@@ -8814,16 +8820,16 @@
         },
         {
             "name": "laravel-lang/lang",
-            "version": "12.6.1",
+            "version": "12.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Lang/lang.git",
-                "reference": "4d099a2b7f5cfcda82cc8dc1c39620eb69d66d1f"
+                "reference": "839ce5d81cd4a8deda5c09bb74af995371345c5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/4d099a2b7f5cfcda82cc8dc1c39620eb69d66d1f",
-                "reference": "4d099a2b7f5cfcda82cc8dc1c39620eb69d66d1f",
+                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/839ce5d81cd4a8deda5c09bb74af995371345c5b",
+                "reference": "839ce5d81cd4a8deda5c09bb74af995371345c5b",
                 "shasum": ""
             },
             "require": {
@@ -8885,20 +8891,20 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2022-12-11T22:31:57+00:00"
+            "time": "2022-12-14T13:47:21+00:00"
         },
         {
             "name": "laravel/dusk",
-            "version": "v7.1.1",
+            "version": "v7.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/dusk.git",
-                "reference": "c7aacfabdf0883ba9a76c23a0d08b63dea2d0de8"
+                "reference": "eedf08c80106ac4983b77ec23197528bf90aaec2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/dusk/zipball/c7aacfabdf0883ba9a76c23a0d08b63dea2d0de8",
-                "reference": "c7aacfabdf0883ba9a76c23a0d08b63dea2d0de8",
+                "url": "https://api.github.com/repos/laravel/dusk/zipball/eedf08c80106ac4983b77ec23197528bf90aaec2",
+                "reference": "eedf08c80106ac4983b77ec23197528bf90aaec2",
                 "shasum": ""
             },
             "require": {
@@ -8956,9 +8962,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/dusk/issues",
-                "source": "https://github.com/laravel/dusk/tree/v7.1.1"
+                "source": "https://github.com/laravel/dusk/tree/v7.2.0"
             },
-            "time": "2022-09-29T09:38:10+00:00"
+            "time": "2022-12-14T18:39:40+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -9357,16 +9363,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.2.20",
+            "version": "9.2.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "af7463c955007de36db0c5e26d03e2f933c2e980"
+                "reference": "3f893e19712bb0c8bc86665d1562e9fd509c4ef0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/af7463c955007de36db0c5e26d03e2f933c2e980",
-                "reference": "af7463c955007de36db0c5e26d03e2f933c2e980",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/3f893e19712bb0c8bc86665d1562e9fd509c4ef0",
+                "reference": "3f893e19712bb0c8bc86665d1562e9fd509c4ef0",
                 "shasum": ""
             },
             "require": {
@@ -9422,7 +9428,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.20"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.21"
             },
             "funding": [
                 {
@@ -9430,7 +9436,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-12-13T07:49:28+00:00"
+            "time": "2022-12-14T13:26:54+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
