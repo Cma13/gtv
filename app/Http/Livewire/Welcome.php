@@ -87,16 +87,21 @@ class Welcome extends Component
     public $detailsModalPoints = [
         'open' => false,
         'id' => null,
+        'name' => null,
+        'description' => null,
         'latitude' => null,
         'longitude' => null,
         'placeId' => null,
         'placeName' => null,
+        'thematicAreasId' => null,
+        'thematicAreasName' => null,
         'creatorName' => null,
         'creatorId' => null,
         'updaterName' => null,
         'updaterId' => null,
         'createdAt' => null,
         'updatedAt' => null,
+        'qr' =>null,
     ];
 
     public $detailsModalPlaces = [
@@ -190,16 +195,21 @@ class Welcome extends Component
     {
         $this->detailsModalPoints['open'] = true;
         $this->detailsModalPoints['id'] = $point->id;
+        $this->detailsModalPoints['name'] = $point->name;
+        $this->detailsModalPoints['description'] = $point->description;
         $this->detailsModalPoints['latitude'] = $point->latitude;
         $this->detailsModalPoints['longitude'] = $point->longitude;
         $this->detailsModalPoints['placeId'] = $point->place->id;
         $this->detailsModalPoints['placeName'] = $point->place->name;
+        $this->detailsModalPoints['thematicAreasId'] = $point->thematicAreas;
+        $this->detailsModalPoints['thematicAreasName'] = $point->thematicAreas;
         $this->detailsModalPoints['creatorName'] = User::find($point->creator)->name;
         $this->detailsModalPoints['creatorId'] = $point->creator;
         $this->detailsModalPoints['updaterName'] = $point->updater ? User::find($point->updater)->name : null;;
         $this->detailsModalPoints['updaterId'] = $point->updater;
         $this->detailsModalPoints['createdAt'] = $point->created_at;
         $this->detailsModalPoints['updatedAt'] = $point->updated_at;
+        $this->detailsModalPoints['qr'] = $point;
     }
 
     public function showPlaces(Place $place)
