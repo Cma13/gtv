@@ -35,6 +35,7 @@ class ShowVisits extends Component
         'ssooversion' => null,
         'latitude' => null,
         'longitude' => null,
+        'createdAt' => null,
         'point_of_interest_id' => null,
     ];
 

@@ -13,7 +13,6 @@
                 <option value="ssoo">SSOO</option>
                 <option value="ssooversion">SSOO VERSION</option>
                 <option value="point_of_interest_id">PUNTO DE INTERÉS</option>
-                <option value="created_at">FECHA DE CREACIÓN</option>
             </select>
         </div>
 
@@ -66,14 +65,6 @@
                                 <i class="fa-solid fa-arrow-down"></i>
                     @endif
                 </th>
-                <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('created_at')">
-                    Fecha creación
-                    @if($sortField === 'created_at' && $sortDirection === 'asc')
-                        <i class="fa-solid fa-arrow-up">
-                            @elseif($sortField === 'created_at' && $sortDirection === 'desc')
-                                <i class="fa-solid fa-arrow-down"></i>
-                    @endif
-                </th>
                 <th scope="col" class="px-6 py-3">
                     <span class="sr-only">Actions</span>
                 </th>
@@ -100,9 +91,6 @@
                             @else
                                 <span class="text-red-600">Ninguno</span>
                             @endif
-                        </td>
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            <div>{{ $visit->created_at }}</div>
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap flex gap-4">
                             <span class="font-medium text-blue-600 cursor-pointer" wire:click="show('{{ $visit->id }}')">
@@ -159,6 +147,11 @@
                 <div>
                     <x-jet-label>
                         Version Sistema Operativo: {{ $detailsModal['ssooversion'] }}
+                    </x-jet-label>
+                </div>
+                <div>
+                    <x-jet-label>
+                        Fecha de Creación: {{ $detailsModal['createdAt'] }}
                     </x-jet-label>
                 </div>
                 <div>
