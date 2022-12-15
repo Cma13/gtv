@@ -207,11 +207,16 @@
                         <span class="font-bold">Fecha de actualización:</span> {{ $detailsModal['updatedAt'] }}
                     </x-jet-label>
                 </div>
-                <div class="flex flex-col">
-                    <x-jet-label class="font-bold">
-                        Código del punto de interés:
+                <div>
+                    <x-jet-label>
+                        <span class="font-bold">QR y mapa:</span>
                     </x-jet-label>
-                    <span class="mx-auto">{{ QrCode::geo($detailsModal['latitude'], $detailsModal['longitude']); }}</span>
+                    <div class="flex">
+                        <div class="min-w-min flex-auto mr-4 self-center">{{ QrCode::geo($detailsModal['latitude'], $detailsModal['longitude']) }}</div>
+                        <div class="w-full h-[250px] flex-auto">
+                            <livewire:map-component :initial-points="\App\Models\PointOfInterest::all()"/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </x-slot>

@@ -60,6 +60,7 @@ class ShowPoint extends Component
         $this->detailsModal['updaterId'] = $point->updater;
         $this->detailsModal['createdAt'] = $point->created_at;
         $this->detailsModal['updatedAt'] = $point->updated_at;
+	    $this->emit('syncMarkers', [$this->detailsModal['id']], true);
     }
 
     public function delete(PointOfInterest $pointOfInterest)
