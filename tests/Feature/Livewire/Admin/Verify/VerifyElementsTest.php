@@ -23,9 +23,10 @@ class VerifyElementsTest extends TestCase
         $this->actingAs($adminUser);
 
         Livewire::test(ListVerify::class)
+            ->assertSee($point->id)
             ->assertSee($point->name)
-            ->assertSee($point->longitude)
-            ->assertSee($point->latitude);
+            ->assertSee(getDescripcionCorta(50, $point->description))
+            ->assertSee($point->place->name);
     }
 
     /** @test */
