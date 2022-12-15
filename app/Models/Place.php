@@ -26,4 +26,14 @@ class Place extends Model
     {
         return $this->hasMany(PointOfInterest::class);
     }
+
+    public function getDescripcionCorta($n_caracteres)
+    {
+        $caracteresDescription = strlen($this->description);
+
+        if ($caracteresDescription > 20) {
+            return substr($this->description, 0, $n_caracteres) . '...';
+        }
+        return $this->description;
+    }
 }
