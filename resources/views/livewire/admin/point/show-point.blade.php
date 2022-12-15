@@ -17,7 +17,7 @@
                 <option value="id">ID</option>
                 <option value="name">NOMBRE</option>
                 <option value="description">DESCRIPCIÓN</option>
-                <option value="place_id">SITIO</option>
+                <option value="place_id">LUGAR</option>
                 <option value="creator">CREADOR</option>
                 <option value="updater">ACTUALIZADOR</option>
                 <option value="created_at">FECHA DE CREACIÓN</option>
@@ -63,7 +63,7 @@
                     @endif
                 </th>
                 <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('place_id')">
-                    Sitio
+                    Lugar
                     @if($sortField === 'place_id' && $sortDirection === 'asc')
                         <i class="fa-solid fa-arrow-up">
                             @elseif($sortField === 'place_id' && $sortDirection === 'desc')
@@ -171,7 +171,7 @@
                 </div>
                 <div>
                     <x-jet-label>
-                        Sitio: {{ $detailsModal['placeName'] }} ({{ $detailsModal['placeId'] }})
+                        Lugar: {{ $detailsModal['placeName'] }} ({{ $detailsModal['placeId'] }})
                     </x-jet-label>
                 </div>
                 <div>

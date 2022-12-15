@@ -38,7 +38,7 @@ class CreatePoint extends Component
         'createForm.description' => 'descripción',
         'createForm.latitude' => 'latitud',
         'createForm.longitude' => 'longitud',
-        'createForm.place' => 'sitio',
+        'createForm.place' => 'lugar',
     ];
 
     public function openCreationModal()
