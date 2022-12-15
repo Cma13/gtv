@@ -199,13 +199,7 @@
                 </div>
                 <div>
                     <x-jet-label>
-                        Área Temática: 
-                        @foreach ($point->thematicAreas as $area )
-                      
-                        @endforeach
-                        {{ $area->name }}
-                        {{-- {{ $detailsModal['thematicAreaName'] }} ({{ $detailsModal['thematicAreaId'] }}) --}}
-                        
+                        Área Temática: {{ $detailsModal['thematicAreaName'] }} ({{ $detailsModal['thematicAreaId'] }}) 
                     </x-jet-label>
                 </div>
                 <div>
