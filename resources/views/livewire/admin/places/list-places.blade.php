@@ -153,27 +153,27 @@
             <div class="space-y-3">
                 <div>
                     <x-jet-label>
-                        ID: {{ $detailsModal['id']}}
+                        <span class="font-bold">ID:</span> {{ $detailsModal['id']}}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Nombre: {{ $detailsModal['name']}}
+                        <span class="font-bold">Nombre:</span> {{ $detailsModal['name']}}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Descripción: {{ $detailsModal['description']}}
+                        <span class="font-bold">Descripción:</span> {{ $detailsModal['description']}}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Creador: {{ $detailsModal['creatorName'] }} ({{ $detailsModal['creatorId'] }})
+                        <span class="font-bold">Creador:</span> {{ $detailsModal['creatorName'] }} ({{ $detailsModal['creatorId'] }})
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Actualizador:
+                        <span class="font-bold">Actualizador:</span>
                         @if($detailsModal['updaterName'])
                             {{ $detailsModal['updaterName'] }} ({{ $detailsModal['updaterId'] }})
                         @else
@@ -183,12 +183,12 @@
                 </div>
                 <div>
                     <x-jet-label>
-                        Fecha de creación: {{ $detailsModal['createdAt'] }}
+                        <span class="font-bold">Fecha de creación:</span> {{ $detailsModal['createdAt'] }}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Última actualización: {{ $detailsModal['updatedAt'] }}
+                        <span class="font-bold">Última actualización:</span> {{ $detailsModal['updatedAt'] }}
                     </x-jet-label>
                 </div>
             </div>

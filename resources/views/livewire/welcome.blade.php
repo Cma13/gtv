@@ -374,32 +374,32 @@
                     @endif
                     <div>
                         <x-jet-label>
-                            Descripción: {{ $detailsModalVideos['description'] }}
+                            <span class="font-bold">Descripción:</span> {{ $detailsModalVideos['description'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Ruta: {{ $detailsModalVideos['route'] }}
+                            <span class="font-bold">Ruta:</span> {{ $detailsModalVideos['route'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Orden: {{ $detailsModalVideos['order'] }}
+                            <span class="font-bold">Orden:</span> {{ $detailsModalVideos['order'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Punto de interés: {{ $detailsModalVideos['pointOfInterest'] }}
+                            <span class="font-bold">Punto de interés:</span> {{ $detailsModalVideos['pointOfInterest'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Creador: {{ $detailsModalVideos['creatorName'] }} ({{ $detailsModalVideos['creatorId'] }})
+                            <span class="font-bold">Creador:</span> {{ $detailsModalVideos['creatorName'] }} ({{ $detailsModalVideos['creatorId'] }})
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Actualizador:
+                            <span class="font-bold">Actualizador:</span>
                             @if ($detailsModalVideos['updaterName'])
                                 {{ $detailsModalVideos['updaterName'] }} ({{ $detailsModalVideos['updaterId'] }})
                             @else
@@ -409,12 +409,12 @@
                     </div>
                     <div>
                         <x-jet-label>
-                            Fecha de creación: {{ $detailsModalVideos['createdAt'] }}
+                            <span class="font-bold">Fecha de creación:</span> {{ $detailsModalVideos['createdAt'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Fecha de actualización: {{ $detailsModalVideos['updatedAt'] }}
+                            <span class="font-bold">Fecha de actualización:</span> {{ $detailsModalVideos['updatedAt'] }}
                         </x-jet-label>
                     </div>
                 </div>
@@ -437,30 +437,30 @@
                 <div class="space-y-6">
                     <div class="mb-4">
                         <x-jet-label>
-                            Nombre: {{ $detailsModalAreas['name'] }}
+                            <span class="font-bold">Nombre:</span> {{ $detailsModalAreas['name'] }}
                         </x-jet-label>
                     </div>
 
                     <div class="mb-4">
                         <x-jet-label>
-                            Descripción: {{ $detailsModalAreas['description'] }}
+                            <span class="font-bold">Descripción:</span> {{ $detailsModalAreas['description'] }}
                         </x-jet-label>
                     </div>
 
                     <div class="mb-4">
                         <x-jet-label>
-                            Fecha de creación: {{ $detailsModalAreas['createdAt'] }}
+                            <span class="font-bold">Fecha de creación:</span> {{ $detailsModalAreas['createdAt'] }}
                         </x-jet-label>
                     </div>
 
                     <div class="mb-4">
                         @if ($detailsModalAreas['updatedAt'] == null)
                             <x-jet-label>
-                                Fecha de actualización: No se ha actualizado
+                                <span class="font-bold">Fecha de actualización:</span> No se ha actualizado
                             </x-jet-label>
                         @else
                             <x-jet-label>
-                                Fecha de actualización: {{ $detailsModalAreas['updatedAt'] }}
+                                <span class="font-bold">Fecha de actualización:</span> {{ $detailsModalAreas['updatedAt'] }}
                             </x-jet-label>
                         @endif
                     </div>
@@ -499,27 +499,27 @@
                     </div>
                     <div>
                         <x-jet-label>
-                            Nombre: {{ $detailsModalUsers['name'] }}
+                            <span class="font-bold">Nombre:</span> {{ $detailsModalUsers['name'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Email: {{ $detailsModalUsers['email'] }}
+                            <span class="font-bold">Email:</span> {{ $detailsModalUsers['email'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Rol: {{ $detailsModalUsers['rol'] }}
+                            <span class="font-bold">Rol:</span> {{ $detailsModalUsers['rol'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Fecha de creación: {{ $detailsModalUsers['createdAt'] }}
+                            <span class="font-bold">Fecha de creación:</span> {{ $detailsModalUsers['createdAt'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Fecha de actualización: {{ $detailsModalUsers['updatedAt'] }}
+                            <span class="font-bold">Fecha de actualización:</span> {{ $detailsModalUsers['updatedAt'] }}
                         </x-jet-label>
                     </div>
                 </div>
@@ -542,37 +542,37 @@
                 <div class="space-y-3">
                     <div>
                         <x-jet-label>
-                            Hora: {{ $detailsModalVisits['hour'] }}
+                            <span class="font-bold">Hora:</span> {{ $detailsModalVisits['hour'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Id Dispositivo: {{ $detailsModalVisits['deviceid'] }}
+                            <span class="font-bold">Id Dispositivo:</span> {{ $detailsModalVisits['deviceid'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Version de la App: {{ $detailsModalVisits['appversion'] }}
+                            <span class="font-bold">Version de la App:</span> {{ $detailsModalVisits['appversion'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Agente: {{ $detailsModalVisits['useragent'] }}
+                            <span class="font-bold">Agente:</span> {{ $detailsModalVisits['useragent'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Sistema Operativo: {{ $detailsModalVisits['ssoo'] }}
+                            <span class="font-bold">Sistema Operativo:</span> {{ $detailsModalVisits['ssoo'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Version Sistema Operativo: {{ $detailsModalVisits['ssooversion'] }}
+                            <span class="font-bold">Version Sistema Operativo:</span> {{ $detailsModalVisits['ssooversion'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Código del punto de interés:
+                            <span class="font-bold">Código del punto de interés:</span>
                             {!! QrCode::size(100)->generate(json_encode($detailsModalVisits['point_of_interest_id'], JSON_PRETTY_PRINT)) !!}
                         </x-jet-label>
                     </div>
@@ -596,47 +596,45 @@
                 <div class="space-y-3">
                     <div>
                         <x-jet-label>
-                            Nombre: {{ $detailsModalPoints['name'] }}
+                            <span class="font-bold">Nombre:</span> {{ $detailsModalPoints['name'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Descripción: {{ $detailsModalPoints['description'] }}
+                            <span class="font-bold">Descripción:</span> {{ $detailsModalPoints['description'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Latitud: {{ $detailsModalPoints['latitude'] }}
+                            <span class="font-bold">Latitud:</span> {{ $detailsModalPoints['latitude'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Longitud: {{ $detailsModalPoints['longitude'] }}
+                            <span class="font-bold">Longitud:</span> {{ $detailsModalPoints['longitude'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            lugar: {{ $detailsModalPoints['placeName'] }} ({{ $detailsModalPoints['placeId'] }})
-                        </x-jet-label>
-                    </div>
-                    <div>
-                        <x-jet-label class="flex flex-col">
-                            <span>Área/s Temática/s:</span>
-                            <div class="ml-4">
-                                @foreach ($detailsModalPoints['thematicAreas'] as $thematicArea)
-                                    <span>{{ $thematicArea['name'] }} ({{ $thematicArea['id'] }}), </span>
-                                @endforeach 
-                            </div>
+                            <span class="font-bold">Lugar:</span> {{ $detailsModalPoints['placeName'] }} ({{ $detailsModalPoints['placeId'] }})
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Creador: {{ $detailsModalPoints['creatorName'] }} ({{ $detailsModalPoints['creatorId'] }})
+                            <span class="font-bold">Área/s Temática/s:</span>
+                            @foreach ($detailsModalPoints['thematicAreas'] as $thematicArea)
+                                <span>{{ $thematicArea['name'] }} ({{ $thematicArea['id'] }}), </span>
+                            @endforeach 
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Actualizador:
+                            <span class="font-bold">Creador:</span> {{ $detailsModalPoints['creatorName'] }} ({{ $detailsModalPoints['creatorId'] }})
+                        </x-jet-label>
+                    </div>
+                    <div>
+                        <x-jet-label>
+                            <span class="font-bold">Actualizador:</span>
                             @if ($detailsModalPoints['updaterName'])
                                 {{ $detailsModalPoints['updaterName'] }} ({{ $detailsModalPoints['updaterId'] }})
                             @else
@@ -646,17 +644,17 @@
                     </div>
                     <div>
                         <x-jet-label>
-                            Fecha de creación: {{ $detailsModalPoints['createdAt'] }}
+                            <span class="font-bold">Fecha de creación:</span> {{ $detailsModalPoints['createdAt'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Fecha de actualización: {{ $detailsModalPoints['updatedAt'] }}
+                            <span class="font-bold">Fecha de actualización:</span> {{ $detailsModalPoints['updatedAt'] }}
                         </x-jet-label>
                     </div>
                     <div class="flex flex-col">
                         <x-jet-label>
-                            Código del punto de interés:
+                            <span class="font-bold">Código del punto de interés:</span>
                         </x-jet-label>
                         <span class="mx-auto">{{ QrCode::geo($detailsModalPoints['latitude'], $detailsModalPoints['longitude']); }}</span>
                     </div>
@@ -680,27 +678,27 @@
                 <div class="space-y-3">
                     <div>
                         <x-jet-label>
-                            ID: {{ $detailsModalPlaces['id'] }}
+                            <span class="font-bold">ID:</span> {{ $detailsModalPlaces['id'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Nombre: {{ $detailsModalPlaces['name'] }}
+                            <span class="font-bold">Nombre:</span> {{ $detailsModalPlaces['name'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Descripción: {{ $detailsModalPlaces['description'] }}
+                            <span class="font-bold">Descripción:</span> {{ $detailsModalPlaces['description'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Creador: {{ $detailsModalPlaces['creatorName'] }} ({{ $detailsModalPlaces['creatorId'] }})
+                            <span class="font-bold">Creador:</span> {{ $detailsModalPlaces['creatorName'] }} ({{ $detailsModalPlaces['creatorId'] }})
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Actualizador:
+                            <span class="font-bold">Actualizador:</span>
                             @if ($detailsModalPlaces['updaterName'])
                                 {{ $detailsModalPlaces['updaterName'] }} ({{ $detailsModalPlaces['updaterId'] }})
                             @else
@@ -710,12 +708,12 @@
                     </div>
                     <div>
                         <x-jet-label>
-                            Fecha de creación: {{ $detailsModalPlaces['createdAt'] }}
+                            <span class="font-bold">Fecha de creación:</span> {{ $detailsModalPlaces['createdAt'] }}
                         </x-jet-label>
                     </div>
                     <div>
                         <x-jet-label>
-                            Última actualización: {{ $detailsModalPlaces['updatedAt'] }}
+                            <span class="font-bold">Última actualización:</span> {{ $detailsModalPlaces['updatedAt'] }}
                         </x-jet-label>
                     </div>
                 </div>
@@ -744,25 +742,25 @@
 
                     <div class="mb-4">
                         <x-jet-label>
-                            Ruta: {{ $detailsModalPhotographies['route'] }}
+                            <span class="font-bold">Ruta:</span> {{ $detailsModalPhotographies['route'] }}
                         </x-jet-label>
                     </div>
 
                     <div class="mb-4">
                         <x-jet-label>
-                            Orden: {{ $detailsModalPhotographies['order'] }}
+                            <span class="font-bold">Orden:</span> {{ $detailsModalPhotographies['order'] }}
                         </x-jet-label>
                     </div>
 
                     <div class="mb-4">
                         <x-jet-label>
-                            Punto de interes: {{ $detailsModalPhotographies['pointOfInterestId'] }}
+                            <span class="font-bold">Punto de interes:</span> {{ $detailsModalPhotographies['pointOfInterestId'] }}
                         </x-jet-label>
                     </div>
 
                     <div class="mb-4">
                         <x-jet-label>
-                            Creador: {{ $detailsModalPhotographies['creatorName'] }} (ID:
+                            <span class="font-bold">Creador:</span> {{ $detailsModalPhotographies['creatorName'] }} (ID:
                             {{ $detailsModalPhotographies['creatorId'] }})
                         </x-jet-label>
                     </div>
@@ -770,7 +768,7 @@
                     @if (!is_null($detailsModalPhotographies['updaterId']))
                         <div class="mb-4">
                             <x-jet-label>
-                                Actualizador: {{ $detailsModalPhotographies['updaterName'] }} (ID:
+                                <span class="font-bold">Actualizador:</span> {{ $detailsModalPhotographies['updaterName'] }} (ID:
                                 {{ $detailsModalPhotographies['updaterId'] }})
                             </x-jet-label>
                         </div>
@@ -778,14 +776,14 @@
 
                     <div class="mb-4">
                         <x-jet-label>
-                            Fecha de creación: {{ $detailsModalPhotographies['createdAt'] }}
+                            <span class="font-bold">Fecha de creación:</span> {{ $detailsModalPhotographies['createdAt'] }}
                         </x-jet-label>
                     </div>
 
                     @if (!is_null($detailsModalPhotographies['updaterId']))
                         <div class="mb-4">
                             <x-jet-label>
-                                Fecha de actualización: {{ $detailsModalPhotographies['updatedAt'] }}
+                                <span class="font-bold">Fecha de actualización:</span> {{ $detailsModalPhotographies['updatedAt'] }}
                             </x-jet-label>
                         </div>
                     @endif

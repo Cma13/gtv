@@ -134,27 +134,29 @@
             <div class="space-y-6">
                 <div class="mb-4">
                     <x-jet-label>
-                        Nombre: {{ $showModal['name'] }}
+                        <span class="font-bold">Nombre:</span> {{ $showModal['name'] }}
                     </x-jet-label>
                 </div>
 
                 <div class="mb-4">
                     <x-jet-label>
-                        Descripción: {{ $showModal['description'] }}
+                        <span class="font-bold">Descripción:</span> {{ $showModal['description'] }}
                     </x-jet-label>
                 </div>
 
                 <div class="mb-4">
                     <x-jet-label>
-                        Fecha de creación: {{ $showModal['createdAt'] }}
+                        <span class="font-bold">Fecha de creación:</span> {{ $showModal['createdAt'] }}
                     </x-jet-label>
                 </div>
-
-                <div class="mb-4">
-                    <x-jet-label>
-                        Fecha de actualización: {{ $showModal['updatedAt'] }}
-                    </x-jet-label>
-                </div>
+                
+                @if ($showModal['updatedAt'])
+                    <div class="mb-4">
+                        <x-jet-label>
+                            <span class="font-bold">Fecha de actualización:</span> {{ $showModal['updatedAt'] }}
+                        </x-jet-label>
+                    </div>
+                @endif
             </div>
         </x-slot>
 
