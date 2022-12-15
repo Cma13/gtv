@@ -137,7 +137,7 @@
                             {{$point->updated_at}}
                         </td>
                         
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap flex gap-4 mt-10">
+                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap flex gap-4">
                             <span class="font-medium text-blue-600 cursor-pointer" wire:click="show('{{ $point->id }}')">
                                 <i class="fa-solid fa-eye"></i>
                             </span>
