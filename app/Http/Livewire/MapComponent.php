@@ -41,7 +41,7 @@ class MapComponent extends Component
 					<dl>
 						<p><b>Nombre: </b>{$point->name}</p>
 						<p><b>Coordenadas: </b>{$point->latitude}, {$point->longitude}</p>
-						<p><b>Sitio: </b>{$point->place->name}</p>
+						<p><b>Lugar: </b>{$point->place->name}</p>
 					</dl>
 					EOT
 			];

@@ -178,7 +178,7 @@
                 </div>
             @endhasanyrole
 
-            {{-- TABLA PUNTOS DE INTERÉS   ID-DISTANCIA-SITIO --}}
+            {{-- TABLA PUNTOS DE INTERÉS   ID-DISTANCIA-LUGAR --}}
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -197,7 +197,7 @@
                                 ID
                             </td>
                             <td class="px-6 py-3">
-                                SITIO
+                                LUGAR
                             </td>
                         </tr>
                         @foreach ($points as $point)
@@ -616,7 +616,7 @@
                     </div>
                     <div>
                         <x-jet-label>
-                            Sitio: {{ $detailsModalPoints['placeName'] }} ({{ $detailsModalPoints['placeId'] }})
+                            lugar: {{ $detailsModalPoints['placeName'] }} ({{ $detailsModalPoints['placeId'] }})
                         </x-jet-label>
                     </div>
                     <div>

@@ -89,7 +89,7 @@
                                 {{ $thematicArea->name }}
                             </td>
                             <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                {{ $thematicArea->description }}
+                                {{ getDescripcionCorta(50, $thematicArea->description) }}
                             </td>
                             <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                                 {{ $thematicArea->created_at }}
