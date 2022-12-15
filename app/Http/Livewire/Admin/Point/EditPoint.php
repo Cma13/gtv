@@ -22,6 +22,7 @@ class EditPoint extends Component
         'latitude' => '',
         'longitude' => '',
         'place' => '',
+	    'areas' => [],
     ];
 
     protected $rules = [
@@ -30,6 +31,8 @@ class EditPoint extends Component
         'editForm.latitude' => 'required|numeric|max:90|min:-90',
         'editForm.longitude' => 'required|numeric|max:180|min:-180',
         'editForm.place' => 'required|exists:places,id',
+	    'editForm.areas' => 'array',
+	    'editForm.areas.*' => 'distinct|exists:thematic_areas,id'
     ];
 
     protected $validationAttributes = [
@@ -38,6 +41,8 @@ class EditPoint extends Component
         'editForm.latitude' => 'latitud',
         'editForm.longitude' => 'longitud',
         'editForm.place' => 'sitio',
+	    'editForm.areas' => 'areas temáticas',
+	    'editForm.areas.*' => 'área temática'
     ];
 
     public function openEditModal(PointOfInterest $point)
@@ -50,6 +55,7 @@ class EditPoint extends Component
         $this->editForm['latitude'] = $point->latitude;
         $this->editForm['longitude'] = $point->longitude;
         $this->editForm['place'] = $point->place->id;
+	    $this->editForm['areas'] = $point->thematicAreas->pluck('id')->toArray();
 
         $this->getPlaces();
 
@@ -73,6 +79,13 @@ class EditPoint extends Component
             'longitude' => $this->editForm['longitude'],
             'place_id' => $this->editForm['place'],
         ]);
+	    $changes = $pointOfInterest->thematicAreas()->sync($this->editForm['areas']);
+	    if (count($changes['attached']) ||
+		    count($changes['updated']) ||
+		    count($changes['detached'])) {
+		    $isUpdated = true;
+	    }
+
         if ($isUpdated) {
             Log::info('User with ID ' . auth()->user()->id . 'was updated a point of interest with name ' . $pointOfInterest->name .$pointOfInterest);
         }
