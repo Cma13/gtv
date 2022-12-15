@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class button-link extends Component
+class buttonLink extends Component
 {
     /**
      * Create a new component instance.
