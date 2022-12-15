@@ -86,22 +86,6 @@
                                 <i class="fa-solid fa-arrow-down"></i>
                     @endif
                 </th>
-                <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('created_at')">
-                    Fecha creación
-                    @if($sortField === 'created_at' && $sortDirection === 'asc')
-                        <i class="fa-solid fa-arrow-up">
-                            @elseif($sortField === 'created_at' && $sortDirection === 'desc')
-                                <i class="fa-solid fa-arrow-down"></i>
-                    @endif
-                </th>
-                <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('updated_at')">
-                    Fecha actualización
-                    @if($sortField === 'updated_at' && $sortDirection === 'asc')
-                        <i class="fa-solid fa-arrow-up">
-                            @elseif($sortField === 'created_at' && $sortDirection === 'desc')
-                                <i class="fa-solid fa-arrow-down"></i>
-                    @endif
-                </th>
                 <th scope="col" class="px-6 py-3">
                     <span class="sr-only">Actions</span>
                 </th>
@@ -117,7 +101,7 @@
                             {{$point->name}}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            {{$point->getDescripcionCorta(20)}}
+                            {{$point->getDescripcionCorta(50)}}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                             {{$point->place->name}}
@@ -130,13 +114,6 @@
                                 {{\App\Models\User::find($point->updater)?->name}}
                             @endif
                         </td>
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            {{$point->created_at}}
-                        </td>
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            {{$point->updated_at}}
-                        </td>
-                        
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap flex gap-4">
                             <span class="font-medium text-blue-600 cursor-pointer" wire:click="show('{{ $point->id }}')">
                                 <i class="fa-solid fa-eye"></i>

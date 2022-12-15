@@ -112,7 +112,7 @@ class PointOfInterest extends Model
     {
         $caracteresDescription = strlen($this->description);
 
-        if ($caracteresDescription > 20) {
+        if ($caracteresDescription > 50) {
             return substr($this->description, 0, $n_caracteres) . '...';
         }
         return $this->description;
