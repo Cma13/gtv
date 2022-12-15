@@ -624,7 +624,7 @@
                             <span>Área/s Temática/s:</span>
                             <div class="ml-4">
                                 @foreach ($detailsModalPoints['thematicAreas'] as $thematicArea)
-                                    <span>{{ $thematicArea->name }} ({{ $thematicArea->id }}), </span>
+                                    <span>{{ $thematicArea['name'] }} ({{ $thematicArea['id'] }}), </span>
                                 @endforeach 
                             </div>
                         </x-jet-label>
