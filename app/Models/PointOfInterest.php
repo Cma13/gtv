@@ -44,11 +44,6 @@ class PointOfInterest extends Model
         return $this->hasMany(Video::class);
     }
 
-    public function visits()
-    {
-        return $this->hasMany(Visit::class);
-    }
-
     public static function create(array $attributes = [])
     {
         $attributes['creator']= auth()->user()->id;
@@ -73,12 +68,6 @@ class PointOfInterest extends Model
                 $p->point_of_interest_id = null;
                 $p->save();
             });
-
-            $pointOfInterest->visits()->each(function($v) {
-                $v->point_of_interest_id = null;
-                $v->save();
-            });
-
             $pointOfInterest->videos()->each(function($v) {
                 $v->point_of_interest_id = null;
                 $v->save();

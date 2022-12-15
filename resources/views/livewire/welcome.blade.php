@@ -78,54 +78,7 @@
             @endrole
 
             @hasanyrole('Administrador|Profesor')
-                {{-- TABLA VISITAS   ID-SSOO-PUNTO DE INTERÉS --}}
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th scope="col" class="px-6 py-3" colspan="2">
-                                    ÚLTIMAS VISITAS REGISTRADAS
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-right" colspan="2">
-                                    TOTAL - {{ $countvisits }}
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="px-6 py-3">
-                                    ID
-                                </td>
-                                <td class="px-6 py-3">
-                                    SSOO
-                                </td>
-                                <td class="px-6 py-3">
-                                    PUNTO DE INTERÉS
-                                </td>
-                            </tr>
-                            @foreach ($visits as $visit)
-                                <tr
-                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td class="px-6 py-4">
-                                        <div>{{ $visit->id }}</div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div>{{ $visit->ssoo }}</div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div>{{ $visit->point_of_interest_id }}</div>
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button wire:click="showVisits('{{ $visit->id }}')"
-                                            class="text-orange-500 hover:text-orange-400 hover:underline ml-2 font-semibold">
-                                            Ver más
-                                        </button>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+
 
 
                 {{-- TABLA ÁREAS TEMÁTICAS   ID-NOMBRE-DESCRIPCIÓN --}}
@@ -532,59 +485,6 @@
             </x-slot>
         </x-jet-dialog-modal>
 
-        {{-- Modal showVisits --}}
-        <x-jet-dialog-modal wire:model="detailsModalVisits.open">
-            <x-slot name="title">
-                <span class="text-2xl">Detalles de la Visita #{{ $detailsModalVisits['id'] }}</span>
-            </x-slot>
-
-            <x-slot name="content">
-                <div class="space-y-3">
-                    <div>
-                        <x-jet-label>
-                            <span class="font-bold">Hora:</span> {{ $detailsModalVisits['hour'] }}
-                        </x-jet-label>
-                    </div>
-                    <div>
-                        <x-jet-label>
-                            <span class="font-bold">Id Dispositivo:</span> {{ $detailsModalVisits['deviceid'] }}
-                        </x-jet-label>
-                    </div>
-                    <div>
-                        <x-jet-label>
-                            <span class="font-bold">Version de la App:</span> {{ $detailsModalVisits['appversion'] }}
-                        </x-jet-label>
-                    </div>
-                    <div>
-                        <x-jet-label>
-                            <span class="font-bold">Agente:</span> {{ $detailsModalVisits['useragent'] }}
-                        </x-jet-label>
-                    </div>
-                    <div>
-                        <x-jet-label>
-                            <span class="font-bold">Sistema Operativo:</span> {{ $detailsModalVisits['ssoo'] }}
-                        </x-jet-label>
-                    </div>
-                    <div>
-                        <x-jet-label>
-                            <span class="font-bold">Version Sistema Operativo:</span> {{ $detailsModalVisits['ssooversion'] }}
-                        </x-jet-label>
-                    </div>
-                    <div>
-                        <x-jet-label>
-                            <span class="font-bold">Código del punto de interés:</span>
-                            {!! QrCode::size(100)->generate(json_encode($detailsModalVisits['point_of_interest_id'], JSON_PRETTY_PRINT)) !!}
-                        </x-jet-label>
-                    </div>
-                </div>
-            </x-slot>
-
-            <x-slot name="footer">
-                <x-button wire:click="$set('detailsModalVisits.open', false)">
-                    Cerrar
-                </x-button>
-            </x-slot>
-        </x-jet-dialog-modal>
 
         {{-- Modal showPoints --}}
         <x-jet-dialog-modal wire:model="detailsModalPoints.open">
@@ -624,7 +524,7 @@
                             <span class="font-bold">Área/s Temática/s:</span>
                             @foreach ($detailsModalPoints['thematicAreas'] as $thematicArea)
                                 <span>{{ $thematicArea['name'] }} ({{ $thematicArea['id'] }}), </span>
-                            @endforeach 
+                            @endforeach
                         </x-jet-label>
                     </div>
                     <div>

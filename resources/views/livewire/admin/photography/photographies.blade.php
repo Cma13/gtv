@@ -22,8 +22,6 @@
                         <option value="creator">CREADOR</option>
                         <option value="Updater">ACTUALIZADOR</option>
                     @endhasanyrole
-                    <option value="created_at">FECHA DE CREACIÓN</option>
-                    <option value="updated_at">FECHA DE ACTUALIZACIÓN</option>
                 </select>
             </div>
 
@@ -79,22 +77,6 @@
                             <i class="fa-solid fa-arrow-down"></i>
                         @endif
                     </th>
-                    <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('created_at')">
-                        Fecha creación
-                        @if($sortField === 'created_at' && $sortDirection === 'asc')
-                            <i class="fa-solid fa-arrow-up">
-                        @elseif($sortField === 'created_at' && $sortDirection === 'desc')
-                            <i class="fa-solid fa-arrow-down"></i>
-                        @endif
-                    </th>
-                    <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('updated_at')">
-                        Fecha actualización
-                        @if($sortField === 'updated_at' && $sortDirection === 'asc')
-                            <i class="fa-solid fa-arrow-up">
-                        @elseif($sortField === 'updated_at' && $sortDirection === 'desc')
-                            <i class="fa-solid fa-arrow-down"></i>
-                        @endif
-                    </th>
                     <th scope="col" class="px-6 py-3">
                         Acciones
                     </th>
@@ -135,14 +117,6 @@
                                     @role('Administrador')
                                     (ID: {{ \App\Models\User::find($photography->updater)->id }})
                                     @endrole
-                                @endif
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                {{ $photography->created_at }}
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                @if($photography->updater)
-                                    {{ $photography->updated_at }}
                                 @endif
                             </td>
                             <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
@@ -240,7 +214,7 @@
                     </x-jet-label>
                 </div>
 
-                @if( ! is_null($showModal['updaterId']))
+                @if(!is_null($showModal['updaterId']))
                     <div class="mb-4">
                         <x-jet-label>
                             <span class="font-bold">Fecha de actualización:</span> {{ $showModal['updatedAt'] }}

@@ -20,8 +20,6 @@
                 <option value="place_id">LUGAR</option>
                 <option value="creator">CREADOR</option>
                 <option value="updater">ACTUALIZADOR</option>
-                <option value="created_at">FECHA DE CREACIÓN</option>
-                <option value="updated_at">FECHA DE ACTUALIZACIÓN</option>
             </select>
         </div>
 

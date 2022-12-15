@@ -31,9 +31,6 @@
                             <x-jet-nav-link href="{{ route('thematic-areas.index') }}" :active="request()->routeIs('thematic-areas.index')">
                                 Áreas temáticas
                             </x-jet-nav-link>
-                            <x-jet-nav-link href="{{ route('visit.index') }}" :active="request()->routeIs('visit.index')">
-                                Visitas
-                            </x-jet-nav-link>
                         @endhasrole
                         @role('Administrador')
                             <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">

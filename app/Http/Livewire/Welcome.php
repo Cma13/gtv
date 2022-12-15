@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use App\Models\Video;
 use App\Models\ThematicArea;
 use App\Models\User;
-use App\Models\Visit;
 use App\Models\PointOfInterest;
 use App\Models\Place;
 use App\Models\Photography;
@@ -18,7 +17,6 @@ class Welcome extends Component
     public $countvideos;
     public $countareas;
     public $countusers;
-    public $countvisits;
     public $countpoints;
     public $countplaces;
     public $countphotographies;
@@ -68,20 +66,6 @@ class Welcome extends Component
         'emailVerifiedAt' => '',
         'createdAt' => '',
         'updatedAt' => '',
-    ];
-
-    public $detailsModalVisits = [
-        'open' => false,
-        'id' => null,
-        'hour' => null,
-        'deviceid' => null,
-        'appversion' => null,
-        'useragent' => null,
-        'ssoo' => null,
-        'ssooversion' => null,
-        'latitude' => null,
-        'longitude' => null,
-        'point_of_interest_id' => null,
     ];
 
     public $detailsModalPoints = [
@@ -172,23 +156,6 @@ class Welcome extends Component
         $this->detailsModalUsers['updatedAt'] = $user->updated_at;
     }
 
-    public function showVisits(Visit $visit)
-    {
-        $this->detailsModalVisits['open'] = true;
-        $this->detailsModalVisits['id'] = $visit->id;
-        $this->detailsModalVisits['hour'] = $visit->hour;
-        $this->detailsModalVisits['deviceid'] = $visit->deviceid;
-        $this->detailsModalVisits['appversion'] = $visit->appversion;
-        $this->detailsModalVisits['useragent'] = $visit->useragent;
-        $this->detailsModalVisits['ssoo'] = $visit->ssoo;
-        $this->detailsModalVisits['ssooversion'] = $visit->ssooversion;
-        $this->detailsModalVisits['latitude'] = $visit->latitude;
-        $this->detailsModalVisits['longitude'] = $visit->longitude;
-        $this->detailsModalVisits['point_of_interest_id'] = $visit->pointOfInterest;
-        $this->detailsModalVisits['createdAt'] = $visit->created_at;
-
-    }
-
     public function showPoints(PointOfInterest $point)
     {
         $this->detailsModalPoints['open'] = true;
@@ -255,12 +222,6 @@ class Welcome extends Component
             $this->countusers = User::all()->count();
         }
 
-        if(auth()->user()->hasRole('Administrador')
-            || auth()->user()->hasRole('Profesor')) {
-
-            $this->countvisits = Visit::all()->count();
-        }
-
         if(auth()->user()->hasRole('Alumno')) {
             $this->countpoints = PointOfInterest::where('creator', auth()->user()->id)->count();
         } else {
@@ -308,13 +269,6 @@ class Welcome extends Component
                 ->paginate(3);
         }
 
-        if(auth()->user()->hasRole('Administrador')
-            || auth()->user()->hasRole('Profesor')) {
-
-            $visits = Visit::orderByDesc('id')
-                ->paginate(3);
-        }
-
         if (auth()->user()->hasRole('Alumno')) {
             $points = PointOfInterest::where('creator', auth()->user()->id)
                 ->orderByDesc('id')
@@ -347,7 +301,7 @@ class Welcome extends Component
         if(auth()->user()->hasRole('Administrador')
             || auth()->user()->hasRole('Profesor')) {
 
-            return view('livewire.welcome', compact('videos', 'thematicAreas', 'users', 'visits', 'points', 'places', 'photographies'));
+            return view('livewire.welcome', compact('videos', 'thematicAreas', 'users',  'points', 'places', 'photographies'));
         }else if(auth()->user()->hasRole('Alumno')){
             return view('livewire.welcome', compact('videos',  'points', 'photographies'));
         } else {

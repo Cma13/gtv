@@ -9,7 +9,6 @@ use App\Http\Livewire\Admin\User\ListUsers;
 use App\Http\Livewire\Admin\Verify\ListVerify;
 use App\Http\Livewire\Admin\VerifyUser\VerifyUser;
 use App\Http\Livewire\Admin\Video\ListVideos;
-use App\Http\Livewire\Admin\Visit\ShowVisits;
 use App\Http\Livewire\Map;
 use App\Http\Livewire\Welcome;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +18,6 @@ Route::group(['middleware' => ['role:Administrador']], function () {
 });
 
 Route::group(['middleware' => ['role:Profesor|Administrador']], function () {
-    Route::get('visits', ShowVisits::class)->name('visit.index');
     Route::get('thematic-areas', ThematicAreas::class)->name('thematic-areas.index');
     Route::get('places', ListPlaces::class)->name('places.index');
     Route::get('verify', ListVerify::class)->name('verify.index');
