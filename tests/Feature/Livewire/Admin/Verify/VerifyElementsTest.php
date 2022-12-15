@@ -63,12 +63,6 @@ class VerifyElementsTest extends TestCase
 
         $this->assertDatabaseCount('point_of_interests', 1);
 		$this->assertSoftDeleted($point);
-		/*
-        $this->assertDatabaseHas('point_of_interests', [
-            'deleted_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'verified' => false
-        ]);
-		*/
 
         Livewire::test(DeletedVerify::class)
             ->assertSee($point->name);
