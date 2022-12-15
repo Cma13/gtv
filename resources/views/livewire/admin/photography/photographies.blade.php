@@ -189,31 +189,31 @@
 
                 <div class="mb-4">
                     <x-jet-label>
-                        Ruta: {{ $showModal['route'] }}
+                        <span class="font-bold">Ruta:</span> {{ $showModal['route'] }}
                     </x-jet-label>
                 </div>
 
                 <div class="mb-4">
                     <x-jet-label>
-                        Orden: {{ $showModal['order'] }}
+                        <span class="font-bold">Orden:</span> {{ $showModal['order'] }}
                     </x-jet-label>
                 </div>
 
                 @if( ! empty($showModal['pointOfInterestId']))
                     <div class="mb-4">
                         <x-jet-label>
-                            Punto de interés: {{ $showModal['pointOfInterestId'] }}
+                            <span class="font-bold">Punto de interés:</span> {{ $showModal['pointOfInterestId'] }}
                         </x-jet-label>
                     </div>
                 @else
                     <div class="mb-4">
                         <x-jet-label>
-                            Punto de interés: <span class="text-red-600">Ninguno</span>
+                            <span class="font-bold">Punto de interés:</span> <span class="text-red-600">Ninguno</span>
                         </x-jet-label>
                     </div>
                     <div class="mb-4">
                         <x-jet-label>
-                            Área temática: <span class="text-red-600">Ninguna</span>
+                            <span class="font-bold">Área temática:</span> <span class="text-red-600">Ninguna</span>
                         </x-jet-label>
                     </div>
                 @endif
@@ -221,7 +221,7 @@
                 @if($showModal['creatorId'])
                     <div class="mb-4">
                         <x-jet-label>
-                            Creador: {{ $showModal['creatorName'] }} (ID: {{ $showModal['creatorId'] }})
+                            <span class="font-bold">Creador:</span> {{ $showModal['creatorName'] }} (ID: {{ $showModal['creatorId'] }})
                         </x-jet-label>
                     </div>
                 @endif
@@ -229,21 +229,21 @@
                 @if( ! is_null($showModal['updaterId']))
                     <div class="mb-4">
                         <x-jet-label>
-                            Actualizador: {{ $showModal['updaterName'] }} (ID: {{ $showModal['updaterId'] }})
+                            <span class="font-bold">Actualizador:</span> {{ $showModal['updaterName'] }} (ID: {{ $showModal['updaterId'] }})
                         </x-jet-label>
                     </div>
                 @endif
 
                 <div class="mb-4">
                     <x-jet-label>
-                        Fecha de creación: {{ $showModal['createdAt'] }}
+                        <span class="font-bold">Fecha de creación:</span> {{ $showModal['createdAt'] }}
                     </x-jet-label>
                 </div>
 
                 @if( ! is_null($showModal['updaterId']))
                     <div class="mb-4">
                         <x-jet-label>
-                            Fecha de actualización: {{ $showModal['updatedAt'] }}
+                            <span class="font-bold">Fecha de actualización:</span> {{ $showModal['updatedAt'] }}
                         </x-jet-label>
                     </div>
                 @endif

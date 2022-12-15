@@ -137,27 +137,27 @@
                 </div>
                 <div>
                     <x-jet-label>
-                        Nombre: {{ $detailsModal['name']}}
+                        <span class="font-bold">Nombre:</span> {{ $detailsModal['name']}}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Email: {{ $detailsModal['email'] }}
+                        <span class="font-bold">Email:</span> {{ $detailsModal['email'] }}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Rol: {{ isset($user) ? $user->roles->first()->name : ''}}
+                        <span class="font-bold">Rol:</span> {{ isset($user) ? $user->roles->first()->name : ''}}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Fecha de creación: {{ $detailsModal['createdAt'] }}
+                        <span class="font-bold">Fecha de creación:</span> {{ $detailsModal['createdAt'] }}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Fecha de actualización: {{ $detailsModal['updatedAt'] }}
+                        <span class="font-bold">Fecha de actualización:</span> {{ $detailsModal['updatedAt'] }}
                     </x-jet-label>
                 </div>
             </div>

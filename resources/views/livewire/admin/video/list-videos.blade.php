@@ -124,31 +124,31 @@
                 @endif
                 <div>
                     <x-jet-label>
-                        Descripción: {{ $detailsModal['description']}}
+                        <span class="font-bold">Descripción:</span> {{ $detailsModal['description']}}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Ruta: {{ $detailsModal['route'] }}
+                        <span class="font-bold">Ruta:</span> {{ $detailsModal['route'] }}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Orden: {{ $detailsModal['order'] }}
+                        <span class="font-bold">Orden:</span> {{ $detailsModal['order'] }}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
                         @if( ! empty($detailsModal['pointOfInterest']))
-                            Punto de interés: {{ $detailsModal['pointOfInterest'] }}
+                            <span class="font-bold">Punto de interés:</span> {{ $detailsModal['pointOfInterest'] }}
                         @else
-                            Punto de interés: <span class="text-red-600">Ninguno</span>
+                            <span class="font-bold">Punto de interés:</span> <span class="text-red-600">Ninguno</span>
                         @endif
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Creador:
+                        <span class="font-bold">Creador:</span>
                         @if($detailsModal['creatorName'])
                             {{ $detailsModal['creatorName'] }} ({{ $detailsModal['creatorId'] }})
                         @else
@@ -158,7 +158,7 @@
                 </div>
                 <div>
                     <x-jet-label>
-                        Actualizador:
+                        <span class="font-bold">Actualizador:</span>
                         @if($detailsModal['updaterName'])
                             {{ $detailsModal['updaterName'] }} ({{ $detailsModal['updaterId'] }})
                         @else
@@ -168,27 +168,27 @@
                 </div>
                 <div>
                     <x-jet-label>
-                        Fecha de creación: {{ $detailsModal['createdAt'] }}
+                        <span class="font-bold">Fecha de creación:</span> {{ $detailsModal['createdAt'] }}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Fecha de actualización: {{ $detailsModal['updatedAt'] }}
+                        <span class="font-bold">Fecha de actualización:</span> {{ $detailsModal['updatedAt'] }}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Formato: {{ $detailsModal['format'] }}
+                        <span class="font-bold">Formato:</span> {{ $detailsModal['format'] }}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Salida de audio: {{ $detailsModal['channelMode'] }}
+                        <span class="font-bold">Salida de audio:</span> {{ $detailsModal['channelMode'] }}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Resolución: {{ $detailsModal['resolution'] }}
+                        <span class="font-bold">Resolución:</span> {{ $detailsModal['resolution'] }}
                     </x-jet-label>
                 </div>
             </div>
