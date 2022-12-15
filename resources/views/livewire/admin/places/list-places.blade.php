@@ -100,7 +100,7 @@
                             {{ $place->name }}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            {{ $place->getDescripcionCorta(20) }}
+                            {{ getDescripcionCorta(50, $place->description) }}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                             {{ \App\Models\User::find($place->creator)?->name }}

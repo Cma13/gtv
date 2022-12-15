@@ -41,8 +41,8 @@ class EditPoint extends Component
         'editForm.latitude' => 'latitud',
         'editForm.longitude' => 'longitud',
         'editForm.place' => 'lugar',
-	      'editForm.areas' => 'areas temáticas',
-	      'editForm.areas.*' => 'área temática'
+	    'editForm.areas' => 'areas temáticas',
+	    'editForm.areas.*' => 'área temática'
     ];
 
     public function openEditModal(PointOfInterest $point)

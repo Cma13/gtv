@@ -73,7 +73,7 @@
                             {{ $video->id }}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            {{ $video->getDescripcionCorta(50) }}
+                            {{ getDescripcionCorta(50, $video->description) }}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                             @if( ! is_null($video->pointOfInterest))

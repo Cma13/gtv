@@ -19,14 +19,4 @@ class ThematicArea extends Model
     {
         return $this->belongsToMany(User::class)->withPivot(['date', 'active']);
     }
-
-    public function getDescripcionCorta($n_caracteres)
-    {
-        $caracteresDescription = strlen($this->description);
-
-        if ($caracteresDescription > 50) {
-            return substr($this->description, 0, $n_caracteres) . '...';
-        }
-        return $this->description;
-    }
 }

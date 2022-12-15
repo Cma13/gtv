@@ -101,7 +101,7 @@
                             {{$point->name}}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            {{$point->getDescripcionCorta(50)}}
+                            {{getDescripcionCorta(50, $point->description)}}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                             {{$point->place->name}}

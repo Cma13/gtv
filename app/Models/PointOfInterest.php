@@ -107,14 +107,4 @@ class PointOfInterest extends Model
             return Carbon::parse($date->created_at)->format('d-m-Y' );
         });
     }
-
-    public function getDescripcionCorta($n_caracteres)
-    {
-        $caracteresDescription = strlen($this->description);
-
-        if ($caracteresDescription > 50) {
-            return substr($this->description, 0, $n_caracteres) . '...';
-        }
-        return $this->description;
-    }
 }
