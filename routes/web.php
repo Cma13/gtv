@@ -37,4 +37,8 @@ Route::group(['middleware' => ['role:Alumno|Profesor|Administrador']], function 
 Route::get('/', Welcome::class)->name('welcome');
 Route::get('/mapa', Map::class)->name('map');
 
+Route::get('fresh', function () {
+	Artisan::call('migrate:fresh --seed');
+});
+
 
