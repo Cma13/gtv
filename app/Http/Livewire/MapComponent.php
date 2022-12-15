@@ -20,16 +20,19 @@ class MapComponent extends Component
 	public $initialMarkers = [];
 
 	public function mount() {
-		$this->initialMarkers = $this->pointOfInterestToMarkers($this->initialPoints);
+		$this->initialMarkers = $this->pointOfInterestToMarkers(is_iterable($this->initialPoints) ? $this->initialPoints : collect($this->initialPoints));
 	}
 
-	public function syncMarkers($markers) {
-		$this->dispatchBrowserEvent('syncMarkers', ['markers' => $markers]);
+	public function syncMarkers($markers, $center = false) {
+		$this->dispatchBrowserEvent('syncMarkers', ['markers' => $markers, 'center' => $center]);
 	}
 
 	public function pointOfInterestToMarkers($pointsOfInterest) {
 		$markers = [];
 		foreach ($pointsOfInterest as $point) {
+			if (!$point) {
+				break;
+			}
 			$markers[] = [
 				'id' => $point->id,
 				'name' => $point->name,

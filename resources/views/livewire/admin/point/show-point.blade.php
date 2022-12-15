@@ -149,42 +149,45 @@
             <div class="space-y-3">
                 <div>
                     <x-jet-label>
-                        Nombre: {{ $detailsModal['name']}}
+                        <span class="font-bold">Nombre:</span> {{ $detailsModal['name']}}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Descripción: {{ $detailsModal['description']}}
+                        <span class="font-bold">Descripción:</span> {{ $detailsModal['description']}}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Latitud: {{ $detailsModal['latitude'] }}
+                        <span class="font-bold">Latitud:</span> {{ $detailsModal['latitude'] }}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Longitud: {{ $detailsModal['longitude'] }}
+                        <span class="font-bold">Longitud:</span> {{ $detailsModal['longitude'] }}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Lugar: {{ $detailsModal['placeName'] }} ({{ $detailsModal['placeId'] }})
+                        <span class="font-bold">Lugar:</span> {{ $detailsModal['placeName'] }} ({{ $detailsModal['placeId'] }})
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Área Temática: {{ $detailsModal['thematicAreaName'] }} ({{ $detailsModal['thematicAreaId'] }})
+                        <span class="font-bold">Área/s Temática/s:</span>
+                        @foreach ($detailsModal['thematicAreas'] as $thematicArea)
+                            <span>{{ $thematicArea['name'] }} ({{ $thematicArea['id'] }}), </span>
+                        @endforeach 
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Creador: {{ $detailsModal['creatorName'] }} ({{ $detailsModal['creatorId'] }})
+                        <span class="font-bold">Creador:</span> {{ $detailsModal['creatorName'] }} ({{ $detailsModal['creatorId'] }})
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Actualizador:
+                        <span class="font-bold">Actualizador:</span>
                         @if($detailsModal['updaterName'])
                             {{ $detailsModal['updaterName'] }} ({{ $detailsModal['updaterId'] }})
                         @else
@@ -194,19 +197,24 @@
                 </div>
                 <div>
                     <x-jet-label>
-                        Fecha de creación: {{ $detailsModal['createdAt'] }}
+                        <span class="font-bold">Fecha de creación:</span> {{ $detailsModal['createdAt'] }}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Fecha de actualización: {{ $detailsModal['updatedAt'] }}
+                        <span class="font-bold">Fecha de actualización:</span> {{ $detailsModal['updatedAt'] }}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Código del punto de interés:
-                        {!!QrCode::size(100)->generate(json_encode($detailsModal['qr'], JSON_PRETTY_PRINT)) !!}
+                        <span class="font-bold">QR y mapa:</span>
                     </x-jet-label>
+                    <div class="flex">
+                        <div class="min-w-min flex-auto mr-4 self-center">{{ QrCode::geo($detailsModal['latitude'], $detailsModal['longitude']) }}</div>
+                        <div class="w-full h-[250px] flex-auto">
+                            <livewire:map-component :initial-points="\App\Models\PointOfInterest::all()"/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </x-slot>

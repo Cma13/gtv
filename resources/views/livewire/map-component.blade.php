@@ -38,11 +38,15 @@
 				})
 			}
 
-			function syncMarkers(enabledId) {
+			function syncMarkers(enabledId, centerPoint) {
 				markersMap.forEach((marker, id) => marker.setMap(enabledId.map(String).includes(String(id)) ? map : null));
+				if (centerPoint) {
+					map.setCenter(markersMap.get(enabledId[0]).getPosition());
+					map.setZoom(10);
+				}
 			}
 
-			window.addEventListener('syncMarkers', event => syncMarkers(event.detail.markers));
+			window.addEventListener('syncMarkers', event => syncMarkers(event.detail.markers, event.detail.center));
 		</script>
 	@endpush
 </div>
