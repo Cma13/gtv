@@ -649,11 +649,11 @@
                             Fecha de actualización: {{ $detailsModalPoints['updatedAt'] }}
                         </x-jet-label>
                     </div>
-                    <div>
+                    <div class="flex flex-col">
                         <x-jet-label>
                             Código del punto de interés:
-                            {!! QrCode::size(80)->generate(json_encode($detailsModalPoints['qr'], JSON_PRETTY_PRINT)) !!}
                         </x-jet-label>
+                        <span class="mx-auto">{{ QrCode::geo($detailsModalPoints['latitude'], $detailsModalPoints['longitude']); }}</span>
                     </div>
                 </div>
             </x-slot>

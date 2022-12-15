@@ -198,8 +198,13 @@
                     </x-jet-label>
                 </div>
                 <div>
-                    <x-jet-label>
-                        Área Temática: {{ $detailsModal['thematicAreaName'] }} ({{ $detailsModal['thematicAreaId'] }}) 
+                    <x-jet-label class="flex flex-col">
+                        <span>Área/s Temática/s:</span>
+                        <div class="ml-4">
+                            @foreach ($detailsModal['thematicAreas'] as $thematicArea)
+                                <span>{{ $thematicArea->name }} ({{ $thematicArea->id }}), </span>
+                            @endforeach 
+                        </div>
                     </x-jet-label>
                 </div>
                 <div>
@@ -227,11 +232,11 @@
                         Fecha de actualización: {{ $detailsModal['updatedAt'] }}
                     </x-jet-label>
                 </div>
-                <div>
+                <div class="flex flex-col">
                     <x-jet-label>
                         Código del punto de interés:
-                        {!!QrCode::size(100)->generate(json_encode($detailsModal['qr'], JSON_PRETTY_PRINT)) !!}
                     </x-jet-label>
+                    <span class="mx-auto">{{ QrCode::geo($detailsModal['latitude'], $detailsModal['longitude']); }}</span>
                 </div>
             </div>
         </x-slot>

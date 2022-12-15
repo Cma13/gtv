@@ -101,7 +101,6 @@ class Welcome extends Component
         'updaterId' => null,
         'createdAt' => null,
         'updatedAt' => null,
-        'qr' =>null,
     ];
 
     public $detailsModalPlaces = [
@@ -209,7 +208,6 @@ class Welcome extends Component
         $this->detailsModalPoints['updaterId'] = $point->updater;
         $this->detailsModalPoints['createdAt'] = $point->created_at;
         $this->detailsModalPoints['updatedAt'] = $point->updated_at;
-        $this->detailsModalPoints['qr'] = $point;
     }
 
     public function showPlaces(Place $place)

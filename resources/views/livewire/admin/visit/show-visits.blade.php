@@ -161,11 +161,11 @@
                         Version Sistema Operativo: {{ $detailsModal['ssooversion'] }}
                     </x-jet-label>
                 </div>
-                <div>
+                <div class="flex flex-col">
                     <x-jet-label>
                         Código del punto de interés:
-                        {!!QrCode::size(100)->generate(json_encode($detailsModal['point_of_interest_id'], JSON_PRETTY_PRINT)) !!}
                     </x-jet-label>
+                    <span class="mx-auto">{{ QrCode::geo($detailsModal['latitude'], $detailsModal['longitude']); }}</span>
                 </div>
             </div>
         </x-slot>
