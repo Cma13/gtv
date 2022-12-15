@@ -48,6 +48,20 @@
                     </select>
                     <x-jet-input-error for="createForm.place" class="mt-2" />
                 </div>
+                <div>
+                    <x-jet-label>
+                        Áreas temáticas
+                    </x-jet-label>
+                    <ul class="grid grid-cols-3 gap-1 list-inside">
+                        @foreach(\App\Models\ThematicArea::all() as $thematicArea)
+                            <li>
+                                <input wire:model="createForm.areas" value="{{ $thematicArea->id }}" type="checkbox">
+                                {{ $thematicArea->name }}
+                            </li>
+                        @endforeach
+                    </ul>
+                    <x-jet-input-error for="editForm.areas" class="mt-2" />
+                </div>
             </div>
         </x-slot>
 

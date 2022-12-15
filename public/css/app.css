@@ -11813,11 +11813,11 @@ input:checked + .toggle-bg {
 .z-50 {
   z-index: 50;
 }
-.z-10 {
-  z-index: 10;
-}
 .z-20 {
   z-index: 20;
+}
+.z-10 {
+  z-index: 10;
 }
 .z-40 {
   z-index: 40;
@@ -11827,9 +11827,6 @@ input:checked + .toggle-bg {
 }
 .float-right {
   float: right;
-}
-.float-left {
-  float: left;
 }
 .mx-auto {
   margin-left: auto;
@@ -12022,20 +12019,8 @@ input:checked + .toggle-bg {
 .h-\[400px\] {
   height: 400px;
 }
-.max-h-20 {
-  max-height: 5rem;
-}
 .max-h-32 {
   max-height: 8rem;
-}
-.max-h-48 {
-  max-height: 12rem;
-}
-.max-h-56 {
-  max-height: 14rem;
-}
-.max-h-64 {
-  max-height: 16rem;
 }
 .max-h-72 {
   max-height: 18rem;
@@ -12096,9 +12081,6 @@ input:checked + .toggle-bg {
 }
 .w-4\/5 {
   width: 80%;
-}
-.w-44 {
-  width: 11rem;
 }
 .w-64 {
   width: 16rem;
@@ -12218,6 +12200,9 @@ input:checked + .toggle-bg {
 .grid-cols-7 {
   grid-template-columns: repeat(7, minmax(0, 1fr));
 }
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
 .flex-row {
   flex-direction: row;
 }
@@ -12294,15 +12279,6 @@ input:checked + .toggle-bg {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
-}
-.divide-y > :not([hidden]) ~ :not([hidden]) {
-  --tw-divide-y-reverse: 0;
-  border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
-  border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
-}
-.divide-gray-100 > :not([hidden]) ~ :not([hidden]) {
-  --tw-divide-opacity: 1;
-  border-color: rgb(243 244 246 / var(--tw-divide-opacity));
 }
 .self-center {
   align-self: center;
@@ -12991,10 +12967,6 @@ input:checked + .toggle-bg {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
-.hover\:bg-gray-300:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
-}
 .hover\:text-gray-500:hover {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
@@ -13228,10 +13200,9 @@ input:checked + .toggle-bg {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
-.dark .dark\:text-gray-200 {
+.dark .dark\:text-gray-400 {
   --tw-text-opacity: 1;
-  color: rgb(229 231 235 / var(--tw-text-opacity));
-
+  color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 .dark .dark\:text-blue-500 {
   --tw-text-opacity: 1;

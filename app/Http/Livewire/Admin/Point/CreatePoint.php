@@ -23,6 +23,7 @@ class CreatePoint extends Component
         'latitude' => '',
         'longitude' => '',
         'place' => '',
+	    'areas' => [],
     ];
 
     protected $rules = [
@@ -31,6 +32,8 @@ class CreatePoint extends Component
         'createForm.latitude' => 'required|numeric|max:90|min:-90',
         'createForm.longitude' => 'required|numeric|max:180|min:-180',
         'createForm.place' => 'required|exists:places,id',
+	    'createForm.areas' => 'array',
+	    'createForm.areas.*' => 'distinct|exists:thematic_areas,id'
     ];
 
     protected $validationAttributes = [
@@ -39,6 +42,8 @@ class CreatePoint extends Component
         'createForm.latitude' => 'latitud',
         'createForm.longitude' => 'longitud',
         'createForm.place' => 'lugar',
+	      'createForm.areas' => 'areas temáticas',
+	      'createForm.areas.*' => 'área temática'
     ];
 
     public function openCreationModal()
@@ -75,6 +80,7 @@ class CreatePoint extends Component
                 'updater' => null,
                 'verified' => true,
             ]);
+	        $pointOfInterest->thematicAreas()->attach($this->createForm['areas']);
         } else if(auth()->user()->hasRole('Alumno')) {
             $pointOfInterest = PointOfInterest::create([
                 'name' => $this->createForm['name'],
@@ -85,6 +91,7 @@ class CreatePoint extends Component
                 'creator' => auth()->user()->id,
                 'updater' => null,
             ]);
+	        $pointOfInterest->thematicAreas()->attach($this->createForm['areas']);
         }
         $isCreated = $pointOfInterest;
         if ($isCreated) {

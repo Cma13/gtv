@@ -29,7 +29,6 @@ class ShowPointTest extends TestCase
                 $pointOfInterest2->name,
                 $pointOfInterest1->name,
             ]);;
-
     }
 }
 
