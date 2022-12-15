@@ -1,5 +1,5 @@
 <div>
-    <h1 class="text-2xl font-semibold text-gray-700">Bienvenido<span class="text-blue-500 font-bold">{{ auth()->user()->name }}</span></h1>
+    <h1 class="text-2xl font-semibold text-gray-700">Bienvenido, <span class="text-blue-500 font-bold">{{ auth()->user()->name }}</span></h1>
 
     @role('Usuario sin verificar')
 
@@ -620,8 +620,13 @@
                         </x-jet-label>
                     </div>
                     <div>
-                        <x-jet-label>
-                            Área Temática: {{ $detailsModalPoints['thematicAreasName'] }} ({{ $detailsModalPoints['thematicAreasId'] }})
+                        <x-jet-label class="flex flex-col">
+                            <span>Área/s Temática/s:</span>
+                            <div class="ml-4">
+                                @foreach ($detailsModalPoints['thematicAreas'] as $thematicArea)
+                                    <span>{{ $thematicArea->name }} ({{ $thematicArea->id }}), </span>
+                                @endforeach 
+                            </div>
                         </x-jet-label>
                     </div>
                     <div>

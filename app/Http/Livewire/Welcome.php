@@ -93,8 +93,7 @@ class Welcome extends Component
         'longitude' => null,
         'placeId' => null,
         'placeName' => null,
-        'thematicAreasId' => null,
-        'thematicAreasName' => null,
+        'thematicAreas' => [],
         'creatorName' => null,
         'creatorId' => null,
         'updaterName' => null,
@@ -200,8 +199,7 @@ class Welcome extends Component
         $this->detailsModalPoints['longitude'] = $point->longitude;
         $this->detailsModalPoints['placeId'] = $point->place->id;
         $this->detailsModalPoints['placeName'] = $point->place->name;
-        $this->detailsModalPoints['thematicAreasId'] = $point->thematicAreas;
-        $this->detailsModalPoints['thematicAreasName'] = $point->thematicAreas;
+        $this->detailsModalPoints['thematicAreas'] = $point->thematicAreas;
         $this->detailsModalPoints['creatorName'] = User::find($point->creator)->name;
         $this->detailsModalPoints['creatorId'] = $point->creator;
         $this->detailsModalPoints['updaterName'] = $point->updater ? User::find($point->updater)->name : null;;
