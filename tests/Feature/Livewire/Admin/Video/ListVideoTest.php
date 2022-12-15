@@ -21,8 +21,8 @@ class ListVideoTest extends TestCase
         $this->get('videos')
             ->assertOk()
             ->assertSeeInOrder([
-                $videoB->description,
-                $videoA->description,
+                $videoB->id,
+                $videoA->id,
             ]);
     }
 }

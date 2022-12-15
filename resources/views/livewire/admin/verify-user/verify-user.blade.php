@@ -8,7 +8,8 @@
             <select class="text-black  bg-blue-100 hover:bg-grey-200 focus:ring-4 focus:ring-blue-300
                     font-medium rounded-lg text-sm py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700
                     focus:outline-none dark:focus:ring-blue-800 ml-auto" wire:model="searchColumn">
-                <option value="name">NOMBRE</option>
+                    <option value="name">ID</option>
+                    <option value="name">NOMBRE</option>
                 <option value="email">EMAIL</option>
             </select>
         </div>
@@ -47,22 +48,6 @@
                         <i class="fa-solid fa-arrow-down"></i>
                     @endif
                 </th>
-                <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('created_at')">
-                    Fecha creación
-                    @if($sortField === 'created_at' && $sortDirection === 'asc')
-                        <i class="fa-solid fa-arrow-up">
-                    @elseif($sortField === 'created_at' && $sortDirection === 'desc')
-                        <i class="fa-solid fa-arrow-down"></i>
-                    @endif
-                </th>
-                <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('updated_at')">
-                    Fecha actualización
-                    @if($sortField === 'updated_at' && $sortDirection === 'asc')
-                        <i class="fa-solid fa-arrow-up">
-                    @elseif($sortField === 'updated_at' && $sortDirection === 'desc')
-                        <i class="fa-solid fa-arrow-down"></i>
-                    @endif
-                </th>
                 <th scope="col" class="px-6 py-3">
                     <span class="sr-only">Actions</span>
                 </th>
@@ -88,12 +73,6 @@
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                             {{ $user->email }}
-                        </td>
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            {{ $user->created_at }}
-                        </td>
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            {{ $user->updated_at }}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap flex gap-4 mt-2">
                             <span class="text-xl text-blue-600 cursor-pointer" wire:click="show('{{ $user->id }}')">
@@ -137,27 +116,27 @@
                 </div>
                 <div>
                     <x-jet-label>
-                        Nombre: {{ $detailsModal['name']}}
+                        <span class="font-bold">Nombre:</span> {{ $detailsModal['name']}}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Email: {{ $detailsModal['email'] }}
+                        <span class="font-bold">Email:</span> {{ $detailsModal['email'] }}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Rol: {{ isset($user) ? $user->roles->first()->name : ''}}
+                        <span class="font-bold">Rol:</span> {{ isset($user) ? $user->roles->first()->name : ''}}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Fecha de creación: {{ $detailsModal['createdAt'] }}
+                        <span class="font-bold">Fecha de creación:</span> {{ $detailsModal['createdAt'] }}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Fecha de actualización: {{ $detailsModal['updatedAt'] }}
+                        <span class="font-bold">Fecha de actualización:</span> {{ $detailsModal['updatedAt'] }}
                     </x-jet-label>
                 </div>
             </div>

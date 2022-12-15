@@ -18,9 +18,9 @@
 
         <x-slot name="content">
             <!-- Account Management -->
-            <div class="block">
-                <span class="px-4 py-2 text-sm text-black font-bold">{{ auth()->user()->name }}</span>
-                <span class="px-4 py-2 text-sm text-gray-400">{{ auth()->user()->roles->first()->name }}</span>
+            <div class="flex flex-col">
+                <span class="px-4 pt-2 text-sm text-black font-bold">{{ auth()->user()->name }}</span>
+                <span class="px-4  text-sm text-gray-400">{{ auth()->user()->roles->first()->name }}</span>
             </div>
 
             <div class="border-t border-gray-100 my-1"></div>

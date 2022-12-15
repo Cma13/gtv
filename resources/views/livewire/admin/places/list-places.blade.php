@@ -19,7 +19,6 @@
                 <option value="description">DESCRIPCIÓN</option>
                 <option value="creator">CREADOR</option>
                 <option value="updater">ACTUALIZADOR</option>
-                <option value="created_at">FECHA DE CREACIÓN</option>
             </select>
         </div>
 
@@ -77,14 +76,6 @@
                                 <i class="fa-solid fa-arrow-down"></i>
                     @endif
                 </th>
-                <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('created_at')">
-                    Fecha creación
-                    @if($sortField === 'created_at' && $sortDirection === 'asc')
-                        <i class="fa-solid fa-arrow-up">
-                            @elseif($sortField === 'created_at' && $sortDirection === 'desc')
-                                <i class="fa-solid fa-arrow-down"></i>
-                    @endif
-                </th>
                 <th scope="col" class="px-6 py-3">
                     <span class="sr-only">Actions</span>
                 </th>
@@ -100,16 +91,13 @@
                             {{ $place->name }}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            {{ $place->description }}
+                            {{ getDescripcionCorta(50, $place->description) }}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                             {{ \App\Models\User::find($place->creator)?->name }}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                             {{ \App\Models\User::find($place->updater)?->name }}
-                        </td>
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            {{ $place->created_at }}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap flex gap-4">
                             <span class="font-medium text-blue-600 cursor-pointer" wire:click="show('{{ $place->id }}')">
@@ -153,27 +141,27 @@
             <div class="space-y-3">
                 <div>
                     <x-jet-label>
-                        ID: {{ $detailsModal['id']}}
+                        <span class="font-bold">ID:</span> {{ $detailsModal['id']}}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Nombre: {{ $detailsModal['name']}}
+                        <span class="font-bold">Nombre:</span> {{ $detailsModal['name']}}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Descripción: {{ $detailsModal['description']}}
+                        <span class="font-bold">Descripción:</span> {{ $detailsModal['description']}}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Creador: {{ $detailsModal['creatorName'] }} ({{ $detailsModal['creatorId'] }})
+                        <span class="font-bold">Creador:</span> {{ $detailsModal['creatorName'] }} ({{ $detailsModal['creatorId'] }})
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Actualizador:
+                        <span class="font-bold">Actualizador:</span>
                         @if($detailsModal['updaterName'])
                             {{ $detailsModal['updaterName'] }} ({{ $detailsModal['updaterId'] }})
                         @else
@@ -183,12 +171,12 @@
                 </div>
                 <div>
                     <x-jet-label>
-                        Fecha de creación: {{ $detailsModal['createdAt'] }}
+                        <span class="font-bold">Fecha de creación:</span> {{ $detailsModal['createdAt'] }}
                     </x-jet-label>
                 </div>
                 <div>
                     <x-jet-label>
-                        Última actualización: {{ $detailsModal['updatedAt'] }}
+                        <span class="font-bold">Última actualización:</span> {{ $detailsModal['updatedAt'] }}
                     </x-jet-label>
                 </div>
             </div>

@@ -22,8 +22,6 @@
                         <option value="creator">CREADOR</option>
                         <option value="Updater">ACTUALIZADOR</option>
                     @endhasanyrole
-                    <option value="created_at">FECHA DE CREACIÓN</option>
-                    <option value="updated_at">FECHA DE ACTUALIZACIÓN</option>
                 </select>
             </div>
 
@@ -79,22 +77,6 @@
                             <i class="fa-solid fa-arrow-down"></i>
                         @endif
                     </th>
-                    <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('created_at')">
-                        Fecha creación
-                        @if($sortField === 'created_at' && $sortDirection === 'asc')
-                            <i class="fa-solid fa-arrow-up">
-                        @elseif($sortField === 'created_at' && $sortDirection === 'desc')
-                            <i class="fa-solid fa-arrow-down"></i>
-                        @endif
-                    </th>
-                    <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('updated_at')">
-                        Fecha actualización
-                        @if($sortField === 'updated_at' && $sortDirection === 'asc')
-                            <i class="fa-solid fa-arrow-up">
-                        @elseif($sortField === 'updated_at' && $sortDirection === 'desc')
-                            <i class="fa-solid fa-arrow-down"></i>
-                        @endif
-                    </th>
                     <th scope="col" class="px-6 py-3">
                         Acciones
                     </th>
@@ -135,14 +117,6 @@
                                     @role('Administrador')
                                     (ID: {{ \App\Models\User::find($photography->updater)->id }})
                                     @endrole
-                                @endif
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                {{ $photography->created_at }}
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                @if($photography->updater)
-                                    {{ $photography->updated_at }}
                                 @endif
                             </td>
                             <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
@@ -189,31 +163,31 @@
 
                 <div class="mb-4">
                     <x-jet-label>
-                        Ruta: {{ $showModal['route'] }}
+                        <span class="font-bold">Ruta:</span> {{ $showModal['route'] }}
                     </x-jet-label>
                 </div>
 
                 <div class="mb-4">
                     <x-jet-label>
-                        Orden: {{ $showModal['order'] }}
+                        <span class="font-bold">Orden:</span> {{ $showModal['order'] }}
                     </x-jet-label>
                 </div>
 
                 @if( ! empty($showModal['pointOfInterestId']))
                     <div class="mb-4">
                         <x-jet-label>
-                            Punto de interés: {{ $showModal['pointOfInterestId'] }}
+                            <span class="font-bold">Punto de interés:</span> {{ $showModal['pointOfInterestId'] }}
                         </x-jet-label>
                     </div>
                 @else
                     <div class="mb-4">
                         <x-jet-label>
-                            Punto de interés: <span class="text-red-600">Ninguno</span>
+                            <span class="font-bold">Punto de interés:</span> <span class="text-red-600">Ninguno</span>
                         </x-jet-label>
                     </div>
                     <div class="mb-4">
                         <x-jet-label>
-                            Área temática: <span class="text-red-600">Ninguna</span>
+                            <span class="font-bold">Área temática:</span> <span class="text-red-600">Ninguna</span>
                         </x-jet-label>
                     </div>
                 @endif
@@ -221,7 +195,7 @@
                 @if($showModal['creatorId'])
                     <div class="mb-4">
                         <x-jet-label>
-                            Creador: {{ $showModal['creatorName'] }} (ID: {{ $showModal['creatorId'] }})
+                            <span class="font-bold">Creador:</span> {{ $showModal['creatorName'] }} (ID: {{ $showModal['creatorId'] }})
                         </x-jet-label>
                     </div>
                 @endif
@@ -229,21 +203,21 @@
                 @if( ! is_null($showModal['updaterId']))
                     <div class="mb-4">
                         <x-jet-label>
-                            Actualizador: {{ $showModal['updaterName'] }} (ID: {{ $showModal['updaterId'] }})
+                            <span class="font-bold">Actualizador:</span> {{ $showModal['updaterName'] }} (ID: {{ $showModal['updaterId'] }})
                         </x-jet-label>
                     </div>
                 @endif
 
                 <div class="mb-4">
                     <x-jet-label>
-                        Fecha de creación: {{ $showModal['createdAt'] }}
+                        <span class="font-bold">Fecha de creación:</span> {{ $showModal['createdAt'] }}
                     </x-jet-label>
                 </div>
 
-                @if( ! is_null($showModal['updaterId']))
+                @if(!is_null($showModal['updaterId']))
                     <div class="mb-4">
                         <x-jet-label>
-                            Fecha de actualización: {{ $showModal['updatedAt'] }}
+                            <span class="font-bold">Fecha de actualización:</span> {{ $showModal['updatedAt'] }}
                         </x-jet-label>
                     </div>
                 @endif

@@ -41,7 +41,7 @@ class CreatePoint extends Component
         'createForm.description' => 'descripción',
         'createForm.latitude' => 'latitud',
         'createForm.longitude' => 'longitud',
-        'createForm.place' => 'sitio',
+        'createForm.place' => 'lugar',
 	    'createForm.areas' => 'areas temáticas',
 	    'createForm.areas.*' => 'área temática'
     ];

@@ -21,8 +21,12 @@ class ListThematicAreaTest extends TestCase
         $this->get('thematic-areas')
             ->assertOk()
             ->assertSeeInOrder([
-                $thematicArea1->description,
-                $thematicArea2->description,
-            ]);
+                $thematicArea1->name,
+                $thematicArea2->name,
+            ])
+	        ->assertSeeInOrder([
+		        $thematicArea1->id,
+		        $thematicArea2->id,
+	        ]);
     }
 }

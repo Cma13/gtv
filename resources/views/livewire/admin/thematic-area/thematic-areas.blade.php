@@ -19,8 +19,6 @@
                     <option value="id">ID</option>
                     <option value="name">NOMBRE</option>
                     <option value="description">DESCRIPCIÓN</option>
-                    <option value="created_at">FECHA DE CREACIÓN</option>
-                    <option value="updated_at">FECHA DE ACTUALIZACIÓN</option>
                 </select>
             </div>
 
@@ -58,22 +56,6 @@
                             <i class="fa-solid fa-arrow-down"></i>
                         @endif
                     </th>
-                    <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('created_at')">
-                        Fecha creación
-                        @if($sortField === 'created_at' && $sortDirection === 'asc')
-                            <i class="fa-solid fa-arrow-up">
-                        @elseif($sortField === 'created_at' && $sortDirection === 'desc')
-                            <i class="fa-solid fa-arrow-down"></i>
-                        @endif
-                    </th>
-                    <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('updated_at')">
-                        Fecha actualización
-                        @if($sortField === 'updated_at' && $sortDirection === 'asc')
-                            <i class="fa-solid fa-arrow-up">
-                        @elseif($sortField === 'updated_at' && $sortDirection === 'desc')
-                            <i class="fa-solid fa-arrow-down"></i>
-                        @endif
-                    </th>
                     <th scope="col" class="px-6 py-3">
                         Acciones
                     </th>
@@ -89,13 +71,7 @@
                                 {{ $thematicArea->name }}
                             </td>
                             <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                {{ $thematicArea->description }}
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                {{ $thematicArea->created_at }}
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                {{ $thematicArea->updated_at }}
+                                {{ getDescripcionCorta(50, $thematicArea->description) }}
                             </td>
                             <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap flex gap-4">
                                 <span class="font-medium text-blue-600 cursor-pointer" wire:click="show('{{ $thematicArea->id }}')">
@@ -134,27 +110,29 @@
             <div class="space-y-6">
                 <div class="mb-4">
                     <x-jet-label>
-                        Nombre: {{ $showModal['name'] }}
+                        <span class="font-bold">Nombre:</span> {{ $showModal['name'] }}
                     </x-jet-label>
                 </div>
 
                 <div class="mb-4">
                     <x-jet-label>
-                        Descripción: {{ $showModal['description'] }}
+                        <span class="font-bold">Descripción:</span> {{ $showModal['description'] }}
                     </x-jet-label>
                 </div>
 
                 <div class="mb-4">
                     <x-jet-label>
-                        Fecha de creación: {{ $showModal['createdAt'] }}
+                        <span class="font-bold">Fecha de creación:</span> {{ $showModal['createdAt'] }}
                     </x-jet-label>
                 </div>
-
-                <div class="mb-4">
-                    <x-jet-label>
-                        Fecha de actualización: {{ $showModal['updatedAt'] }}
-                    </x-jet-label>
-                </div>
+                
+                @if ($showModal['updatedAt'])
+                    <div class="mb-4">
+                        <x-jet-label>
+                            <span class="font-bold">Fecha de actualización:</span> {{ $showModal['updatedAt'] }}
+                        </x-jet-label>
+                    </div>
+                @endif
             </div>
         </x-slot>
 

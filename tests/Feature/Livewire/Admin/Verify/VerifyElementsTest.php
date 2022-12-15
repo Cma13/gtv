@@ -23,9 +23,10 @@ class VerifyElementsTest extends TestCase
         $this->actingAs($adminUser);
 
         Livewire::test(ListVerify::class)
+            ->assertSee($point->id)
             ->assertSee($point->name)
-            ->assertSee($point->longitude)
-            ->assertSee($point->latitude);
+            ->assertSee(getDescripcionCorta(50, $point->description))
+            ->assertSee($point->place->name);
     }
 
     /** @test */
@@ -61,10 +62,7 @@ class VerifyElementsTest extends TestCase
             ->assertDontSee($point->name);
 
         $this->assertDatabaseCount('point_of_interests', 1);
-        $this->assertDatabaseHas('point_of_interests', [
-            'deleted_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'verified' => false
-        ]);
+		$this->assertSoftDeleted($point);
 
         Livewire::test(DeletedVerify::class)
             ->assertSee($point->name);

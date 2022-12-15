@@ -40,7 +40,7 @@ class EditPoint extends Component
         'createForm.description' => 'descripción',
         'editForm.latitude' => 'latitud',
         'editForm.longitude' => 'longitud',
-        'editForm.place' => 'sitio',
+        'editForm.place' => 'lugar',
 	    'editForm.areas' => 'areas temáticas',
 	    'editForm.areas.*' => 'área temática'
     ];
