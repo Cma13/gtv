@@ -34,12 +34,15 @@ class ShowPoint extends Component
         'longitude' => null,
         'placeId' => null,
         'placeName' => null,
+        'thematicAreaId' => null,
+        'thematicAreaName' => null,
         'creatorName' => null,
         'creatorId' => null,
         'updaterName' => null,
         'updaterId' => null,
         'createdAt' => null,
         'updatedAt' => null,
+        'qr' => null,
     ];
 
     public function show(PointOfInterest $point)
@@ -52,12 +55,15 @@ class ShowPoint extends Component
         $this->detailsModal['longitude'] = $point->longitude;
         $this->detailsModal['placeId'] = $point->place->id;
         $this->detailsModal['placeName'] = $point->place->name;
+        $this->detailsModal['thematicAreaId'] = $point->thematicAreas;
+        $this->detailsModal['thematicAreaName'] = $point->thematicAreas;
         $this->detailsModal['creatorName'] = $point->creator ? User::find($point->creator)->name : null;
         $this->detailsModal['creatorId'] = $point->creator;
         $this->detailsModal['updaterName'] = $point->updater ? User::find($point->updater)->name : null;;
         $this->detailsModal['updaterId'] = $point->updater;
         $this->detailsModal['createdAt'] = $point->created_at;
         $this->detailsModal['updatedAt'] = $point->updated_at;
+        $this->detailsModal['qr'] = $point;
     }
 
     public function delete(PointOfInterest $pointOfInterest)

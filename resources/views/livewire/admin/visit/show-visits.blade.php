@@ -163,7 +163,7 @@
                 </div>
                 <div>
                     <x-jet-label>
-                        Punto de Interest:
+                        Código del punto de interés:
                         {!!QrCode::size(100)->generate(json_encode($detailsModal['point_of_interest_id'], JSON_PRETTY_PRINT)) !!}
                     </x-jet-label>
                 </div>

@@ -38,9 +38,6 @@
 
         <x-table>
             <x-slot name="thead">
-                <th scope="col" class="px-6 py-3">
-                    QR
-                </th>
                 <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sort('id')">
                     ID
                     @if($sortField === 'id' && $sortDirection === 'asc')
@@ -114,9 +111,6 @@
                 @foreach($points as $point)
                     <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            {!!QrCode::size(80)->generate(json_encode($point, JSON_PRETTY_PRINT)) !!}
-                        </td>
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                             {{$point->id}}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
@@ -173,7 +167,7 @@
     {{-- Modal show --}}
     <x-jet-dialog-modal wire:model="detailsModal.open">
         <x-slot name="title">
-            <span class="text-2xl">Detalles del Punto de Interes #{{ $detailsModal['id'] }}</span>
+            <span class="text-2xl">Detalles del Punto de Interés #{{ $detailsModal['id'] }}</span>
         </x-slot>
 
         <x-slot name="content">
@@ -205,6 +199,17 @@
                 </div>
                 <div>
                     <x-jet-label>
+                        Área Temática: 
+                        @foreach ($point->thematicAreas as $area )
+                      
+                        @endforeach
+                        {{ $area->name }}
+                        {{-- {{ $detailsModal['thematicAreaName'] }} ({{ $detailsModal['thematicAreaId'] }}) --}}
+                        
+                    </x-jet-label>
+                </div>
+                <div>
+                    <x-jet-label>
                         Creador: {{ $detailsModal['creatorName'] }} ({{ $detailsModal['creatorId'] }})
                     </x-jet-label>
                 </div>
@@ -226,6 +231,12 @@
                 <div>
                     <x-jet-label>
                         Fecha de actualización: {{ $detailsModal['updatedAt'] }}
+                    </x-jet-label>
+                </div>
+                <div>
+                    <x-jet-label>
+                        Código del punto de interés:
+                        {!!QrCode::size(100)->generate(json_encode($detailsModal['qr'], JSON_PRETTY_PRINT)) !!}
                     </x-jet-label>
                 </div>
             </div>
