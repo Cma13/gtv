@@ -17,7 +17,7 @@ class DeletedVerify extends Component
         'ID',
         'NOMBRE',
         'LATITUD / LONGITUD',
-        'SITIO',
+        'LUGAR',
         'CREADOR',
         'ACTUALIZADOR',
         'FECHA CREACIÓN',

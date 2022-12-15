@@ -38,3 +38,13 @@ function countUnVerifiedUsersHelper()
     }
     return $count;
 }
+
+function getDescripcionCorta($n_caracteres, $description)
+{
+    $caracteresDescription = strlen($description);
+
+    if ($caracteresDescription > 50) {
+        return substr($description, 0, $n_caracteres) . '...';
+    }
+    return $description;
+}

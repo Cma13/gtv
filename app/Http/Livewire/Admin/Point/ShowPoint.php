@@ -86,7 +86,7 @@ class ShowPoint extends Component
         $this->sortField = $field;
     }
 
-    public function orderBySitio($query, $direction)
+    public function orderByLugar($query, $direction)
     {
         return $query->orderBy(Place::select('name')
             ->whereColum('places.id', 'point_of_interests.place_id'), $direction);
