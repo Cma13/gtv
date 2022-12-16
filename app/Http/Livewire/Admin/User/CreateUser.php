@@ -84,7 +84,7 @@ class CreateUser extends Component
 		}
         $isCreated = $user;
         if ($isCreated) {
-            Log::info('New User with ID ' . auth()->user()->id . ' was created with role ' . auth()->user()->role .$user);
+            Log::info('New User with ID ' . $user->id . ' was created with role: ' . $role->name);
         }
 
         $this->reset('createForm');
