@@ -2,6 +2,10 @@
     @if (countDeletedElements())
         <div class="flex justify-between mb-6">
             <h1 class="text-2xl font-semibold text-gray-700">Elementos no verificados:</h1>
+            <a href="{{ route('verify.index') }}"
+                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-500 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Volver
+            </a>
         </div>
 
         <div class="mt-6 space-y-10">
@@ -55,8 +59,7 @@
                                         {{ $point->created_at }}
                                     </td>
                                     <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                        <span
-                                            class="text-2xl text-green-400 cursor-pointer text-center mr-1"
+                                        <span class="text-2xl text-green-400 cursor-pointer text-center mr-1"
                                             wire:click="restoreElement({{ $point->id }}, 'point')">
                                             <i class="fa-sharp fa-solid fa-trash-arrow-up"></i>
                                         </span>
@@ -111,8 +114,7 @@
                                         {{ $place->created_at }}
                                     </td>
                                     <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                        <span
-                                            class="text-2xl text-green-400 cursor-pointer text-center mr-1"
+                                        <span class="text-2xl text-green-400 cursor-pointer text-center mr-1"
                                             wire:click="restoreElement({{ $place->id }}, 'place')">
                                             <i class="fa-sharp fa-solid fa-trash-arrow-up"></i>
                                         </span>
@@ -179,8 +181,7 @@
                                         {{ $video->created_at }}
                                     </td>
                                     <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                        <span
-                                            class="text-2xl text-green-400 cursor-pointer text-center mr-1"
+                                        <span class="text-2xl text-green-400 cursor-pointer text-center mr-1"
                                             wire:click="restoreElement({{ $video->id }}, 'video')">
                                             <i class="fa-sharp fa-solid fa-trash-arrow-up"></i>
                                         </span>
@@ -262,8 +263,7 @@
                                         @endif
                                     </td>
                                     <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                        <span
-                                            class="text-2xl text-green-400 cursor-pointer text-center mr-1"
+                                        <span class="text-2xl text-green-400 cursor-pointer text-center mr-1"
                                             wire:click="restoreElement({{ $photo->id }}, 'photo')">
                                             <i class="fa-sharp fa-solid fa-trash-arrow-up"></i>
                                         </span>
@@ -295,27 +295,30 @@
 </div>
 
 @push('scripts')
-<script>
-    Livewire.on('deleteElement', (elementId, model) => {
-        Swal.fire({
-            title: '¿Quieres eliminar este elemento?',
-            text: 'Esta operación es irreversible',
-            icon: 'warning',
-            showCancelButton: true,
-            cancelButtonText: "Cancelar",
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Eliminar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Livewire.emitTo('admin.verify.deleted-verify', 'hardDelete', {elementId, model})
-                Swal.fire(
-                    '¡Hecho!',
-                    'El elemento ha sido borrado.',
-                    'success'
-                )
-            }
-        })
-    });
-</script>
+    <script>
+        Livewire.on('deleteElement', (elementId, model) => {
+            Swal.fire({
+                title: '¿Quieres eliminar este elemento?',
+                text: 'Esta operación es irreversible',
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonText: "Cancelar",
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Eliminar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.emitTo('admin.verify.deleted-verify', 'hardDelete', {
+                        elementId,
+                        model
+                    })
+                    Swal.fire(
+                        '¡Hecho!',
+                        'El elemento ha sido borrado.',
+                        'success'
+                    )
+                }
+            })
+        });
+    </script>
 @endpush
