@@ -268,7 +268,7 @@
                                             <i class="fa-sharp fa-solid fa-trash-arrow-up"></i>
                                         </span>
                                         <span class="text-2xl text-red-500 cursor-pointer"
-                                            wire:click="$emit('deleteElement', '{{ $point->id }}', 'photo')">
+                                            wire:click="$emit('deleteElement', '{{ $photo->id }}', 'photo')">
                                             <i class="fa-solid fa-sack-xmark"></i>
                                         </span>
                                     </td>
