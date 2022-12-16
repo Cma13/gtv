@@ -82,11 +82,9 @@ class CreateUser extends Component
 		if (config('mail.username')) {
 			Mail::to('admin@mail.com')->send(new UserCreated($user));
 		}
-	    Log::alert('User with ID ' . auth()->user()->id . ' created a user ' . $user);
-
         $isCreated = $user;
         if ($isCreated) {
-            Log::info('New User with ID ' . auth()->user()->id . ' was created with role ' . $user->$role .$user);
+            Log::info('New User with ID ' . auth()->user()->id . ' was created with role ' . auth()->user()->role .$user);
         }
 
         $this->reset('createForm');
